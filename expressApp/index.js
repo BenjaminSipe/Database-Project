@@ -15,23 +15,17 @@ var connection = mysql.createConnection({
 app.use(cors());
 
 app.get('/', (req, res) => res.send('Hello World!'))
-app.get('/test', (req, res) => {res.send('Hello World!') 
+app.get('/test', (req, res) => {res.send('Hello World!')
 console.log("test")
 })
 
 app.get('/dbtest', (req, res) => {
 
-    connection.connect()
-
     connection.query('CALL usp_ReadCategories()', function (err, rows, fields) {
       if (err) throw err
-    res.send(rows[0])
-    })
-    connection.end()    
-}) 
+      res.send(rows[0])
+    });
+});
 
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-
-
-
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
