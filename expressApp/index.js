@@ -1,14 +1,15 @@
 const express = require('express')
 var cors = require('cors');
 var mysql = require('mysql')
+const test = require('./dbconnectiontest')
 
 const app = express()
 const port = 3000
 var connection = mysql.createConnection({
-  host     : 'db.cberkstresser.name',
-  user     : 'benandailendev',
-  password : 'Development2',
-  database : 'teambenandailen'
+    host     : 'db.cberkstresser.name',
+    user     : 'benandailendev',
+    password : 'Development2',
+    database : 'teambenandailen'
 });
 
 
