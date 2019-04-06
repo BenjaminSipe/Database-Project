@@ -8,6 +8,10 @@ import { NewaccountComponent } from './newaccount/newaccount.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { BooksComponent } from './books/books.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
     NewaccountComponent,
     NavComponent,
     HomeComponent,
+    ShoppingCartComponent,
+    BooksComponent,
+    CheckoutComponent,
+    MyOrdersComponent,
   ],
   imports: [
     HttpClientModule,
