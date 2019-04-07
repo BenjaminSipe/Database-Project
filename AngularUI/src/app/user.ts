@@ -1,11 +1,15 @@
 export class User {
     constructor(
-        public name: string,
+        public Name: string,
         public Username: string,
-        public emailAddress: string,
-        public homePhone: string,
-        public password?: string,
-        public workPhone?: string
+        public EmailAddress: string,
+        public HomePhone: string,
+        private Password?: string,
+        public WorkPhone?: string
       ) {  }
 
+      setPassword(test :string) {
+        this.Password = test
+        ;
+      }
 }

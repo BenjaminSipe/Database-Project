@@ -8,6 +8,8 @@ import { NewaccountComponent } from './newaccount/newaccount.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CreditCardComponent } from './credit-card/credit-card.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     NewaccountComponent,
     NavComponent,
     HomeComponent,
+    CreditCardComponent,
+    UserProfileComponent,
   ],
   imports: [
     HttpClientModule,
