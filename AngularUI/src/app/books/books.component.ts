@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from  "@angular/common/http";
 
 @Component({
   selector: 'app-books',
@@ -6,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./books.component.sass']
 })
 export class BooksComponent{
-  constructor() { }
+  books:string;
+
+  constructor(private http:HttpClient) {
+    this.configUrl = 'http://localhost:3000/getbooks';
+    this.books = this.http.get(this.configUrl)
+
+    }
 
   addToCart(){
     let cartId = localStorage.getItem('cartId');

@@ -30,20 +30,19 @@ pool.getConnection(function(err, connection) {
     // Don't use the connection here, it has been returned to the pool.
   });
 });
-      
+
 
 // app.get('/', (req, res) => res.send('Hello World!'))
 // app.get('/test', (req, res) => {res.send('Hello World!')
 // console.log("test")
 // })
 
-// app.get('/dbtest', (req, res) => {
-
-//     connection.query('CALL usp_ReadBooks()', function (err, rows, fields) {
-//       if (err) throw err
-//       res.send(rows[0])
-//     });
-// });
+app.get('/getbooks', (req, res) => {
+    connection.query('CALL usp_ReadBooks()', function (err, rows, fields) {
+      if (err) throw err
+      res.send(rows[0])
+    });
+});
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
