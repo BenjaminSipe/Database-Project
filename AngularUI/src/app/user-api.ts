@@ -1,11 +1,12 @@
 import { HttpClient } from  "@angular/common/http";
+import { User } from "./user";
 export class UserAPI {
   constructor () {
 
   }
   authenticateUser(user, password) {
     //GET USER
-    user = new User('dave', user, 'cofo.edu' )
+    //user = new User('dave', user, 'cofo.edu' )
   };
 
   /*
@@ -24,7 +25,7 @@ export class UserAPI {
 
   Delete a User,
 
-  
+
 
 
 

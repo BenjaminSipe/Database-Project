@@ -1,24 +1,33 @@
 const express = require('express')
 var cors = require('cors');
 var mysql = require('mysql')
+var fs = require('fs');
 const test = require('./dbconnectiontest')
+const categoryTest = require('./CategoryCRUD');
 
 const app = express()
 const port = 3000
-var connection = mysql.createConnection({
-    host     : 'db.cberkstresser.name',
-    user     : 'benandailendev',
-    password : 'Development2',
-    database : 'teambenandailen'
-});
-
+var connection = mysql.createConnection(test.connectionString);
 
 app.use(cors());
-
-app.get('/', (req, res) => res.send('Hello World!'))
-app.get('/test', (req, res) => {res.send('Hello World!')
-console.log("test")
+app.get('/', (req, res) => {
+  fs.readFile('index.html', function(err, data) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    res.end();
+  }
+)})
+app.get('/databaseTest', (req, res) => {
+  res.write(test.connectionString.host);
+  res.end();
 })
+app.get('/test', (req, res) => {
+
+  var categories = categoryTest.readCategories();
+  console.log("app.get")
+  console.log(categories);
+  res.send('hello world')
+});
 
 app.get('/dbtest', (req, res) => {
 
