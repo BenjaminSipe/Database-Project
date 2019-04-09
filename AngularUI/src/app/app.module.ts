@@ -18,6 +18,7 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { BooksService } from './services/books.service';
 import { CategoryService } from './services/category.service';
 import { PostsComponent } from './posts/posts.component';
+import { AdminBooksComponent } from './admin-books/admin-books.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { PostsComponent } from './posts/posts.component';
     MyOrdersComponent,
     CategoriesComponent,
     PostsComponent,
+    AdminBooksComponent,
   ],
   imports: [
     HttpClientModule,
