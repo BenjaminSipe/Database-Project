@@ -14,9 +14,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ShoppingCartService } from './shopping-cart.service';
-import { BooksService } from './books.service';
-import { CategoryService } from './category.service';
+import { ShoppingCartService } from './services/shopping-cart.service';
+import { BooksService } from './services/books.service';
+import { CategoryService } from './services/category.service';
 import { PostsComponent } from './posts/posts.component';
 @NgModule({
   declarations: [
