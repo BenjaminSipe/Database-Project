@@ -1,49 +1,47 @@
 const express = require('express')
 var cors = require('cors');
 var mysql = require('mysql')
+var fs = require('fs');
+const test = require('./dbconnectiontest')
+const categoryTest = require('./CategoryCRUD');
 
 const app = express()
 const port = 3000
 
-var pool = mysql.createPool({
-  host     : 'db.cberkstresser.name',
-  user     : 'benandailendev',
-  password : 'Development2',
-  database : 'teambenandailen'
-});
+var connection = mysql.createConnection(test.connectionString);
 
 
 app.use(cors());
 
-pool.getConnection(function(err, connection) {
-  if (err) throw err; // not connected!
-
-  // Use the connection
-//
-  connection.query('CALL usp_ReadBooks()', function (error, results, fields) {
-    // When done with the connection, release it.
-    connection.release();
-
-    // Handle error after the release.
-    if (error) throw error;
-
-    // Don't use the connection here, it has been returned to the pool.
-  });
+app.get('/getbooks', (req, res) => {
+  connection.query('CALL usp_ReadBooks()', function (err, rows, fields) {
+      if (err) throw err
+      res.send(rows[0])
+    });
 });
-      
 
-// app.get('/', (req, res) => res.send('Hello World!'))
-// app.get('/test', (req, res) => {res.send('Hello World!')
-// console.log("test")
-// })
 
-// app.get('/dbtest', (req, res) => {
+app.use(cors());
+app.get('/', (req, res) => {
+  fs.readFile('index.html', function(err, data) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    res.end();
+  }
+)})
+app.get('/databaseTest', (req, res) => {
+  res.write(test.connectionString.host);
+  res.end();
+})
+app.get('/test', (req, res) => {
 
-//     connection.query('CALL usp_ReadBooks()', function (err, rows, fields) {
-//       if (err) throw err
-//       res.send(rows[0])
-//     });
-// });
+  var categories = categoryTest.readCategories();
+  console.log("app.get")
+  console.log(categories);
+  res.send('hello world')
+});
+
+app.get('/dbtest', (req, res) => {
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

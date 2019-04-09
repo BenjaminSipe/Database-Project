@@ -1,0 +1,18 @@
+h1 {
+  text-align: center;
+  border-bottom-style: inset;
+}
+div {
+  text-align: center;
+  padding-bottom: .1em;
+  .error {
+    color:red;
+  }
+  .button {
+    border-radius: 3em;
+    border-color: #999999;
+    border-style:solid;
+    padding: .7em;
+    font-size: 16px;
+  }
+}
