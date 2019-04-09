@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from  "@angular/common/http";
+import { Book } from "../book";
 
 @Component({
   selector: 'app-books',
@@ -7,11 +8,15 @@ import { HttpClient } from  "@angular/common/http";
   styleUrls: ['./books.component.sass']
 })
 export class BooksComponent{
-  books:string;
-
+  books: Book;
+  Title: string;
   constructor(private http:HttpClient) {
-    this.configUrl = 'http://localhost:3000/getbooks';
-    this.books = this.http.get(this.configUrl)
+    this.http.get<Book>('http://localhost:3000/getbooks').subscribe(response => {
+      this.books = response;
+      this.Title = this.books.Title;
+
+      console.log(response);
+    })
 
     }
 
