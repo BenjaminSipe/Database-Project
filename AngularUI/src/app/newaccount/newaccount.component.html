@@ -1,3 +1,46 @@
-<p>
-  newaccount works!
-</p>
+
+<h1>New Account:</h1>
+<div>
+Name:
+<div>
+<input #nameInput type="text"/>
+</div>
+Email:
+<div>
+<input #emailInput type="text"/>
+</div>
+Password:
+<div>
+<input #passwordInput1 type="text" />
+</div>
+Re-enter Password:
+<div class="error">
+  {{errorText}}
+</div>
+<div>
+<input #passwordInput2 type="text" />
+</div>
+Address
+<div>
+<input #addressInput type="text" />
+</div>
+Main Phone:
+<div>
+<input #homePhoneInput type="text" />
+</div>
+Secondary Phone:
+<div>
+<input #workPhoneInput type="text" />
+</div>
+<div>
+<button class="button" (click)="onClick(
+nameInput.value
+,emailInput.value
+,passwordInput1.value
+,passwordInput2.value
+,addressInput.value
+,homePhoneInput.value
+,workPhoneInput.value
+)">Create User</button>
+</div>
+</div>

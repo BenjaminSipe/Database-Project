@@ -10,38 +10,35 @@ import { HttpClient } from  "@angular/common/http";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  username: string;
+  password: string;
   configUrl:string;
   buttonText:string;
-  public test = true;
-  category: any;
-  array = [1, 2, 3, 4];
-  constructor(private http:HttpClient) { 
+  boolean = false;
+  user : User;
+  category: 'test';
+  constructor(private http:HttpClient) {
     this.configUrl = 'http://localhost:3000/dbtest';
-    this.buttonText="Please Submit";
+    this.buttonText="Login Please";
   }
-  
+
   //This is the Section For HTTP Data Retrieval
   getConfig() {
-//    return this.http.get<Category>(this.configUrl);
+    return this.http.get(this.configUrl);
     this.category = this.http.get(this.configUrl)
   }
 
-  // showConfig() {
-  //   this.getConfig()
-  //     .subscribe((data: Category) => this.category = {
-  //         CategoryName: data['CategoryName'],
-  //         CategoryID:  data['CategoryID']
-  //     });
-  // }
-  // //End Section on data Retrieval.
-
-
-
-  onClick(userInput, passwordInput) {
-    this.buttonText=userInput;
-    this.getConfig();
+  test() {
+    return !this.boolean;
   }
-  ngOnInit() { 
+  onClick(userInput, passwordInput) {
+
+    this.username = userInput;
+    this.password = passwordInput;
+    this.boolean = true;
+    this.password = this.getConfig();
+  }
+  ngOnInit() {
   }
 
 }

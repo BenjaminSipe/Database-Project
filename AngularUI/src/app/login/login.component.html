@@ -1,5 +1,6 @@
+<div *ngIf="!boolean">
 <h1>Login</h1>
-<div>Info</div>
+<dd>
 <ul>
   <li>
 <input #userInput type="text" placeholder="Username"/>
@@ -8,14 +9,15 @@
 <input #passwordInput type="password" placeholder="Password"/>
 </li><li>
 <button (click)="onClick(userInput.value, passwordInput.value)">{{buttonText}}</button>
-
-<div *ngFor="let post of category | async">
-  {{ post | json}}
-
-</div>
-<ul>
-    <li *ngFor="let num of array">{{num}}</li>
 </ul>
-<label>Type something:
-    <input #customerInput>{{customerInput.value}}
-</label>
+<a href="/newaccount">New Account?</a>
+</dd>
+</div>
+
+<div *ngIf="boolean">
+  Username: {{username}}
+  <br>
+  Password: {{password}}
+  <app-user-profile></app-user-profile>
+  Login Successful
+</div>
