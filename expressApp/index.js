@@ -7,7 +7,19 @@ const categoryTest = require('./CategoryCRUD');
 
 const app = express()
 const port = 3000
+
 var connection = mysql.createConnection(test.connectionString);
+
+
+app.use(cors());
+
+app.get('/getbooks', (req, res) => {
+  connection.query('CALL usp_ReadBooks()', function (err, rows, fields) {
+      if (err) throw err
+      res.send(rows[0])
+    });
+});
+
 
 app.use(cors());
 app.get('/', (req, res) => {
@@ -30,12 +42,6 @@ app.get('/test', (req, res) => {
 });
 
 app.get('/dbtest', (req, res) => {
-
-    connection.query('CALL usp_ReadCategories()', function (err, rows, fields) {
-      if (err) throw err
-      res.send(rows[0])
-    });
-});
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

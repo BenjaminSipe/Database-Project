@@ -8,6 +8,16 @@ import { NewaccountComponent } from './newaccount/newaccount.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { BooksComponent } from './books/books.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ShoppingCartService } from './services/shopping-cart.service';
+import { BooksService } from './services/books.service';
+import { CategoryService } from './services/category.service';
+import { PostsComponent } from './posts/posts.component';
 import { CreditCardComponent } from './credit-card/credit-card.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 @NgModule({
@@ -17,15 +27,27 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     NewaccountComponent,
     NavComponent,
     HomeComponent,
+    ShoppingCartComponent,
+    BooksComponent,
+    CheckoutComponent,
+    MyOrdersComponent,
+    CategoriesComponent,
+    PostsComponent,
     CreditCardComponent,
     UserProfileComponent,
+
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    CategoryService,
+    BooksService,
+    ShoppingCartService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
