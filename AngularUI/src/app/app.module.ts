@@ -19,6 +19,9 @@ import { BooksService } from './services/books.service';
 import { CategoryService } from './services/category.service';
 import { PostsComponent } from './posts/posts.component';
 import { AdminBooksComponent } from './admin-books/admin-books.component';
+import { SearchComponent } from './search/search.component';
+import { AdminCategoriesComponent } from './admin-categories/admin-categories.component';
+import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +36,9 @@ import { AdminBooksComponent } from './admin-books/admin-books.component';
     CategoriesComponent,
     PostsComponent,
     AdminBooksComponent,
+    SearchComponent,
+    AdminCategoriesComponent,
+    AdminOrdersComponent,
   ],
   imports: [
     HttpClientModule,
