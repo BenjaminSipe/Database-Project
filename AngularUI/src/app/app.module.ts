@@ -14,6 +14,10 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ShoppingCartService } from './shopping-cart.service';
+import { BooksService } from './books.service';
+import { CategoryService } from './category.service';
+import { PostsComponent } from './posts/posts.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +30,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CheckoutComponent,
     MyOrdersComponent,
     CategoriesComponent,
+    PostsComponent,
   ],
   imports: [
     HttpClientModule,
@@ -33,7 +38,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     NgbModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    CategoryService,
+    BooksService,
+    ShoppingCartService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

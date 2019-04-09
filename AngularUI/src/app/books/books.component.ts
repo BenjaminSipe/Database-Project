@@ -5,11 +5,17 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.sass']
 })
-export class BooksComponent implements OnInit {
-
+export class BooksComponent{
   constructor() { }
 
-  ngOnInit() {
-  }
+  addToCart(){
+    let cartId = localStorage.getItem('cartId');
+    console.log('This cart id = '+cartId); //test
+    //make if sttmt
+    //if cart not exists - create
+    //then add to cart
 
+    //if exists
+    //add to cart
+  }
 }
