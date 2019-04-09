@@ -18,6 +18,11 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { BooksService } from './services/books.service';
 import { CategoryService } from './services/category.service';
 import { PostsComponent } from './posts/posts.component';
+
+import { AdminBooksComponent } from './admin-books/admin-books.component';
+import { SearchComponent } from './search/search.component';
+import { AdminCategoriesComponent } from './admin-categories/admin-categories.component';
+import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { CreditCardComponent } from './credit-card/credit-card.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 @NgModule({
@@ -33,8 +38,13 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MyOrdersComponent,
     CategoriesComponent,
     PostsComponent,
+    AdminBooksComponent,
+    SearchComponent,
+    AdminCategoriesComponent,
+    AdminOrdersComponent,
     CreditCardComponent,
     UserProfileComponent,
+
 
   ],
   imports: [
