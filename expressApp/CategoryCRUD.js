@@ -1,18 +1,21 @@
-const test = require('./dbconnectiontest');
-var mysql = require('mysql');
-var connection = mysql.createConnection(test.connectionString);
-;
-exports.readCategories =  function(ret) {
- var ret = [];
- connection.query('CALL usp_ReadCategories()', function (err, rows, fields) {
-    if (err) throw err
-    for (var i of rows[0]) {
-      ret.push(i);
-    }
-    console.log('for loop');
-    console.log(ret);
-  })
-  console.log('return');
-  console.log(ret);
-  return ret;
-}
+const dbInfo = require('./dbInfo');
+
+exports.readCategories = function() {
+  return new Promise( (resolve, reject) => {
+  dbInfo.pool.query('CALL usp_ReadCategories()', function (err, rows, fields) {
+      if (err)
+        reject('Something went wrong.');
+      else
+        resolve(rows[0])
+    });
+})}
+
+exports.readCategory = function(index) {
+  return new Promise( (resolve, reject) => {
+  dbInfo.pool.query('CALL usp_ReadCategory( ? )', index, function (err, rows, fields) {
+      if (err)
+        reject('Something went wrong.');
+      else
+        resolve(rows[0])
+    });
+})}

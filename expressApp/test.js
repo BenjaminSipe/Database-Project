@@ -1,10 +1,9 @@
 const promises = require('./promiseTest');
 
-promises.promise1.then( (message) => {
+promises.queryTest.then( (message) => {
   console.log(message);
+  console.log('test1')
 }).catch( (message) => {
   console.log(message);
+  console.log('test2')
 })
-
-
-console.log('test')

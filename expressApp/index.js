@@ -3,6 +3,7 @@ var cors = require('cors');
 var mysql = require('mysql')
 var fs = require('fs');
 const test = require('./dbInfo')
+const promises = require('./promiseTest');
 const categoryTest = require('./CategoryCRUD');
 
 const app = express()
@@ -10,15 +11,7 @@ const port = 3000
 
 var connection = mysql.createConnection(test.connectionString);
 
-
 app.use(cors());
-
-app.get('/getbooks', (req, res) => {
-  connection.query('CALL usp_ReadBooks()', function (err, rows, fields) {
-      if (err) throw err
-      res.send(rows[0])
-    });
-});
 
 app.use(cors());
 app.get('/', (req, res) => {
@@ -28,16 +21,38 @@ app.get('/', (req, res) => {
     res.end();
   }
 )})
-app.get('/databaseTest', (req, res) => {
-  res.write(test.connectionString.host);
+app.all('/connection', (req, res) => {
+  res.write(test.connectionString.host + "\n" +  test.connectionString.user);
   res.end();
 })
-app.get('/test', (req, res) => {
 
-  var categories = categoryTest.readCategories();
-  console.log("app.get")
-  console.log(categories);
-  res.send('hello world')
+
+app.get('/dbInfoTest/:id', (req, res) => {
+  console.log(req.params.id)
+  promises.queryTest.then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+})
+
+
+
+app.get('/readCategory/:id', (req, res) => {
+  categoryTest.readCategory(req.params.id).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+
+
+app.get('/test', (req, res) => {
+  categoryTest.readCategories().then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
 });
 
 
