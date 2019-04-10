@@ -2,7 +2,7 @@ const express = require('express')
 var cors = require('cors');
 var mysql = require('mysql')
 var fs = require('fs');
-const test = require('./dbconnectiontest')
+const test = require('./dbInfo')
 const categoryTest = require('./CategoryCRUD');
 
 const app = express()
@@ -19,7 +19,6 @@ app.get('/getbooks', (req, res) => {
       res.send(rows[0])
     });
 });
-
 
 app.use(cors());
 app.get('/', (req, res) => {
@@ -41,7 +40,6 @@ app.get('/test', (req, res) => {
   res.send('hello world')
 });
 
-app.get('/dbtest', (req, res) => {
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

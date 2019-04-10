@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   buttonText:string;
   boolean = false;
   user : User;
-  category: 'test';
+  category: any;
   constructor(private http:HttpClient) {
     this.configUrl = 'http://localhost:3000/dbtest';
     this.buttonText="Login Please";
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.username = userInput;
     this.password = passwordInput;
     this.boolean = true;
-    this.password = this.getConfig();
+    this.getConfig();
   }
   ngOnInit() {
   }

@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'books', component: BooksComponent},
   { path: 'shopping-cart', component: ShoppingCartComponent},
   { path: 'checkout', component: CheckoutComponent},
-  { path: 'categories', component: CategoriesComponent}
+  { path: 'categories', component: CategoriesComponent},
   { path: 'userprofile', component: UserProfileComponent},
 ];
 
