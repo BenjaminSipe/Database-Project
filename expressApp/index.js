@@ -5,6 +5,7 @@ var fs = require('fs');
 const test = require('./dbInfo')
 const promises = require('./promiseTest');
 const categoryTest = require('./CategoryCRUD');
+const authUser = require('./AuthenticateUser');
 
 const app = express()
 const port = 3000
@@ -36,7 +37,13 @@ app.get('/dbInfoTest/:id', (req, res) => {
   })
 })
 
-
+app.get('/authUser/:email/:password', (req, res) => {
+  categoryTest.readCategory(req.params.email, req.params.password).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
 
 app.get('/readCategory/:id', (req, res) => {
   categoryTest.readCategory(req.params.id).then( (message) => {

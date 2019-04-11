@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { Category } from '../category';
-
-
 import { HttpClient } from  "@angular/common/http";
 @Component({
   selector: 'app-login',
@@ -18,6 +16,8 @@ export class LoginComponent implements OnInit {
   user : User;
   category: any;
   constructor(private http:HttpClient) {
+
+    fs.writeFile('myjsonfile.json', json, 'utf8', callback);
     this.configUrl = 'http://localhost:3000/dbtest';
     this.buttonText="Login Please";
   }
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   //This is the Section For HTTP Data Retrieval
   getConfig() {
     return this.http.get(this.configUrl);
-    this.category = this.http.get(this.configUrl)
+    this.category = this.http.get(this.configUrl);
   }
 
   test() {
