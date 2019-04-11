@@ -9,6 +9,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { AdminBooksComponent } from './admin-books/admin-books.component';
+import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component';
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent},
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'categories', component: CategoriesComponent},
   { path: 'userprofile', component: UserProfileComponent},
   { path: 'myorders', component: MyOrdersComponent},
+  { path: 'admin/books', component: AdminBooksComponent},
+  { path: 'admin/books/new', component: AdminNewBookComponent},
 ];
 
 @NgModule({

@@ -25,6 +25,7 @@ import { AdminCategoriesComponent } from './admin-categories/admin-categories.co
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { CreditCardComponent } from './credit-card/credit-card.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     AdminOrdersComponent,
     CreditCardComponent,
     UserProfileComponent,
+    AdminNewBookComponent,
 
 
   ],
