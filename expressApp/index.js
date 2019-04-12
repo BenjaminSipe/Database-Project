@@ -46,6 +46,14 @@ app.get('/readCategory/:id', (req, res) => {
   })
 });
 
+app.get('/readCategories', (req, res) => {
+  categoryTest.readCategories().then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+
 
 app.get('/test', (req, res) => {
   categoryTest.readCategories().then( (message) => {
