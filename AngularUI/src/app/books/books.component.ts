@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from  "@angular/common/http";
 import { Book } from "../book";
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-books',
@@ -8,21 +10,29 @@ import { Book } from "../book";
   styleUrls: ['./books.component.sass']
 })
 export class BooksComponent{
+  configUrl:'http://localhost:3000/readCategories';
   books: Book;
   Title: string;
   constructor(private http:HttpClient) {
-    this.http.get<Book>('http://localhost:3000/getbooks').subscribe(response => {
-      this.books = response;
-      this.Title = this.books.Title;
 
-      console.log(response);
-    })
 
+    //this.category = this.http.get(this.configUrl)
     }
 
+    private extractData(res: Response) {
+      let body = res;
+      return body || { };
+    }
+
+    getProducts(): Observable<any> {
+      return this.http.get(this.configUrl);
+    }
   addToCart(){
-    let cartId = localStorage.getItem('cartId');
-    console.log('This cart id = '+cartId); //test
+    console.log(this.getProducts());
+
+    // let cartId = localStorage.getItem('cartId');
+    // console.log('This cart id = '+cartId); //test
+
     //make if sttmt
     //if cart not exists - create
     //then add to cart

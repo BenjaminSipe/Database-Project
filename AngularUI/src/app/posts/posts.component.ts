@@ -7,11 +7,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./posts.component.sass']
 })
 export class PostsComponent {
+  public categories  = [];
+  constructor(private http: HttpClient) {
+  }
 
-  constructor(http: HttpClient) {
-    http.get('https://jsonplaceholder.typicode.com/posts').subscribe(response => {
+  getCategories(){
+    this.http.get('http://localhost:3000/readCategories').subscribe((response : any[]) => {
       console.log(response);
-    });
+      this.categories = response});
   }
 
 }
