@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import {NgForm} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -27,6 +28,7 @@ import { CreditCardComponent } from './credit-card/credit-card.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component';
 import { GETService } from './services/get.service';
+import { POSTService } from './services/post.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,12 +56,14 @@ import { GETService } from './services/get.service';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     NgbModule.forRoot(),
   ],
   providers: [
     CategoryService,
     BooksService,
     GETService,
+    POSTService,
     ShoppingCartService
   ],
   bootstrap: [AppComponent]

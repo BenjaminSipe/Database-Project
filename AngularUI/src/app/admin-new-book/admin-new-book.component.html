@@ -1,60 +1,126 @@
-<form >
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input ngModel name="title" id="title" type="text" class="form-control">
+<div class="row justify-content-center">
+  <div class="col-4">
+    <h3 class="text-center">Book</h3>
+      <form #AddBook="ngForm" (ngSubmit)="saveBook(AddBook)">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input ngModel name="title" id="title" type="text" class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="title">ISBN-13</label>
+              <input  ngModel name="Isbn13" id="title" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="publisher">Publisher</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <button class="btn btn-outline-dark" type="button" data-toggle="tooltip" data-placement="left" title="Add New Publisher">+</button>
+                    </div>
+                    <select  ngModel name="publisher" id="publisher"  class="form-control">
+                        <option *ngFor="let p of publishers$ | async" [value]="p.PublisherID">
+                          {{ p.Name }}
+                        </option>
+                      </select>
+                  </div>
+              </div>
+             <div class="form-group">
+               <label for="publication-date">Publiction Date</label>
+               <input  ngModel name="date" id="date" class="form-control" type="date" >
+             </div>
+              <div class="form-group">
+                  <label for="imageUrl">Image URL</label>
+                  <input id="imageUrl" type="text" class="form-control">
+                </div>
+        </form>
   </div>
-  <div class="form-group">
-      <label for="title">ISBN-13</label>
-      <input  ngModel name="Isbn13" id="title" type="text" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="publisher">Publisher</label>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <button class="btn btn-outline-dark" type="button" data-toggle="tooltip" data-placement="left" title="Add New Publisher">+</button>
+  <div class="col-4">
+      <h3 class="text-center">Other</h3>
+      <form #AddCategory="ngForm" (ngSubmit)="saveCategory(AddCategory)">
+          <div class="form-group">
+              <label for="category">Category</label>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Category">+</button>
+                  </div>
+                  <select  ngModel name="category" id="category"  class="form-control">
+                      <option *ngFor="let c of categories$ | async" [value]="c.CategoryID">
+                        {{ c.CategoryName }}
+                      </option>
+                    </select>
+                </div>
             </div>
-            <select  ngModel name="publisher" id="publisher"  class="form-control">
-                <option value=""></option>
-                <option *ngFor="let p of publishers$ | async" [value]="p.$key">
-                  {{ p.Name }}
-                </option>
-              </select>
-          </div>
+        </form>
+        <form #AddAuthor="ngForm" (ngSubmit)="saveCategory(AddCategory)">
+            <div class="form-group">
+                <label for="category">Author(!)</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Category">+</button>
+                    </div>
+                    <select  ngModel name="category" id="category"  class="form-control">
+                        <option *ngFor="let c of categories$ | async" [value]="c.CategoryID">
+                          {{ c.CategoryName }}
+                        </option>
+                      </select>
+                  </div>
+              </div>
+          </form>
+          <form #AddFormat="ngForm" (ngSubmit)="saveCategory(AddCategory)">
+              <div class="form-group">
+                  <label for="category">Format(!)</label>
+                  <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Category">+</button>
+                      </div>
+                      <select  ngModel name="category" id="category"  class="form-control">
+                          <option *ngFor="let c of categories$ | async" [value]="c.CategoryID">
+                            {{ c.CategoryName }}
+                          </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                          </div>
+                          <input id="price" type="number" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="cost">Cost</label>
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">$</span>
+                            </div>
+                            <input id="cost" type="number" class="form-control">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Quantity</label>
+                            <div class="input-group mb-3">
+                              <input id="quantity" type="number" class="form-control">
+                            </div>
+                          </div>
+                </div>
+            </form>
+  </div>
+  <div class="col-4 ">
+    <h3 class="text-center">Preview</h3>
+    <label for="previewCard" class="text-center">New Book</label>
+    <div class="card text-center" style="width: 18rem;">
+        <img class="card-img-top" src="http://www.iconarchive.com/download/i96815/iconsmind/outline/Preview.ico" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <button class="btn btn-dark">Save</button>
+        </div>
       </div>
-     <div class="form-group">
-       <label for="publication-date">Publiction Date</label>
-       <input  ngModel name="date" id="date" class="form-control" type="date" >
-     </div>
-    <div class="form-group">
-        <label for="category">Category</label>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Category">+</button>
-            </div>
-            <select  ngModel name="category" id="category"  class="form-control">
-                <option value=""></option>
-                <option *ngFor="let c of categories$ | async" [value]="c.$key">
-                  {{ c.CategoryName }}
-                </option>
-              </select>
-          </div>
-      </div>
+  </div>
+</div>
 
-      <div class="form-group">
-          <label for="price">Price</label>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">$</span>
-            </div>
-            <input id="price" type="number" class="form-control">
-          </div>
-        </div>
-      <div class="form-group">
-          <label for="imageUrl">Image URL</label>
-          <input id="imageUrl" type="text" class="form-control">
-        </div>
-        <button class="btn btn-dark">Save</button>
-</form>
 
 // TODO: add new category, publisher
 // TODO: add new category, fix date input
+// TODO: make alignment look not ugly
+

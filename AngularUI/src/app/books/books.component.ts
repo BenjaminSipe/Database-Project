@@ -4,6 +4,7 @@ import { Book } from "../book";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GETService } from '../services/get.service';
+import { POSTService } from '../services/post.service';
 
 @Component({
   selector: 'app-books',

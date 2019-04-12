@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { GETService } from '../services/get.service';
+import { POSTService } from '../services/post.service';
+
 
 @Component({
   selector: 'app-admin-new-book',
@@ -10,8 +12,13 @@ import { GETService } from '../services/get.service';
 export class AdminNewBookComponent{
   categories$;
   publishers$;
-  constructor(private getService : GETService) {
+  constructor(private getService : GETService, private postService:POSTService) {
     this.categories$ = getService.getCategories();
     this.publishers$ = getService.getPublishers();
+   }
+
+   save(newBook){
+     console.log(newBook);
+     this.postService.createBook(newBook);
    }
 }
