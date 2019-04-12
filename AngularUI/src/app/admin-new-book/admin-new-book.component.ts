@@ -17,8 +17,13 @@ export class AdminNewBookComponent{
     this.publishers$ = getService.getPublishers();
    }
 
-   save(newBook){
+   saveBook(newBook){
      console.log(newBook);
      this.postService.createBook(newBook);
    }
+
+   saveCategory(category){
+    console.log(category);
+    this.postService.createBook(category);
+  }
 }
