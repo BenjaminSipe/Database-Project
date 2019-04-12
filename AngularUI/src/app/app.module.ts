@@ -26,6 +26,7 @@ import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { CreditCardComponent } from './credit-card/credit-card.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component';
+import { GETService } from './services/get.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component
   providers: [
     CategoryService,
     BooksService,
+    GETService,
     ShoppingCartService
   ],
   bootstrap: [AppComponent]

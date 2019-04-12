@@ -1,33 +1,37 @@
-<form>
+<form >
   <div class="form-group">
     <label for="title">Title</label>
-    <input id="title" type="text" class="form-control">
+    <input ngModel name="title" id="title" type="text" class="form-control">
   </div>
   <div class="form-group">
       <label for="title">ISBN-13</label>
-      <input id="title" type="text" class="form-control">
+      <input  ngModel name="Isbn13" id="title" type="text" class="form-control">
     </div>
     <div class="form-group">
-        <label for="category">Publisher</label>
+        <label for="publisher">Publisher</label>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <button class="btn btn-outline-dark" type="button">+</button>
+              <button class="btn btn-outline-dark" type="button" data-toggle="tooltip" data-placement="left" title="Add New Publisher">+</button>
             </div>
-            <select id="category"  class="form-control">
+            <select  ngModel name="publisher" id="publisher"  class="form-control">
                 <option value=""></option>
-                <option *ngFor="let c of categories$ | async" [value]="c.$key">
-                  {{ c.CategoryName }}
+                <option *ngFor="let p of publishers$ | async" [value]="p.$key">
+                  {{ p.Name }}
                 </option>
               </select>
           </div>
       </div>
+     <div class="form-group">
+       <label for="publication-date">Publiction Date</label>
+       <input  ngModel name="date" id="date" class="form-control" type="date" >
+     </div>
     <div class="form-group">
         <label for="category">Category</label>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <button class="btn btn-outline-dark" type="button">+</button>
+              <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Category">+</button>
             </div>
-            <select id="category"  class="form-control">
+            <select  ngModel name="category" id="category"  class="form-control">
                 <option value=""></option>
                 <option *ngFor="let c of categories$ | async" [value]="c.$key">
                   {{ c.CategoryName }}
@@ -51,4 +55,6 @@
         </div>
         <button class="btn btn-dark">Save</button>
 </form>
-// TODO: add new category
+
+// TODO: add new category, publisher
+// TODO: add new category, fix date input

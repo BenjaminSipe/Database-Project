@@ -3,6 +3,7 @@ import { HttpClient } from  "@angular/common/http";
 import { Book } from "../book";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { GETService } from '../services/get.service';
 
 @Component({
   selector: 'app-books',
@@ -10,25 +11,12 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./books.component.sass']
 })
 export class BooksComponent{
-  configUrl:'http://localhost:3000/readCategories';
-  books: Book;
-  Title: string;
-  constructor(private http:HttpClient) {
+  categories$;
+  constructor(private getService:GETService) {
+    this.categories$ = getService.getCategories();
+   }
 
 
-    //this.category = this.http.get(this.configUrl)
-    }
-
-    private extractData(res: Response) {
-      let body = res;
-      return body || { };
-    }
-
-    getProducts(): Observable<any> {
-      return this.http.get(this.configUrl);
-    }
-  addToCart(){
-    console.log(this.getProducts());
 
     // let cartId = localStorage.getItem('cartId');
     // console.log('This cart id = '+cartId); //test
@@ -39,5 +27,5 @@ export class BooksComponent{
 
     //if exists
     //add to cart
-  }
+
 }
