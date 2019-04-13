@@ -8,16 +8,18 @@ import { HttpClient } from  "@angular/common/http";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  username: string;
-  password: string;
+  username ="";
+  password = "";
   configUrl:string;
   buttonText:string;
   boolean = false;
   user : User;
+  name: string = '';
+ 
+  setValue() { this.name = 'Nancy'; }
   category: any;
   constructor(private http:HttpClient) {
 
-    fs.writeFile('myjsonfile.json', json, 'utf8', callback);
     this.configUrl = 'http://localhost:3000/dbtest';
     this.buttonText="Login Please";
   }
@@ -31,10 +33,8 @@ export class LoginComponent implements OnInit {
   test() {
     return !this.boolean;
   }
-  onClick(userInput, passwordInput) {
+  onClick() {
 
-    this.username = userInput;
-    this.password = passwordInput;
     this.boolean = true;
     this.getConfig();
   }
