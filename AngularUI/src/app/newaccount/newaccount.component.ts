@@ -6,33 +6,22 @@ import { User } from '../User'
   styleUrls: ['./newaccount.component.scss']
 })
 export class NewaccountComponent implements OnInit {
-  errorText: string;
   constructor() { }
-  user : User;
-
-
-
-  onClick(
-  nameInput
-  ,emailInput
-  ,passwordInput1
-  ,passwordInput2
-  ,addressInput
-  ,homePhoneInput
-  ,workPhoneInput
-  ) {
-    if (passwordInput1 != passwordInput2) {
-      this.errorText = "Passwords do Not match";
+  error = "";
+  user = new User("", "", "", "", "");
+  repeatPassword = '';
+  
+  onClick() {
+    if (this.user.password != this.repeatPassword) {
+      this.error = "Passwords do Not Match";
     } else {
-      this.errorText = '';
-      this.user = new User(
-      nameInput
-      ,addressInput
-      ,emailInput
-      ,homePhoneInput
-      ,workPhoneInput);
+      this.error = "";
+    //Save these two a instance of user in a userAuth service and check for login.
+  
     }
   }
+
+  
 
   ngOnInit() {
   }

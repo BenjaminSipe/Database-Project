@@ -6,6 +6,7 @@
 <input #userInput type="text" placeholder="Username"/>
 </li>
 <li>
+  <input type="text"/>
 <input #passwordInput type="password" placeholder="Password"/>
 </li><li>
 <button (click)="onClick(userInput.value, passwordInput.value)">{{buttonText}}</button>
@@ -13,7 +14,6 @@
 <a href="/newaccount">New Account?</a>
 </dd>
 </div>
-
 <div *ngIf="boolean">
   Username: {{username}}
   <br>

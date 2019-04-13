@@ -2,9 +2,11 @@ const express = require('express')
 var cors = require('cors');
 var mysql = require('mysql')
 var fs = require('fs');
+var bodyParser = require("body-parser");
 const test = require('./dbInfo')
 const promises = require('./promiseTest');
 const categoryTest = require('./CategoryCRUD');
+const authUser = require('./AuthenticateUser');
 const publisher = require('./PublisherCRUD');
 const book = require('./BookCRUD');
 
@@ -14,8 +16,9 @@ const port = 3000
 var connection = mysql.createConnection(test.connectionString);
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.json());
 
-app.use(cors());
 app.get('/', (req, res) => {
   fs.readFile('index.html', function(err, data) {
     res.writeHead(200, {'Content-Type': 'text/html'});
@@ -38,7 +41,13 @@ app.get('/dbInfoTest/:id', (req, res) => {
   })
 })
 
-
+app.get('/authUser/:email/:password', (req, res) => {
+  categoryTest.readCategory(req.params.email, req.params.password).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
 
 app.get('/readCategory/:id', (req, res) => {
   categoryTest.readCategory(req.params.id).then( (message) => {

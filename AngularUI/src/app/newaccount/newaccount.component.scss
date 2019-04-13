@@ -3,16 +3,30 @@ h1 {
   border-bottom-style: inset;
 }
 div {
+  font-size: 20px;
   text-align: center;
   padding-bottom: .1em;
   .error {
     color:red;
   }
-  .button {
+  input {
+    border-radius: 1em;
+    
+    border-style:solid;
+    border-color:#aaaaaa;
+  }
+  button {
     border-radius: 3em;
+    width:25%;
     border-color: #999999;
     border-style:solid;
     padding: .7em;
-    font-size: 16px;
   }
+  ul {
+    list-style: none;
+  }
+  li {
+    padding:.2em;
+  }
+  
 }

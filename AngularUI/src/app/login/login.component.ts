@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { Category } from '../category';
-
-
 import { HttpClient } from  "@angular/common/http";
 @Component({
   selector: 'app-login',
@@ -10,14 +8,18 @@ import { HttpClient } from  "@angular/common/http";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  username: string;
-  password: string;
+  username ="";
+  password = "";
   configUrl:string;
   buttonText:string;
   boolean = false;
   user : User;
+  name: string = '';
+ 
+  setValue() { this.name = 'Nancy'; }
   category: any;
   constructor(private http:HttpClient) {
+
     this.configUrl = 'http://localhost:3000/dbtest';
     this.buttonText="Login Please";
   }
@@ -25,16 +27,14 @@ export class LoginComponent implements OnInit {
   //This is the Section For HTTP Data Retrieval
   getConfig() {
     return this.http.get(this.configUrl);
-    this.category = this.http.get(this.configUrl)
+    this.category = this.http.get(this.configUrl);
   }
 
   test() {
     return !this.boolean;
   }
-  onClick(userInput, passwordInput) {
+  onClick() {
 
-    this.username = userInput;
-    this.password = passwordInput;
     this.boolean = true;
     this.getConfig();
   }
