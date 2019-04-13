@@ -9,17 +9,22 @@
   <div class="col-1"></div>
   <div class="col">
       <div class="row">
-          <div class="card text-center" style="width: 18rem;">
-              <img src="https://prodimage.images-bn.com/pimages/9780452286368_p0_v2_s550x406.jpg" class="card-img-top" alt="...">
+          <ng-container *ngFor="let b of books$ | async; let i = index">
+            <div class="col">
+          <div class="card text-center" style="width: 22rem;">
+
+              <img src="http://www.iconarchive.com/download/i96815/iconsmind/outline/Preview.ico" class="card-img-top" alt="Book Image">
               <div class="card-body">
-                <h5 class="card-title">Title</h5>
+                <h5 class="card-title">{{b.Title}}</h5>
                 <p class="card-text">Book Description.</p>
                 <button
 
                 class="btn btn-dark btn-block">Add to Cart</button>
               </div>
-
             </div>
+          </div>
+          <div *ngIf="(i+1) % 2 === 0"></div>
+          </ng-container>
           </div>
   </div>
 </div>

@@ -6,6 +6,7 @@ const test = require('./dbInfo')
 const promises = require('./promiseTest');
 const categoryTest = require('./CategoryCRUD');
 const publisher = require('./PublisherCRUD');
+const book = require('./BookCRUD');
 
 const app = express()
 const port = 3000
@@ -65,14 +66,17 @@ app.get('/readPublishers', (req, res) => {
 });
 
 
-app.get('/test', (req, res) => {
-  categoryTest.readCategories().then( (message) => {
+app.get('/readBooks', (req, res) => {
+  book.readBooks().then( (message) => {
     res.send(message);
   }).catch( (message) => {
     res.send(message)
   })
 });
 
+app.post('/createBook', (req, res) =>{
+  console.log(req.body);
+})
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

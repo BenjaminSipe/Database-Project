@@ -11,10 +11,12 @@ import { POSTService } from '../services/post.service';
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.sass']
 })
-export class BooksComponent{
+export class BooksComponent {
   categories$;
-  constructor(private getService:GETService) {
+  books$;
+  constructor(private getService: GETService) {
     this.categories$ = getService.getCategories();
+    this.books$ = getService.getBooks();
    }
 
 
