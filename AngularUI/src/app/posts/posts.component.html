@@ -1,3 +1,4 @@
-<p>
-  posts works!
-</p>
+<button (click)="getCategories()">GET /products</button>
+<ul>Categories:
+  <li *ngFor= "let category of categories">{{category.CategoryName}}</li>
+</ul>

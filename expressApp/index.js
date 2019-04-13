@@ -7,6 +7,7 @@ const test = require('./dbInfo')
 const promises = require('./promiseTest');
 const categoryTest = require('./CategoryCRUD');
 const authUser = require('./AuthenticateUser');
+const publisher = require('./PublisherCRUD');
 
 const app = express()
 const port = 3000
@@ -49,6 +50,23 @@ app.get('/authUser/:email/:password', (req, res) => {
 
 app.get('/readCategory/:id', (req, res) => {
   categoryTest.readCategory(req.params.id).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+
+app.get('/readCategories', (req, res) => {
+  categoryTest.readCategories().then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+
+
+app.get('/readPublishers', (req, res) => {
+  publisher.readPublishers().then( (message) => {
     res.send(message);
   }).catch( (message) => {
     res.send(message)

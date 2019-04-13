@@ -1,21 +1,24 @@
 <div class="row">
   <div class="col-3">
     <ul class="list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action ">Example Category</a>
+       <li *ngFor="let c of categories$ | async" class="list-group-item">
+          {{ c.CategoryName }}
+       </li>
     </ul>
   </div>
+  <div class="col-1"></div>
   <div class="col">
       <div class="row">
           <div class="card text-center" style="width: 18rem;">
               <img src="https://prodimage.images-bn.com/pimages/9780452286368_p0_v2_s550x406.jpg" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">{{Title}}</h5>
+                <h5 class="card-title">Title</h5>
                 <p class="card-text">Book Description.</p>
                 <button
-                (click)="addToCart()"
+
                 class="btn btn-dark btn-block">Add to Cart</button>
               </div>
-              {{books}}
+
             </div>
           </div>
   </div>
