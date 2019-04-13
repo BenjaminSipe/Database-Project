@@ -6,24 +6,24 @@ export class User {
   public homePhone:string;
   public workPhone:string;
   
-  constructor(email:string, 
-    password:string
-    ,workPhone?:string
-    ,homePhone?:string
-    ,name?:string
+  constructor(pemail:string, 
+    ppassword:string
+    ,pworkPhone?:string
+    ,phomePhone?:string
+    ,pname?:string
     ) {  
-      this.email = email;
-      this.password = password;
-      this.workPhone = workPhone;
-      this.homePhone = homePhone;
-      this.name = name;
+      this.email = pemail;
+      this.password = ppassword;
+      this.workPhone = pworkPhone;
+      this.homePhone = phomePhone;
+      this.name = pname;
     }
-  enterInfo(userID:number, homePhone:string, name:string, workPhone?:string ) {
-    this.userID = userID;
-    this.homePhone = homePhone;
-    this.name = name;
-    if (workPhone != null) {
-      this.workPhone = workPhone;
+  enterInfo(puserID:number, phomePhone:string, pname:string, pworkPhone?:string ) {
+    this.userID = puserID;
+    this.homePhone = phomePhone;
+    this.name = pname;
+    if (pworkPhone != null) {
+      this.workPhone = pworkPhone;
     }
   }
 

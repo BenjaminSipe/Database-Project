@@ -8,6 +8,7 @@ const promises = require('./promiseTest');
 const categoryTest = require('./CategoryCRUD');
 const authUser = require('./AuthenticateUser');
 const publisher = require('./PublisherCRUD');
+const userCRUD = require('./userCRUD');
 
 const app = express()
 const port = 3000
@@ -30,7 +31,14 @@ app.all('/connection', (req, res) => {
   res.end();
 })
 
-
+app.get('/readUsers', (req, res) =>
+{
+  userCRUD.readUsers().then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+})
 app.get('/dbInfoTest/:id', (req, res) => {
   console.log(req.params.id)
   promises.queryTest.then( (message) => {
