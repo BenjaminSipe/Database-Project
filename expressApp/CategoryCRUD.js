@@ -19,3 +19,13 @@ exports.readCategory = function(index) {
         resolve(rows[0])
     });
 })}
+
+// exports.putCategories = function() {
+//   return new Promise( (resolve, reject) => {
+//   dbInfo.pool.query('CALL usp_ReadCategories()', function (err, rows, fields) {
+//       if (err)
+//         reject('Something went wrong.');
+//       else
+//         resolve(rows[0])
+//     });
+// })}

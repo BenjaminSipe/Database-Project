@@ -12,6 +12,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminBooksComponent } from './admin-books/admin-books.component';
 import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component';
 import { PostsComponent } from './posts/posts.component';
+import { FormsModule, NgForm } from '@angular/forms';
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent},
@@ -28,8 +29,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+  RouterModule.forRoot(routes),
+  FormsModule
+  ],
+  exports: [RouterModule,
+    NgForm]
 
 
 

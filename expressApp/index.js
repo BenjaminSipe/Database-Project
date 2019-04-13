@@ -8,7 +8,11 @@ const promises = require('./promiseTest');
 const categoryTest = require('./CategoryCRUD');
 const authUser = require('./AuthenticateUser');
 const publisher = require('./PublisherCRUD');
+<<<<<<< HEAD
 const userCRUD = require('./userCRUD');
+=======
+const book = require('./BookCRUD');
+>>>>>>> c505421dd6d439c636384c0b85170d3e4ab56ab6
 
 const app = express()
 const port = 3000
@@ -82,14 +86,17 @@ app.get('/readPublishers', (req, res) => {
 });
 
 
-app.get('/test', (req, res) => {
-  categoryTest.readCategories().then( (message) => {
+app.get('/readBooks', (req, res) => {
+  book.readBooks().then( (message) => {
     res.send(message);
   }).catch( (message) => {
     res.send(message)
   })
 });
 
+app.post('/createBook', (req, res) =>{
+  console.log(req.body);
+})
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
