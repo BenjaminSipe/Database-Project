@@ -1,3 +1,4 @@
+const dbInfo = require('./dbInfo');
 const express = require('express')
 var cors = require('cors');
 var mysql = require('mysql')
@@ -8,12 +9,8 @@ const promises = require('./promiseTest');
 const categoryTest = require('./CategoryCRUD');
 const authUser = require('./AuthenticateUser');
 const publisher = require('./PublisherCRUD');
-<<<<<<< HEAD
 const userCRUD = require('./userCRUD');
-=======
 const book = require('./BookCRUD');
->>>>>>> c505421dd6d439c636384c0b85170d3e4ab56ab6
-
 const app = express()
 const port = 3000
 
@@ -94,9 +91,71 @@ app.get('/readBooks', (req, res) => {
   })
 });
 
-app.post('/createBook', (req, res) =>{
-  console.log(req.body);
+app.get('/readAuthors', (req, res) => {
+  book.readAuthors().then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+
+app.get('/readFormats', (req, res) => {
+  book.readFormats().then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+
+app.post('/createBook', bodyParser.json(), (req, res) => {
+  return new Promise( (resolve, reject) => {
+    res.json(req.body);
+    categoryTest.createCategory(req.body);
+    //console.log('Something is posting...');
+    //console.log(req.body);
+    //console.log(req.body.title);
+    dbInfo.pool.query('CALL usp_CreateBook("'+req.body.title+'", "'+req.body.publisher+'", "'+req.body.Isbn13+'", "'+req.body.date+'", "'+req.body.ImageUrl+'")', function (err, rows, fields) {
+        if (err)
+          reject('Something went wrong.');
+        else
+          resolve(rows[0])
+      });
+
+      dbInfo.pool.query('CALL usp_CreateBookCategory("'+req.body.BookID+'", "'+req.body.CategoryID+'")', function (err, rows, fields) {
+        if (err)
+          reject('Something went wrong.');
+        else
+          resolve(rows[0])
+      });
+  });
 })
 
+app.post('/createCategory', bodyParser.json(), (req, res) => {
+  return new Promise( (resolve, reject) => {
+    res.json(req.body);
+    categoryTest.createCategory(req.body);
+  });
+});
+
+app.post('/createPublisher', bodyParser.json(), (req, res) => {
+  return new Promise( (resolve, reject) => {
+    res.json(req.body);
+    publisher.createPublisher(req.body);
+  });
+});
+
+app.post('/createFormat', bodyParser.json(), (req, res) => {
+  return new Promise( (resolve, reject) => {
+    res.json(req.body);
+    book.createFormat(req.body);
+  });
+});
+
+app.post('/createAuthor', bodyParser.json(), (req, res) => {
+  return new Promise( (resolve, reject) => {
+    res.json(req.body);
+    book.createAuthor(req.body);
+  });
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

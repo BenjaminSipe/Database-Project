@@ -17,4 +17,10 @@ export class GETService {
   getBooks(){
     return this.http.get(this.url + 'readBooks');
   }
+  getAuthors(){
+    return this.http.get(this.url + 'readAuthors');
+  }
+  getFormats(){
+    return this.http.get(this.url + 'readFormats');
+  }
 }

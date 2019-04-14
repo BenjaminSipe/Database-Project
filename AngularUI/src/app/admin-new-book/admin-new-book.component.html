@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-4">
     <h3 class="text-center">Book</h3>
-      <form #AddBook="ngForm" (ngSubmit)="saveBook(AddBook)">
+      <form #AddBook="ngForm" (ngSubmit)="saveBook(AddBook.value)">
           <div class="form-group">
             <label for="title">Title</label>
             <input ngModel name="title" id="title" type="text" class="form-control">
@@ -14,7 +14,7 @@
                 <label for="publisher">Publisher</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <button class="btn btn-outline-dark" type="button" data-toggle="tooltip" data-placement="left" title="Add New Publisher">+</button>
+                      <button class="btn btn-outline-dark" type="button" data-toggle="tooltip" data-placement="left" title="Add New Publisher" (click)="addNew(newPublisher)">+</button>
                     </div>
                     <select  ngModel name="publisher" id="publisher"  class="form-control">
                         <option *ngFor="let p of publishers$ | async" [value]="p.PublisherID">
@@ -29,18 +29,19 @@
              </div>
               <div class="form-group">
                   <label for="imageUrl">Image URL</label>
-                  <input id="imageUrl" type="text" class="form-control">
+                  <input ngModel name="imageUrl" id="imageUrl" type="text" class="form-control">
                 </div>
+                <button class="btn btn-dark">Save</button>
         </form>
   </div>
   <div class="col-4">
       <h3 class="text-center">Other</h3>
-      <form #AddCategory="ngForm" (ngSubmit)="saveCategory(AddCategory)">
+      <form #AddCategory="ngForm">
           <div class="form-group">
               <label for="category">Category</label>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Category">+</button>
+                    <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Category" (click)="addNew(newCategory)">+</button>
                   </div>
                   <select  ngModel name="category" id="category"  class="form-control">
                       <option *ngFor="let c of categories$ | async" [value]="c.CategoryID">
@@ -50,52 +51,58 @@
                 </div>
             </div>
         </form>
-        <form #AddAuthor="ngForm" (ngSubmit)="saveCategory(AddCategory)">
+        <form #AddAuthor="ngForm">
             <div class="form-group">
-                <label for="category">Author(!)</label>
+                <label for="Author">Author</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                      <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Category">+</button>
+                      <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Author" (click)="addNew(newAuthor)">+</button>
                     </div>
-                    <select  ngModel name="category" id="category"  class="form-control">
-                        <option *ngFor="let c of categories$ | async" [value]="c.CategoryID">
-                          {{ c.CategoryName }}
+                    <select  ngModel name="author" id="author"  class="form-control">
+                        <option *ngFor="let a of authors$ | async" [value]="a.AuthorID">
+                          {{ a.Name }}
                         </option>
                       </select>
                   </div>
               </div>
           </form>
-          <form #AddFormat="ngForm" (ngSubmit)="saveCategory(AddCategory)">
+          <form #AddFormat="ngForm" >
               <div class="form-group">
-                  <label for="category">Format(!)</label>
+                  <label for="format">Format</label>
                   <div class="input-group mb-3">
                       <div class="input-group-prepend">
-                        <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Category">+</button>
+                        <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Format" (click)="addNew(newFormat)">+</button>
                       </div>
-                      <select  ngModel name="category" id="category"  class="form-control">
-                          <option *ngFor="let c of categories$ | async" [value]="c.CategoryID">
-                            {{ c.CategoryName }}
+                      <select  ngModel name="format" id="format"  class="form-control">
+                          <option *ngFor="let f of formats$ | async" [value]="f.FormatID">
+                            {{ f.FormatName }}
                           </option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="price">Price</label>
-                        <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">$</span>
-                          </div>
-                          <input id="price" type="number" class="form-control">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="price">Price</label>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                  </div>
+                                  <input id="price" type="number" class="form-control">
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="cost">Cost</label>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                  </div>
+                                  <input id="cost" type="number" class="form-control">
+                                </div>
+                              </div>
                         </div>
                       </div>
-                      <div class="form-group">
-                          <label for="cost">Cost</label>
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text">$</span>
-                            </div>
-                            <input id="cost" type="number" class="form-control">
-                          </div>
-                        </div>
                         <div class="form-group">
                             <label for="price">Quantity</label>
                             <div class="input-group mb-3">
@@ -113,11 +120,138 @@
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make...</p>
-          <button class="btn btn-dark">Save</button>
+
         </div>
       </div>
   </div>
 </div>
+
+<ng-template #newCategory let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add New Category</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+        <form #NewCategory="ngForm" (ngSubmit)="saveCategory(NewCategory.value)">
+          <div class="modal-body">
+          <div class="form-group">
+                <label for="newCategory">New Category:</label>
+                  <div class="form-group">
+                      <div class="input-group mb-3">
+                        <input  ngModel name="newCategoryName" id="newCategory" type="text" class="form-control">
+                      </div>
+                    </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-dark">Save</button>
+              </div>
+          </form>
+</ng-template>
+
+<ng-template #newFormat let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add New Format</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+        <form #NewFormat="ngForm" (ngSubmit)="saveFormat(NewFormat.value)">
+          <div class="modal-body">
+          <div class="form-group">
+                <label for="newFormat">New Format:</label>
+                  <div class="form-group">
+                      <div class="input-group mb-3">
+                        <input  ngModel name="newFormatName" id="newFormat" type="text" class="form-control">
+                      </div>
+                    </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-dark">Save</button>
+              </div>
+          </form>
+  </ng-template>
+
+<ng-template #newPublisher let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Publisher</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+          <form #NewPublisher="ngForm" (ngSubmit)="savePublisher(NewPublisher.value)">
+           <div class="modal-body">
+            <div class="form-group">
+                  <label for="publisher">Publisher Name:</label>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                          <input  ngModel name="newPublisherName" id="newPublisher" type="text" class="form-control">
+                        </div>
+                      </div>
+                      <label for="publisher">Publisher Contact Name:</label>
+                      <div class="form-group">
+                          <div class="input-group mb-3">
+                            <input  ngModel name="newPublisherContactName" id="newPublisherContactName" type="text" class="form-control">
+                          </div>
+                        </div>
+                        <label for="publisher">Publisher Address:</label>
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                              <input  ngModel name="newPublisherAddress" id="newPublisherAddress" type="text" class="form-control">
+                            </div>
+                          </div>
+                          <label for="publisher">Publisher Phone:</label>
+                          <div class="form-group">
+                              <div class="input-group mb-3">
+                                <input  ngModel name="newPublisherPhone" id="newPublisherPhone" type="number" class="form-control">
+                              </div>
+                            </div>
+                </div>
+              </div>
+                <div class="modal-footer">
+                    <button class="btn btn-dark">Save</button>
+                    </div>
+            </form>
+</ng-template>
+
+<ng-template #newAuthor let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add New Author</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+        <form #NewAuthor="ngForm" (ngSubmit)="saveAuthor(NewAuthor.value)">
+         <div class="modal-body">
+          <div class="form-group">
+                <label for="Author">Author Name:</label>
+                  <div class="form-group">
+                      <div class="input-group mb-3">
+                        <input  ngModel name="newAuthorName" id="newAuthor" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <label for="Author">Author Biography:</label>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                          <textarea ngModel name="newAuthorBio" class="form-control" id="newAuthorBio" rows="3"></textarea>
+
+                        </div>
+                      </div>
+                      <label for="author">Author Image Link:</label>
+                      <div class="form-group">
+                          <div class="input-group mb-3">
+                            <input  ngModel name="newAuthorImage Link" id="newAuthorImage Link" type="text" class="form-control">
+                          </div>
+                        </div>
+              </div>
+            </div>
+              <div class="modal-footer">
+                  <button class="btn btn-dark">Save</button>
+                  </div>
+          </form>
+</ng-template>
 
 
 // TODO: add new category, publisher
