@@ -2,14 +2,35 @@ import { Injectable } from '@angular/core';
 import { User } from '../user';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+}
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  user : User;
+  login(user:User) {
+    
+  }
+  postUser( user: User): User {
+    this.http.post<User>("http://localhost:3000/createUser", user, httpOptions)
+    .subscribe(obj => {
+      console.log(obj[0].UserID);
+      user.userID = obj[0].UserID;
+    }); 
+    this.user = user;
+    return user;
+    
+    }
+
   getUser():Observable<User[]> {
     console.log("test")
     return this.http.get<User[]>("http://localhost:3000/readUsers");
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {   
+
+  }
 }
