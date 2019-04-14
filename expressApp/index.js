@@ -11,6 +11,10 @@ const authUser = require('./AuthenticateUser');
 const publisher = require('./PublisherCRUD');
 const userCRUD = require('./userCRUD');
 const book = require('./BookCRUD');
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9541557f0a2693d7516cc95ee12516b8b5161aa8
 const app = express()
 const port = 3000
 
@@ -31,7 +35,17 @@ app.all('/connection', (req, res) => {
   res.write(test.connectionString.host + "\n" +  test.connectionString.user);
   res.end();
 })
+app.post('/createUser', (req, res) => {
+  console.log("Test Express Side")
+  
+  obj = JSON.parse(JSON.stringify(req.body));
+  userCRUD.createUser(obj).then((message) => { 
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
 
+})
 app.get('/readUsers', (req, res) =>
 {
   userCRUD.readUsers().then( (message) => {
