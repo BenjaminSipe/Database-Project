@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../services/user.service";
 import { User } from '../user';
-import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -9,12 +10,16 @@ import { Observable, of } from 'rxjs';
 })
 export class UserProfileComponent implements OnInit {
   user : User[];
-  constructor(private userservice: UserService) { 
+  constructor(private userservice: UserService,
+              private router: Router) { 
     
   }
   getUser(): void {
-    this.userservice.getUser()
-      .subscribe(user => this.user = user);
+    
+    if (this.userservice.user == undefined || this.userservice.user.userID == 1) {
+      this.router.navigate(['/login']);
+    } 
+      
   }
 
 
