@@ -1,10 +1,19 @@
 <p>
   user-profile works!
 </p>
+<div *ngIf="userservice.user != undefined">
   <ul>
-
-    <li *ngFor="let u of user">
-      {{u.email}}
+    <li>
+      {{userservice.user.name}}
+    </li>
+    <li>
+      {{userservice.user.email}}
+    </li>
+    <li>
+      {{userservice.user.password}}
+    </li>
+    <li>
+      {{userservice.user.homePhone}}
     </li>
   </ul>
-
+</div>

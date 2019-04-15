@@ -27,4 +27,7 @@ export class User {
     }
   }
 
+  toString():string[] {
+    return [this.userID + "", this.name, this.email, this.homePhone, this.workPhone, "***********".substr(this.password.length)]
+  }
 }

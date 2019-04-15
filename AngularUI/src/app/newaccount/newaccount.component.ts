@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../User'
 import { UserService } from '../services/user.service';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-newaccount',
   templateUrl: './newaccount.component.html',
   styleUrls: ['./newaccount.component.scss']
 })
 export class NewaccountComponent implements OnInit {
-  constructor(private userService : UserService) { 
+  constructor(private userService : UserService,
+              private router : Router) { 
     }
   error = "";
   user = new User("", "", "", "", "");
@@ -21,7 +22,7 @@ export class NewaccountComponent implements OnInit {
       this.user.userID = 1;
       this.error = "";
       this.user = this.userService.postUser(this.user);
-      console.log(this.user.userID);
+      this.router.navigate(['/userprofile']);
       //Save these two a instance of user in a userAuth service and check for login.
   
     }

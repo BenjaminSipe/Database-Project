@@ -1,23 +1,19 @@
-<div *ngIf="!boolean">
+<div>
 <h1>Login</h1>
 <dd>
 <ul>
+  <li>{{error}}</li>
   <li>
-<input #userInput type="text" placeholder="Username"/>
-</li>
-<li>
-  <input type="text"/>
-<input #passwordInput type="password" placeholder="Password"/>
-</li><li>
-<button (click)="onClick(userInput.value, passwordInput.value)">{{buttonText}}</button>
+    Email<br>
+    <input [value]="user.email" (input)="user.email = $event.target.value" type="text"/>
+  </li>
+  <li>
+      Password<br>
+      <input type="password" [value]="user.password" (input)="user.password = $event.target.value"/>
+  </li>   
+  <li>
+<button (click)="onClick()">Login</button>
 </ul>
 <a href="/newaccount">New Account?</a>
 </dd>
-</div>
-<div *ngIf="boolean">
-  Username: {{username}}
-  <br>
-  Password: {{password}}
-  <app-user-profile></app-user-profile>
-  Login Successful
 </div>
