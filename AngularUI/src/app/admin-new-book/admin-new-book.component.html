@@ -1,5 +1,7 @@
-<div class="row justify-content-center">
-  <div class="col-4">
+
+<div class="container-fluid ">
+<div class="row justify-content-center ">
+  <div class="col-md-4">
     <h3 class="text-center">Book</h3>
       <form #AddBook="ngForm" (ngSubmit)="saveBook(AddBook.value)">
           <div class="form-group">
@@ -34,7 +36,7 @@
                 <button class="btn btn-dark">Save</button>
         </form>
   </div>
-  <div class="col-4">
+  <div class="col-md-4">
       <h3 class="text-center">Other</h3>
       <form #AddCategory="ngForm">
           <div class="form-group">
@@ -80,10 +82,10 @@
                         </select>
                     </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md">
                             <div class="form-group">
                                 <label for="price">Price</label>
-                                <div class="input-group mb-3">
+                                <div class="input-group md-3">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text">$</span>
                                   </div>
@@ -91,10 +93,10 @@
                                 </div>
                               </div>
                         </div>
-                        <div class="col">
+                        <div class="col-md">
                             <div class="form-group">
                                 <label for="cost">Cost</label>
-                                <div class="input-group mb-3">
+                                <div class="input-group md-3">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text">$</span>
                                   </div>
@@ -112,18 +114,19 @@
                 </div>
             </form>
   </div>
-  <div class="col-4 ">
-    <h3 class="text-center">Preview</h3>
-    <label for="previewCard" class="text-center">New Book</label>
+  <div class="col-md-4">
+    <h3 class="text-center">Preview</h3><br>
+    <div class="row justify-content-center">
     <div class="card text-center" style="width: 18rem;">
         <img class="card-img-top" src="http://www.iconarchive.com/download/i96815/iconsmind/outline/Preview.ico" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make...</p>
-
+          </div>
         </div>
       </div>
   </div>
+</div>
 </div>
 
 <ng-template #newCategory let-modal>
@@ -254,7 +257,7 @@
 </ng-template>
 
 
-// TODO: add new category, publisher
-// TODO: add new category, fix date input
-// TODO: make alignment look not ugly
+// TODO: fix passing image link,
+// TODO: add validation
+// TODO: fix date input
 

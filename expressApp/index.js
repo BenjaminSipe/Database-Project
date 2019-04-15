@@ -11,10 +11,6 @@ const authUser = require('./AuthenticateUser');
 const publisher = require('./PublisherCRUD');
 const userCRUD = require('./userCRUD');
 const book = require('./BookCRUD');
-<<<<<<< HEAD
-=======
-
->>>>>>> 9541557f0a2693d7516cc95ee12516b8b5161aa8
 const app = express()
 const port = 3000
 
@@ -123,8 +119,7 @@ app.get('/readFormats', (req, res) => {
 
 app.post('/createBook', bodyParser.json(), (req, res) => {
   return new Promise( (resolve, reject) => {
-    res.json(req.body);
-    categoryTest.createCategory(req.body);
+     res.json(req.body);
     //console.log('Something is posting...');
     //console.log(req.body);
     //console.log(req.body.title);
@@ -132,15 +127,16 @@ app.post('/createBook', bodyParser.json(), (req, res) => {
         if (err)
           reject('Something went wrong.');
         else
-          resolve(rows[0])
+         
+          resolve(rows[0]);
       });
 
-      dbInfo.pool.query('CALL usp_CreateBookCategory("'+req.body.BookID+'", "'+req.body.CategoryID+'")', function (err, rows, fields) {
-        if (err)
-          reject('Something went wrong.');
-        else
-          resolve(rows[0])
-      });
+      // dbInfo.pool.query('CALL usp_CreateBookCategory("'+req.body.BookID+'", "'+req.body.CategoryID+'")', function (err, rows, fields) {
+      //   if (err)
+      //     reject('Something went wrong.');
+      //   else
+      //     resolve(rows[0])
+      // });
   });
 })
 
