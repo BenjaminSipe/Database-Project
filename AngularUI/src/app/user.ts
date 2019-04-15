@@ -12,8 +12,9 @@ export class User {
     ,phomePhone?:string
     ,pname?:string
     ) {  
-      this.email = pemail;
+
       this.password = ppassword;
+      this.email = pemail;
       this.workPhone = pworkPhone;
       this.homePhone = phomePhone;
       this.name = pname;

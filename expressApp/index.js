@@ -7,14 +7,12 @@ var bodyParser = require("body-parser");
 const test = require('./dbInfo')
 const promises = require('./promiseTest');
 const categoryTest = require('./CategoryCRUD');
-const authUser = require('./AuthenticateUser');
+const put = require('./updateService');
+
 const publisher = require('./PublisherCRUD');
 const userCRUD = require('./userCRUD');
 const book = require('./BookCRUD');
-<<<<<<< HEAD
-=======
 
->>>>>>> 9541557f0a2693d7516cc95ee12516b8b5161aa8
 const app = express()
 const port = 3000
 
@@ -35,17 +33,26 @@ app.all('/connection', (req, res) => {
   res.write(test.connectionString.host + "\n" +  test.connectionString.user);
   res.end();
 })
+
+app.put("/update/:object", (req, res) => {
+  put.updateObject(req.body, req.params.object).then( (message) => {
+    console.log(message);
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+}); 
+
+
 app.post('/createUser', (req, res) => {
   console.log("Test Express Side")
-  
   obj = JSON.parse(JSON.stringify(req.body));
   userCRUD.createUser(obj).then((message) => { 
     res.send(message);
   }).catch((message) => {
     res.send(message);
   })
-
-})
+});
 app.get('/readUsers', (req, res) =>
 {
   userCRUD.readUsers().then( (message) => {
@@ -63,8 +70,8 @@ app.get('/dbInfoTest/:id', (req, res) => {
   })
 })
 
-app.get('/authUser/:email/:password', (req, res) => {
-  categoryTest.readCategory(req.params.email, req.params.password).then( (message) => {
+app.post('/authUser', (req, res) => {
+  userCRUD.authUser(req.body.email, req.body.password).then( (message) => {
     res.send(message);
   }).catch( (message) => {
     res.send(message)
