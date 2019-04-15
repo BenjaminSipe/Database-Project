@@ -29,6 +29,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component';
 import { GETService } from './services/get.service';
 import { POSTService } from './services/post.service';
+import { BookCardComponent } from './book-card/book-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { POSTService } from './services/post.service';
     CreditCardComponent,
     UserProfileComponent,
     AdminNewBookComponent,
+    BookCardComponent,
 
 
   ],

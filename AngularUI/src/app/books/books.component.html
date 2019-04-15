@@ -1,30 +1,23 @@
 <div class="row">
-  <div class="col-3">
-    <ul class="list-group-flush">
-       <li *ngFor="let c of categories$ | async" class="list-group-item">
-          {{ c.CategoryName }}
-       </li>
-    </ul>
+  <div class="col-md-3">
+    <div class="sticky-top">
+        <ul class="list-group-flush">
+            <li *ngFor="let c of categories$ | async" class="list-group-item">
+               {{ c.CategoryName }}
+            </li>
+         </ul>
+    </div>
   </div>
-  <div class="col-1"></div>
-  <div class="col">
+  <!-- <div class="col-1"></div> -->
+  <div class="col-md">
       <div class="row">
+          <div class="card-columns">
           <ng-container *ngFor="let b of books$ | async; let i = index">
             <div class="col">
-          <div class="card text-center" style="width: 22rem;">
-
-              <img src="http://www.iconarchive.com/download/i96815/iconsmind/outline/Preview.ico" class="card-img-top" alt="Book Image">
-              <div class="card-body">
-                <h5 class="card-title">{{b.Title}}</h5>
-                <p class="card-text">Book Description.</p>
-                <button
-
-                class="btn btn-dark btn-block">Add to Cart</button>
-              </div>
-            </div>
+            <book-card [book]="b"></book-card>
           </div>
-          <div *ngIf="(i+1) % 2 === 0"></div>
           </ng-container>
           </div>
+        </div>
   </div>
 </div>

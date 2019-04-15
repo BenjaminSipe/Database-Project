@@ -3,6 +3,7 @@ import { CategoryService } from '../services/category.service';
 import { GETService } from '../services/get.service';
 import { POSTService } from '../services/post.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { forEach } from '@angular/router/src/utils/collection';
 
 
 @Component({
@@ -15,37 +16,24 @@ export class AdminNewBookComponent{
   publishers$;
   authors$;
   formats$;
+  books$;
   constructor(private getService : GETService, private postService:POSTService,
               private modalService: NgbModal) {
     this.categories$ = getService.getCategories();
     this.formats$ = getService.getFormats();
     this.publishers$ = getService.getPublishers();
-    this.getService.getBooks().subscribe((res)=>{
-      console.log('This is the response: ', res)
-    }, (err) => {
-      console.log('Error :( ', err)
-    });
     this.authors$ = getService.getAuthors();
    }
 
+   //SAVE
    saveBook(newBook){
-     console.log("This is new book: " + newBook);
-
      this.postService.createBook(newBook).subscribe((response)=>{
-      console.log('response from post data is ', response);
-    },(error)=>{
+      console.log('response from post data is ', response)
+    }, (error)=>{
       console.log('error during post is ', error)
-    })
+    });
    }
-
-   addNew(content) {
-    this.modalService.open(content, { centered: true });
-  }
-
-
   saveCategory(newCategory){
-    console.log("This is new category "+newCategory);
-
     this.postService.createCategory(newCategory).subscribe((response)=>{
      console.log('response from post data is ', response);
    },(error)=>{
@@ -53,18 +41,13 @@ export class AdminNewBookComponent{
    });
   }
   savePublisher(newPublisher){
-    console.log(newPublisher);
-
     this.postService.createPublisher(newPublisher).subscribe((response)=>{
      console.log('response from post data is ', response);
    },(error)=>{
      console.log('error during post is ', error)
    });
   }
-
   saveFormat(newFormat){
-    console.log(newFormat);
-
     this.postService.createFormat(newFormat).subscribe((response)=>{
      console.log('response from post data is ', response);
    },(error)=>{
@@ -73,12 +56,29 @@ export class AdminNewBookComponent{
   }
 
   saveAuthor(newAuthor){
-    console.log(newAuthor);
-
     this.postService.createAuthor(newAuthor).subscribe((response)=>{
      console.log('response from post data is ', response);
    },(error)=>{
      console.log('error during post is ', error)
    });
   }
+
+  //ADD NEW (PUBLISHER/CATEGORY ETC)
+  addNew(content) {
+    this.modalService.open(content, { centered: true });
+  }
+  //GET LIST OF BOOKS
+  getBookID(book) {
+    this.books$ = this.getService.getBooks();
+    console.log("This books$ : "+ JSON.stringify(this.books$));
+    var b;
+    for (b in this.books$){
+      console.log("b="+b);
+      if(book === b){
+        return b.BookID;
+      }
+    }
+  }
+
 }
+
