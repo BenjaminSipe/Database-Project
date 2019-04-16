@@ -139,28 +139,32 @@ app.get('/readFormats', (req, res) => {
 });
 
 app.post('/createBook', bodyParser.json(), (req, res) => {
-  return new Promise( (resolve, reject) => {
-     res.json(req.body);
-    //console.log('Something is posting...');
-    //console.log(req.body);
-    //console.log(req.body.title);
-    dbInfo.pool.query('CALL usp_CreateBook("'+req.body.title+'", "'+req.body.publisher+'", "'+req.body.Isbn13+'", "'+req.body.date+'", "'+req.body.ImageUrl+'")', function (err, rows, fields) {
-        if (err)
-          reject('Something went wrong.');
-        else
-         
-          resolve(rows[0]);
-      });
-
-      // dbInfo.pool.query('CALL usp_CreateBookCategory("'+req.body.BookID+'", "'+req.body.CategoryID+'")', function (err, rows, fields) {
-      //   if (err)
-      //     reject('Something went wrong.');
-      //   else
-      //     resolve(rows[0])
-      // });
-  });
+  newBook = JSON.parse(JSON.stringify(req.body));
+  book.createBook(newBook).then((message) => { 
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
 })
 
+app.post('/createBookCategory', bodyParser.json(), (req, res) => {
+  return new Promise( (resolve, reject) => {
+    res.json(req.body);
+    book.createBookCategory(req.body);
+  });
+});
+app.post('/createAuthorBook', bodyParser.json(), (req, res) => {
+  return new Promise( (resolve, reject) => {
+    console.log("This is res.json from authorbook: "+res.json(req.body));
+    book.createBookAuthor(req.body);
+  });
+});
+app.post('/createBookFormat', bodyParser.json(), (req, res) => {
+  return new Promise( (resolve, reject) => {
+    res.json(req.body);
+    book.createBookFormat(req.body);
+  });
+});
 app.post('/createCategory', bodyParser.json(), (req, res) => {
   return new Promise( (resolve, reject) => {
     res.json(req.body);
