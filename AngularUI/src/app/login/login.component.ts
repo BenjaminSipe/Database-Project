@@ -12,21 +12,24 @@ import {Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   constructor (private userService : UserService,
                private router : Router) {
-
-      //router.navigate(["/books"]);
-  }
+      if (userService.user.userID != undefined) {
+        userService.logout();
+        router.navigate(["/"]);
+      }
+   }
   error = "";
   user = new User("", "", "", "", "");
   boolean = false;
 
   onClick() {
-    this.user = this.userService.login(this.user);
-    if (this.user.userID != undefined ) {
+    this.error = "";
+
+    this.userService.login(this.user).then((message) =>
+    {
       this.router.navigate(['/userprofile']);
-    } 
-    else {
+    }).catch((message) => {
       this.error = "Email or Password are incorrect.";
-    }
+    })
   }
 
   ngOnInit() {

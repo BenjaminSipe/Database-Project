@@ -6,25 +6,21 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.sass']
+  styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
   user : User[];
   constructor(private userservice: UserService,
               private router: Router) { 
-    
-  }
-  getUser(): void {
-    
-    if (this.userservice.user == undefined || this.userservice.user.userID == 1) {
+    if (this.userservice.user.userID == undefined) {
       this.router.navigate(['/login']);
-    } 
+    } else {
       
+    }     
   }
-
+  
 
   ngOnInit() {
-    this.getUser();
   }
 
 }

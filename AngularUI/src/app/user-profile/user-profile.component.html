@@ -1,7 +1,4 @@
-<p>
-  user-profile works!
-</p>
-<div *ngIf="userservice.user != undefined">
+<div class="block" *ngIf="userservice.user != undefined">
   <ul>
     <li>
       {{userservice.user.name}}
@@ -9,11 +6,17 @@
     <li>
       {{userservice.user.email}}
     </li>
+    <div *ngIf="userservice.user.userLevel == 1">
+        
     <li>
-      {{userservice.user.password}}
+      {{userservice.user.workPhone}}
     </li>
     <li>
       {{userservice.user.homePhone}}
     </li>
+    <li>
+        Customer
+    </li>
+  </div>
   </ul>
 </div>
