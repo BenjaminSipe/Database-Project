@@ -16,14 +16,14 @@ export class LoginComponent implements OnInit {
         userService.logout();
         router.navigate(["/"]);
       }
-      //router.navigate(["/books"]);
-  }
+   }
   error = "";
   user = new User("", "", "", "", "");
   boolean = false;
 
   onClick() {
-    console.log("Button Clicked");
+    this.error = "";
+
     this.userService.login(this.user).then((message) =>
     {
       this.router.navigate(['/userprofile']);

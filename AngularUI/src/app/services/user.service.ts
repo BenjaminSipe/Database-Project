@@ -18,15 +18,15 @@ export class UserService {
     return new Promise((resolve, reject) => {
       this.http.post("http://localhost:3000/authUser", user, httpOptions)
       .subscribe(res => {
-        if (res[0].userID == 0) {
+
+        if (res[0].UserID == 0) {
+
           reject(false);
         } else {
-          console.log(res[0]);
           this.http.get<User>(`http://localhost:3000/ReadUser/${res[0].userID}`,httpOptions)
           .subscribe(res2 =>
             {
               
-              console.log(res2);
               this.user = res2[0];
               this.loginText = "Log Out";
               this.userName = this.user.name;
@@ -40,12 +40,10 @@ export class UserService {
 
   logout() {
     this.user = new User("", "");
-    console.log(this.user.userID);
   }
   postUser( user: User): User {
     this.http.post<User>("http://localhost:3000/createUser", user, httpOptions)
     .subscribe(obj => {
-      console.log(obj[0].UserID);
       user.userID = obj[0].UserID;
     }); 
     this.user = user;

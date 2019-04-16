@@ -8,7 +8,7 @@ import { UserService } from '../services/user.service';
 })
 export class NavComponent implements OnInit {
   appTitle = 'myapp';
-  
+  login = "/login";
   constructor(private userservice : UserService) { 
 
   }
