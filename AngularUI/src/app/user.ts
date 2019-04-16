@@ -5,6 +5,7 @@ export class User {
   public password:string;
   public homePhone:string;
   public workPhone:string;
+  public userLevel:string;
   
   constructor(pemail:string, 
     ppassword:string

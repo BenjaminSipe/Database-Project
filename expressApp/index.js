@@ -61,12 +61,22 @@ app.get('/readUsers', (req, res) =>
     res.send(message)
   })
 })
+app.get('/readUser/:id', (req, res) =>
+{
+  userCRUD.readUser(req.params.id).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+})
+
+
 app.get('/dbInfoTest/:id', (req, res) => {
   console.log(req.params.id)
   promises.queryTest.then( (message) => {
     res.send(message);
   }).catch( (message) => {
-    res.send(message)
+    res.send('{"UserID":0}')
   })
 })
 
@@ -74,7 +84,7 @@ app.post('/authUser', (req, res) => {
   userCRUD.authUser(req.body.email, req.body.password).then( (message) => {
     res.send(message);
   }).catch( (message) => {
-    res.send(message)
+    res.send('[{"UserID":0}]')
   })
 });
 

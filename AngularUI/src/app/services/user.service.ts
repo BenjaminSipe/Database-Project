@@ -11,17 +11,37 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  user : User;
+  user = new User("", "");
+  userName = "Guest";
   loginText = "Login";
   login(user:User) {
-    this.user = user;
-    this.user.enterInfo(7, "3333333333", "Ben Sipe", "4444444444");
-    this.loginText = "Log Out"
-    return this.user;
-    
+    return new Promise((resolve, reject) => {
+      this.http.post("http://localhost:3000/authUser", user, httpOptions)
+      .subscribe(res => {
+        if (res[0].userID == 0) {
+          reject(false);
+        } else {
+          console.log(res[0]);
+          this.http.get<User>(`http://localhost:3000/ReadUser/${res[0].userID}`,httpOptions)
+          .subscribe(res2 =>
+            {
+              
+              console.log(res2);
+              this.user = res2[0];
+              this.loginText = "Log Out";
+              this.userName = this.user.name;
+              resolve(true);
+            
+            })
+          }
+      })
+    })
   }
 
-  
+  logout() {
+    this.user = new User("", "");
+    console.log(this.user.userID);
+  }
   postUser( user: User): User {
     this.http.post<User>("http://localhost:3000/createUser", user, httpOptions)
     .subscribe(obj => {

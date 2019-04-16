@@ -10,22 +10,34 @@ exports.readUsers = function() {
       });
   })}
 
-  exports.createUser = function(obj) {
+  exports.readUser = function(id) {
     return new Promise( (resolve, reject) => {
-        dbInfo.pool.query('CALL usp_CreateUser( ?, ?, ?, ?, ? )', [obj.name, obj.password, obj.homePhone, obj.workPhone, obj.email], function (err, rows, fields) {
+      console.log(id);
+    dbInfo.pool.query(`CALL usp_ReadUser( ${id} )`, function (err, rows, fields) {
+        if (err) {
+          console.log(err);
+          reject('{"error":"No Users Found"}');}
+        else
+          resolve(rows[0])
+      });
+  })}
+  exports.createUser = function(obj) {
+    return new Promise( (resolve, reject) => {  
+      dbInfo.pool.query('CALL usp_CreateUser( ?, ?, ?, ?, ? )', [obj.name, obj.password, obj.homePhone, obj.workPhone, obj.email], function (err, rows, fields) {
         if (err)
           reject('{"error":"No Users Found"}');
         else {
-            resolve(rows[0]);
+          resolve(rows[0]);
         }
     });
   })}
 
   exports.authUser = function(email, password) {
     return new Promise( (resolve, reject) => {
+    console.log(email);
     dbInfo.pool.query('CALL usp_AuthUser( ? , ? )', [email, password] , function (err, rows, fields) {
         if (err)
-          reject('Something went wrong.');
+          reject('{"error":"InCorrect Info"}');
         else
           resolve(rows[0])
       });

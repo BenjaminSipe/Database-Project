@@ -10,9 +10,8 @@ export class NavComponent implements OnInit {
   appTitle = 'myapp';
   
   constructor(private userservice : UserService) { 
-    
-  }
 
+  }
   ngOnInit() {
   }
 
