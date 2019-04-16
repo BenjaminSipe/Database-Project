@@ -10,7 +10,19 @@ export class POSTService {
 
   createBook(book){
    return this.http.post(this.urlBase + 'createBook', book);
-    }
+  }
+
+  createBookCategory(bc){
+    return this.http.post(this.urlBase + 'createBookCategory', bc);
+  }
+
+  createBookAuthor(ac){
+    return this.http.post(this.urlBase + 'createAuthorBook', ac);
+  }
+
+  createBookFormat(fc){
+    return this.http.post(this.urlBase + 'createBookFormat', fc);
+  }
 
   createCategory(category){
     return this.http.post(this.urlBase + 'createCategory', category);
