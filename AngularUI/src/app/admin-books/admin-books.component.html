@@ -14,10 +14,18 @@
               <th scope="col-1">#</th>
               <th scope="col-1">BookID</th>
               <th scope="col">Title</th>
+              <th scope="col">ISBN-13</th>
               <th scope="col-2">Price</th>
             </tr>
           </thead>
           <tbody>
+            <tr *ngFor="let b of books$ | async; let i = index">
+              <td>{{ i+1 }}</td>
+              <td>{{ b.BookID }}</td>
+              <td> {{ b.Title }}</td>
+              <td>{{ b.Isbn13 }}</td>
+              <td>$</td>
+            </tr>
           </tbody>
         </table>
   </div>
