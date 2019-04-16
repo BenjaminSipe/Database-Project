@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   boolean = false;
 
   onClick() {
-
+    console.log("Button Clicked");
     this.userService.login(this.user).then((message) =>
     {
       this.router.navigate(['/userprofile']);
