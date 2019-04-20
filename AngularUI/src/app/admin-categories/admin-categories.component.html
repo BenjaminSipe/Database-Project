@@ -1,3 +1,32 @@
-<p>
-  admin-categories works!
-</p>
+<div class="modal-header">
+  <h4 class="modal-title"  *ngFor="let b of book$ | async" >{{ b.Title }} </h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col">
+            <img *ngFor="let b of book$ | async" class="img-fluid" [src]="b.ImageLink">
+        </div>
+        <div class="col">
+            <p  *ngFor="let a of author$ | async">Author: {{ a.Name }}</p>
+            <div *ngFor="let f of format$ | async">
+            <p>Price: {{ f.Price | currency:'USD':true }}</p>
+            <p>Cost: {{ f.Cost | currency:'USD':true }}</p>
+            <p>Quantity: {{ f.Quantity }}</p>
+            <p>Format: {{f.FormatName}}</p>
+            </div>
+        </div>
+      </div>
+<!-- <div class="card" style="width: 18rem;">
+    <img *ngFor="let b of book$ | async" class="img-fluid" [src]="b.ImageLink">
+    <div class="card-body">
+      <h5  *ngFor="let b of book$ | async" class="card-title">{{ b.Title }}</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div> -->
+</div>
+<!-- <div class="modal-body">
+  <img *ngFor="let b of book$ | async" class="img-fluid" [src]="b.ImageLink">
+  <p  *ngFor="let a of author$ | async">{{ a.Name }}</p>
+  <p  *ngFor="let f of format$ | async">{{ f.Price | currency:'USD':true }}</p>
+</div> -->

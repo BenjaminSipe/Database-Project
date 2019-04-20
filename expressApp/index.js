@@ -6,15 +6,15 @@ var fs = require('fs');
 var bodyParser = require("body-parser");
 const test = require('./dbInfo')
 const promises = require('./promiseTest');
-const categoryTest = require('./CategoryCRUD');
+const category = require('./CategoryCRUD');
 const put = require('./updateService');
 
 const publisher = require('./PublisherCRUD');
 const userCRUD = require('./userCRUD');
 const book = require('./BookCRUD');
-
-const app = express()
-const port = 3000
+const cart = require('./CartCRUD');
+const app = express();
+const port = 3000;
 
 var connection = mysql.createConnection(test.connectionString);
 
@@ -89,15 +89,27 @@ app.post('/authUser', (req, res) => {
 });
 
 app.get('/readCategory/:id', (req, res) => {
-  categoryTest.readCategory(req.params.id).then( (message) => {
+  category.readCategory(req.params.id).then( (message) => {
     res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+app.get('/readBookCategory/:id', (req, res) => {
+  book.readBookCategory(req.params.id).then( (message) => {
+    dbInfo.pool.query('CALL usp_ReadCategory( ? )', message[0].CategoryID, function (err, rows, fields) {
+      if (err)
+        throw err;
+      else
+        res.send(rows[0]);
+    });
   }).catch( (message) => {
     res.send(message)
   })
 });
 
 app.get('/readCategories', (req, res) => {
-  categoryTest.readCategories().then( (message) => {
+  category.readCategories().then( (message) => {
     res.send(message);
   }).catch( (message) => {
     res.send(message)
@@ -112,8 +124,13 @@ app.get('/readPublishers', (req, res) => {
     res.send(message)
   })
 });
-
-
+app.get('/readPublisher/:id', (req, res) => {
+  book.readPublisher(req.params.id).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
 app.get('/readBooks', (req, res) => {
   book.readBooks().then( (message) => {
     res.send(message);
@@ -121,6 +138,15 @@ app.get('/readBooks', (req, res) => {
     res.send(message)
   })
 });
+app.get('/readBook/:id', (req, res) =>
+{
+  book.readBook(req.params.id).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+
 
 app.get('/readAuthors', (req, res) => {
   book.readAuthors().then( (message) => {
@@ -129,9 +155,48 @@ app.get('/readAuthors', (req, res) => {
     res.send(message)
   })
 });
+app.get('/readAuthor/:id', (req, res) =>
+{
+  book.readAuthor(req.params.id).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+app.get('/readBookAuthor/:id', (req, res) =>
+{
+  book.readBookAuthor(req.params.id).then( (message) => {
+    //console.log(message[0].AuthorID);
+    dbInfo.pool.query('CALL usp_ReadAuthor( ? )', message[0].AuthorID, function (err, rows, fields) {
+      if (err)
+        throw err;
+      else
+        res.send(rows[0]);
+    });
+    
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
 
 app.get('/readFormats', (req, res) => {
   book.readFormats().then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+app.get('/readFormat/:id', (req, res) =>
+{
+  book.readFormat(req.params.id).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+app.get('/readBookFormats', (req, res) =>
+{
+  book.readBookFormats().then( (message) => {
     res.send(message);
   }).catch( (message) => {
     res.send(message)
@@ -165,10 +230,22 @@ app.post('/createBookFormat', bodyParser.json(), (req, res) => {
     book.createBookFormat(req.body);
   });
 });
+app.get('/readBookFormat/:id', (req, res) =>
+{
+  book.readBookFormat(req.params.id).then( (message) => {
+    //console.log(message[0].AuthorID);
+    book.readFormat(message[0].FormatID).then((message2) =>{
+      console.log(message[0].FormatName = message2[0].FormatName);
+      res.send(message);
+    })
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
 app.post('/createCategory', bodyParser.json(), (req, res) => {
   return new Promise( (resolve, reject) => {
     res.json(req.body);
-    categoryTest.createCategory(req.body);
+    category.createCategory(req.body);
   });
 });
 
@@ -192,5 +269,24 @@ app.post('/createAuthor', bodyParser.json(), (req, res) => {
     book.createAuthor(req.body);
   });
 });
+
+app.post('/createCart', bodyParser.json(), (req, res) => {
+  return new Promise( (resolve, reject) => {
+    //console.log(res.json(req.body));
+    cart.createCart(req.body).then((message) => { 
+      res.send(message);
+    }).catch((message) => {
+      res.send(message);
+    });
+  });
+});
+app.get('/readCart/:id', (req, res) =>
+{
+  cart.readCart(req.params.id).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+})
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

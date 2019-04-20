@@ -30,6 +30,8 @@ import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component
 import { GETService } from './services/get.service';
 import { POSTService } from './services/post.service';
 import { BookCardComponent } from './book-card/book-card.component';
+import { DetailsComponent } from './details/details.component';
+import { ModalContainerComponent } from './modal-container/modal-container.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +53,8 @@ import { BookCardComponent } from './book-card/book-card.component';
     UserProfileComponent,
     AdminNewBookComponent,
     BookCardComponent,
+    DetailsComponent,
+    ModalContainerComponent,
 
 
   ],
@@ -60,6 +64,9 @@ import { BookCardComponent } from './book-card/book-card.component';
     AppRoutingModule,
     FormsModule,
     NgbModule.forRoot(),
+  ],
+  entryComponents: [
+    AdminCategoriesComponent
   ],
   providers: [
     CategoryService,

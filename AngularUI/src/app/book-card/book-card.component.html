@@ -1,8 +1,11 @@
 <div class="card text-center" style="width: 22rem;">
-    <img src="http://www.iconarchive.com/download/i96815/iconsmind/outline/Preview.ico" class="card-img-top" alt="Book Image">
+    <img src="{{book.ImageLink}}" class="card-img-top" alt="Book Image">
     <div class="card-body">
-      <h5 class="card-title">{{book.Title}}</h5>
-      <p class="card-text">Book Description.</p>
+      <h5 class="card-title" *ngFor="let b of book$ | async">{{ b.Title }}</h5>
+      <div *ngFor="let f of format$ | async">
+          <p>{{f.FormatName}}</p>
+          <p>{{ f.Price | currency:'USD':true }}</p>
+          </div>
       <button (click)="addToCart(book)"
       class="btn btn-dark btn-block">Add to Cart</button>
     </div>

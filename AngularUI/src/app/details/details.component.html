@@ -1,0 +1,15 @@
+<!--
+<div class="card" style="width: 18rem;">
+  <img   *ngFor="let b of book$ | async" class="card-img-top" src="{{ b.ImageLink }}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div> -->
+<div class="modal-header">
+  <h4 *ngFor="let b of book$ | async" class="modal-title">{{ b.ImageLink }} </h4>
+</div>
+<div class="modal-body">
+  <!-- <img class="img-fluid" [src]="getLargeImageUrl(photo)"> -->
+</div>

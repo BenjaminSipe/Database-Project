@@ -4,6 +4,7 @@ import { GETService } from '../services/get.service';
 import { POSTService } from '../services/post.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { forEach } from '@angular/router/src/utils/collection';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class AdminNewBookComponent{
   formats$;
   books$;
   constructor(private getService : GETService, private postService:POSTService,
-              private modalService: NgbModal) {
+              private modalService: NgbModal, private router: Router) {
     this.categories$ = getService.getCategories();
     this.formats$ = getService.getFormats();
     this.publishers$ = getService.getPublishers();
@@ -42,7 +43,6 @@ export class AdminNewBookComponent{
 
    //SAVE
    saveBook(newBook){
-
      this.postService.createBook(newBook).subscribe((response)=>{
       console.log('response from post data is ', response);
       console.log(response[0].BookID);
@@ -64,6 +64,7 @@ export class AdminNewBookComponent{
       console.log('error during post is ', error)
     }
     );
+    this.router.navigate(['/admin/books']);
    }
    saveBookCategory(nbc){
     this.postService.createBookCategory(nbc).subscribe((response)=>{
@@ -109,6 +110,10 @@ export class AdminNewBookComponent{
   }
 
   saveAuthor(newAuthor){
+    console.log(newAuthor.newAuthorBio);
+    newAuthor.newAuthorBio = newAuthor.newAuthorBio.replace(/'/g,"\\'");
+    newAuthor.newAuthorBio = newAuthor.newAuthorBio.replace(/"/g,'\\"');
+    console.log(newAuthor.newAuthorBio);
     this.postService.createAuthor(newAuthor).subscribe((response)=>{
      console.log('response from post data is ', response);
    },(error)=>{

@@ -10,9 +10,12 @@ import { CategoriesComponent } from './categories/categories.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminBooksComponent } from './admin-books/admin-books.component';
+import { AdminCategoriesComponent } from './admin-categories/admin-categories.component';
 import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component';
 import { PostsComponent } from './posts/posts.component';
 import { FormsModule, NgForm } from '@angular/forms';
+import { DetailsComponent } from './details/details.component';
+import { ModalContainerComponent } from './modal-container/modal-container.component';
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent},
@@ -23,9 +26,9 @@ const routes: Routes = [
   { path: 'categories', component: CategoriesComponent},
   { path: 'userprofile', component: UserProfileComponent},
   { path: 'myorders', component: MyOrdersComponent},
-  { path: 'admin/books', component: AdminBooksComponent},
   { path: 'admin/books/new', component: AdminNewBookComponent},
-  { path: 'posts', component: PostsComponent},
+  { path: 'admin/books/:id', component: ModalContainerComponent},
+  { path: 'admin/books', component: AdminBooksComponent}
 ];
 
 @NgModule({

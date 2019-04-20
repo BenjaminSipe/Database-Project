@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { getLocaleDateTimeFormat } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,8 @@ export class POSTService {
    createAuthor(author){
     return this.http.post(this.urlBase + 'createAuthor', author);
    }
-   createCart(){
-    return this.http.post(this.urlBase + 'createCart', Date());
+   createCart(datetime){
+     console.log("From service " + Object.values(datetime));
+     return this.http.post(this.urlBase + 'createCart', datetime);
    }
 }

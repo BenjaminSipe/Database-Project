@@ -2,37 +2,42 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import { POSTService } from './post.service';
+import { GETService } from './get.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
-
-  constructor(private http: HttpClient) {
-  const endpoint = 'http://localhost:5000/books';
-  const httpOptions = {
-  headers: new HttpHeaders({
-  'Content-Type':  'application/json'
-  })
-};
+  cart : {DateCreated:string}[];
+  currentdate = new Date();
+  date = {Datetime: ''};
+  constructor(private http: HttpClient, private postService:POSTService, private getService : GETService) {
    }
 
-   private extractData(res: Response) {
-    let body = res;
-    return body || { };
-  }
+   private getCart(cartId){
+    this.getService.getCart(cartId).subscribe(cart => this.cart = Object.values(cart));
+    console.log("From cart[0]"+this.cart);
+    return this.cart;
+   }
+   public getOrCreateCart(){
+    let datetime =    this.currentdate.getFullYear() + "-"
+    + (this.currentdate.getMonth()+1) + "-"
+    + this.currentdate.getDate() +  " "
+    + this.currentdate.getHours() + ":"
+    + this.currentdate.getMinutes() + ":"
+    + this.currentdate.getSeconds();
+    this.date.Datetime = datetime;
+    console.log("This date: " + this.date);
+    let cartId = localStorage.getItem('cartId');
+    console.log(cartId);
+    if(!cartId){
+      this.postService.createCart(this.date).subscribe((response)=>{
+      localStorage.setItem('cartId', response[0].CartId);
+    });
+    } else {
+      return this.getCart(cartId);
+    }
+   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
 }

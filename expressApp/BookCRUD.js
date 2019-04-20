@@ -9,10 +9,80 @@ exports.readBooks = function() {
           resolve(rows[0])
       });
   })}
-
+  exports.readBook = function(id) {
+    return new Promise( (resolve, reject) => {
+      console.log(id);
+    dbInfo.pool.query(`CALL usp_ReadBook( ${id} )`, function (err, rows, fields) {
+        if (err) {
+          console.log(err);
+          reject('{"error":"No Book Found"}');}
+        else
+          resolve(rows[0])
+      });
+  })}
+  exports.readBookFormats = function() {
+    return new Promise( (resolve, reject) => {
+    dbInfo.pool.query('CALL usp_ReadBookFormats()', function (err, rows, fields) {
+        if (err)
+          reject('Something went wrong.');
+        else
+          resolve(rows[0])
+      });
+  })}
+  exports.readBookFormat = function(id) {
+    return new Promise( (resolve, reject) => {
+      console.log(id);
+    dbInfo.pool.query(`CALL usp_ReadBookFormat( ${id} )`, function (err, rows, fields) {
+        if (err) {
+          console.log(err);
+          reject('{"error":"No BookFormat Found"}');}
+        else
+          resolve(rows[0])
+      });
+  })}
+  exports.readBookAuthor = function(id) {
+    return new Promise( (resolve, reject) => {
+      console.log(id);
+    dbInfo.pool.query(`CALL usp_ReadBookAuthor( ${id} )`, function (err, rows, fields) {
+        if (err) {
+          console.log(err);
+          reject('{"error":"No BookAuthor Found"}');}
+        else
+          resolve(rows[0])
+      });
+  })}
+  exports.readBookCategory = function(id) {
+    return new Promise( (resolve, reject) => {
+      console.log(id);
+    dbInfo.pool.query(`CALL usp_ReadBookCategory( ${id} )`, function (err, rows, fields) {
+        if (err) {
+          console.log(err);
+          reject('{"error":"No BookCategory Found"}');}
+        else
+          resolve(rows[0])
+      });
+  })}
+  exports.readPublisher = function(index) {
+    return new Promise( (resolve, reject) => {
+    dbInfo.pool.query('CALL usp_ReadPublisher( ? )', index, function (err, rows, fields) {
+        if (err)
+          reject('Something went wrong.');
+        else
+          resolve(rows[0])
+      });
+  })}
   exports.readAuthors = function() {
     return new Promise( (resolve, reject) => {
     dbInfo.pool.query('CALL usp_ReadAuthors()', function (err, rows, fields) {
+        if (err)
+          reject('Something went wrong.');
+        else
+          resolve(rows[0])
+      });
+  })}
+  exports.readAuthor = function(index) {
+    return new Promise( (resolve, reject) => {
+    dbInfo.pool.query('CALL usp_ReadAuthor( ? )', index, function (err, rows, fields) {
         if (err)
           reject('Something went wrong.');
         else
@@ -28,10 +98,21 @@ exports.readBooks = function() {
           resolve(rows[0])
       });
   })}
-
+  exports.readFormat = function(id) {
+    return new Promise( (resolve, reject) => {
+      console.log(id);
+    dbInfo.pool.query(`CALL usp_ReadFormat( ${id} )`, function (err, rows, fields) {
+        if (err) {
+          console.log(err);
+          reject('{"error":"No Format Found"}');}
+        else
+          resolve(rows[0])
+      });
+  })}
+  
   exports.createBook = function(newBook) {
     return new Promise( (resolve, reject) => {
-        dbInfo.pool.query('CALL usp_CreateBook("'+newBook.title+'", "'+newBook.publisher+'", "'+newBook.Isbn13+'", "'+newBook.date+'", "'+newBook.ImageUrl+'")', function (err, rows, fields) {
+        dbInfo.pool.query('CALL usp_CreateBook("'+newBook.title+'", "'+newBook.publisher+'", "'+newBook.Isbn13+'", "'+newBook.date+'", "'+newBook.imageUrl+'")', function (err, rows, fields) {
             if (err)
               reject('Something went wrong.');
             else
@@ -71,7 +152,7 @@ exports.readBooks = function() {
   
 exports.createAuthor = function(newAuthor) {
     console.log(newAuthor);
-      dbInfo.pool.query('CALL usp_CreateAuthor("'+newAuthor.newAuthorName+'", "'+newAuthor.newAuthorBio+'", "'+newAuthor.newAuthorImageUrl+'")', function (err, rows, fields) {
+      dbInfo.pool.query('CALL usp_CreateAuthor("'+newAuthor.newAuthorName+'", "'+newAuthor.newAuthorBio+'", "'+newAuthor.newAuthorImageLink+'")', function (err, rows, fields) {
         if (err)
           throw(err);
       });

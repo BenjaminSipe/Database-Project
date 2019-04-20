@@ -1,21 +1,39 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Book } from '../book';
 import { GETService } from '../services/get.service';
 import { POSTService } from '../services/post.service';
+import { Subscription } from 'rxjs';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'book-card',
   templateUrl: './book-card.component.html',
   styleUrls: ['./book-card.component.sass']
 })
-export class BookCardComponent {
-  @Input('book') book : Book;
-  constructor(private getService : GETService, private postService:POSTService) { }
-  addToCart(book : Book){
-    //console.log("Date: "+Date());
-    let cartId = localStorage.getItem('cartId');
-    if(!cartId){
-      this.postService.createCart();
-    }
+export class BookCardComponent implements OnDestroy, OnInit{
+  @Input('book') book;
+  format$;
+  category$;
+  publisher$;
+  author$;
+  book$;
+  subscription : Subscription;
+
+  constructor(private getService : GETService, private postService: POSTService,
+              private cart : ShoppingCartService) {
+  }
+  ngOnInit() {
+    //console.log("from on init " + this.bookId);
+    this.format$ = this.getService.getBookFormat(this.book.BookID);
+    this.category$ = this.getService.getBookCategory(this.book.BookID);
+    this.author$ = this.getService.getBookAuthor(this.book.BookID);
+    this.book$ = this.getService.getBook(this.book.BookID);
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  addToCart(book){
+   this.cart.getOrCreateCart();
   }
 }
