@@ -10,6 +10,7 @@ import {Router } from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  bool = false;
   constructor (private userService : UserService,
                private router : Router) {
       if (userService.user.userID != undefined) {
@@ -23,12 +24,14 @@ export class LoginComponent implements OnInit {
 
   onClick() {
     this.error = "";
-
+    this.bool = true;
     this.userService.login(this.user).then((message) =>
     {
+      this.bool = false;
       this.router.navigate(['/userprofile']);
     }).catch((message) => {
       this.error = "Email or Password are incorrect.";
+      this.bool = false;
     })
   }
 

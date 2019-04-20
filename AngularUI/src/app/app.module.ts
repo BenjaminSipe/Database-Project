@@ -30,8 +30,12 @@ import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component
 import { GETService } from './services/get.service';
 import { POSTService } from './services/post.service';
 import { BookCardComponent } from './book-card/book-card.component';
+<<<<<<< HEAD
 import { DetailsComponent } from './details/details.component';
 import { ModalContainerComponent } from './modal-container/modal-container.component';
+=======
+import { EdituserComponent } from './edituser/edituser.component';
+>>>>>>> 6e6458b18843e2feaf9fa081ca69eec41bddcfe6
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,8 +57,12 @@ import { ModalContainerComponent } from './modal-container/modal-container.compo
     UserProfileComponent,
     AdminNewBookComponent,
     BookCardComponent,
+<<<<<<< HEAD
     DetailsComponent,
     ModalContainerComponent,
+=======
+    EdituserComponent,
+>>>>>>> 6e6458b18843e2feaf9fa081ca69eec41bddcfe6
 
 
   ],
