@@ -29,7 +29,6 @@ export class UserService {
             {
               
               this.user = res2[0];
-              console.log(this.user.userID);
               this.loginText = "Log Out";
               this.userName = this.user.name;
               this.user.password = "";
@@ -55,7 +54,6 @@ export class UserService {
     });})}
 
   getUser():Observable<User[]> {
-    console.log("test")
     return this.http.get<User[]>("http://localhost:3000/readUsers");
   }
   constructor(private http: HttpClient) {   

@@ -1,19 +1,46 @@
-<form #AddBook="ngForm" class="d-flex justify-content-center" (ngSubmit)="editEmail()">
+<div class="d-flex justify-content-center">
+<div class="card" style="padding: 1em;width: 20rem; height: 20rem;">
+    <div *ngIf="!passCheck" >
+      <form #changeUser="ngForm" (ngSubmit)="editEmail()">
 
-  <div class="card" style="padding: 1em;width: 20rem; height: 20rem;">
-    <div *ngIf="!edit">
+        <div class="form-group">
+          <label for="passwordInput">Enter Password for {{userservice.user.email}}</label>
+          <input [value]="user.password" (input)="user.password = $event.target.value" type="password"
+            class="form-control" id="passwordInput" placeholder="Password">
+        </div>
+        <div *ngIf="error!=''" class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-dark">Edit Email</button>
+          <button (click)="editPassword()" class="btn btn-outline-dark">Edit Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <form #AddBook="ngForm" class="d-flex justify-content-center" (ngSubmit)="onClick()">
+
+    <div class="card" style="padding: 1em;width: 20rem;">
       <div class="form-group">
-        <label for="passwordInput">Enter Password for {{userservice.user.email}}</label>
+        <label for="exampleInputEmail1">Email address</label>
+        <input [value]="user.email" (input)="user.email = $event.target.value" type="email" class="form-control"
+          id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="passwordInput">Password</label>
         <input [value]="user.password" (input)="user.password = $event.target.value" type="password"
           class="form-control" id="passwordInput" placeholder="Password">
       </div>
       <div *ngIf="error!=''" class="alert alert-danger" role="alert">
-          {{error}}
+        {{error}}
       </div>
-      <div class="d-flex justify-content-between">
-          <button type="submit" class="btn btn-dark">Edit Email</button>
-          <button (click)="editPassword()" class="btn btn-outline-dark">Edit Password</button>
+      <div class="form-group">
+        <button type="submit" [disabled]="bool" class="btn btn-dark">Login</button>
+      </div>
+      <div>
+        <a class="btn btn-outline-dark" href="/newaccount">New Account?</a>
       </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
