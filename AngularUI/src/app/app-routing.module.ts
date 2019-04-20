@@ -28,13 +28,10 @@ const routes: Routes = [
   { path: 'userprofile', component: UserProfileComponent},
   { path: 'myorders', component: MyOrdersComponent},
   { path: 'admin/books/new', component: AdminNewBookComponent},
-<<<<<<< HEAD
   { path: 'admin/books/:id', component: ModalContainerComponent},
-  { path: 'admin/books', component: AdminBooksComponent}
-=======
+  { path: 'admin/books', component: AdminBooksComponent},
   { path: 'posts', component: PostsComponent},
   { path: 'edituser', component: EdituserComponent},
->>>>>>> 6e6458b18843e2feaf9fa081ca69eec41bddcfe6
 ];
 
 @NgModule({
