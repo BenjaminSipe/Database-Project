@@ -8,6 +8,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { EdituserComponent } from './edituser/edituser.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminBooksComponent } from './admin-books/admin-books.component';
 import { AdminCategoriesComponent } from './admin-categories/admin-categories.component';
@@ -27,8 +28,13 @@ const routes: Routes = [
   { path: 'userprofile', component: UserProfileComponent},
   { path: 'myorders', component: MyOrdersComponent},
   { path: 'admin/books/new', component: AdminNewBookComponent},
+<<<<<<< HEAD
   { path: 'admin/books/:id', component: ModalContainerComponent},
   { path: 'admin/books', component: AdminBooksComponent}
+=======
+  { path: 'posts', component: PostsComponent},
+  { path: 'edituser', component: EdituserComponent},
+>>>>>>> 6e6458b18843e2feaf9fa081ca69eec41bddcfe6
 ];
 
 @NgModule({
