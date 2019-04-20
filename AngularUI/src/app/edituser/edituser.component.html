@@ -1,0 +1,19 @@
+<form #AddBook="ngForm" class="d-flex justify-content-center" (ngSubmit)="editEmail()">
+
+  <div class="card" style="padding: 1em;width: 20rem; height: 20rem;">
+    <div *ngIf="!edit">
+      <div class="form-group">
+        <label for="passwordInput">Enter Password for {{userservice.user.email}}</label>
+        <input [value]="user.password" (input)="user.password = $event.target.value" type="password"
+          class="form-control" id="passwordInput" placeholder="Password">
+      </div>
+      <div *ngIf="error!=''" class="alert alert-danger" role="alert">
+          {{error}}
+      </div>
+      <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-dark">Edit Email</button>
+          <button (click)="editPassword()" class="btn btn-outline-dark">Edit Password</button>
+      </div>
+    </div>
+  </div>
+</form>

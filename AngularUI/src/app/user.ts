@@ -7,8 +7,8 @@ export class User {
   public workPhone:string;
   public userLevel:string;
   
-  constructor(pemail:string, 
-    ppassword:string
+  constructor(pemail?:string, 
+    ppassword?:string
     ,pworkPhone?:string
     ,phomePhone?:string
     ,pname?:string

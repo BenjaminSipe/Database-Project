@@ -12,10 +12,8 @@ exports.readUsers = function() {
 
   exports.readUser = function(id) {
     return new Promise( (resolve, reject) => {
-      console.log(id);
     dbInfo.pool.query(`CALL usp_ReadUser( ${id} )`, function (err, rows, fields) {
         if (err) {
-          console.log(err);
           reject('{"error":"No Users Found"}');}
         else
           resolve(rows[0])
@@ -34,7 +32,6 @@ exports.readUsers = function() {
 
   exports.authUser = function(email, password) {
     return new Promise( (resolve, reject) => {
-    console.log(email);
     dbInfo.pool.query('CALL usp_AuthUser( ? , ? )', [email, password] , function (err, rows, fields) {
         if (err)
           reject('{"error":"InCorrect Info"}');

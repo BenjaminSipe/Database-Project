@@ -36,7 +36,6 @@ app.all('/connection', (req, res) => {
 
 app.put("/update/:object", (req, res) => {
   put.updateObject(req.body, req.params.object).then( (message) => {
-    console.log(message);
     res.send(message);
   }).catch( (message) => {
     res.send(message)
@@ -45,7 +44,6 @@ app.put("/update/:object", (req, res) => {
 
 
 app.post('/createUser', (req, res) => {
-  console.log("Test Express Side")
   obj = JSON.parse(JSON.stringify(req.body));
   userCRUD.createUser(obj).then((message) => { 
     res.send(message);

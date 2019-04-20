@@ -30,6 +30,7 @@ import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component
 import { GETService } from './services/get.service';
 import { POSTService } from './services/post.service';
 import { BookCardComponent } from './book-card/book-card.component';
+import { EdituserComponent } from './edituser/edituser.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { BookCardComponent } from './book-card/book-card.component';
     UserProfileComponent,
     AdminNewBookComponent,
     BookCardComponent,
+    EdituserComponent,
 
 
   ],
