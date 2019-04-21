@@ -12,6 +12,9 @@ export class POSTService {
   createBook(book){
    return this.http.post(this.urlBase + 'createBook', book);
   }
+  deleteBook(book){
+    return this.http.post(this.urlBase + 'deleteBook', book);
+   }
 
   createBookCategory(bc){
     return this.http.post(this.urlBase + 'createBookCategory', bc);

@@ -134,6 +134,16 @@ exports.readBooks = function() {
       });
   }
 
+  exports.deleteBook = function(book) {
+    return new Promise( (resolve, reject) => {
+        dbInfo.pool.query('CALL usp_DeleteBook("'+book.BookID+'", "'+newBook.publisher+'", "'+newBook.Isbn13+'", "'+newBook.date+'", "'+newBook.imageUrl+'")', function (err, rows, fields) {
+            if (err)
+              reject('Something went wrong.');
+            else
+              resolve(rows[0]);
+          });
+      });
+  }
   exports.createBookCategory = function(newBookCategory) {
     console.log("This is new book category: " + newBookCategory);
       dbInfo.pool.query('CALL usp_CreateBookCategory("'+newBookCategory.BookID+'", "'+newBookCategory.CategoryID+'")', function (err, rows, fields) {
@@ -168,5 +178,12 @@ exports.createAuthor = function(newAuthor) {
       dbInfo.pool.query('CALL usp_CreateAuthor("'+newAuthor.newAuthorName+'", "'+newAuthor.newAuthorBio+'", "'+newAuthor.newAuthorImageLink+'")', function (err, rows, fields) {
         if (err)
           throw(err);
+      });
+  }
+
+  exports.deleteBook = function(book) {
+    console.log(book);
+      dbInfo.pool.query('CALL usp_DeleteBook("'+book.BookID+'")', function (err, rows, fields) {
+        if (err) throw(err);
       });
   }

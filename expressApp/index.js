@@ -217,6 +217,11 @@ app.post('/createBook', bodyParser.json(), (req, res) => {
     res.send(message);
   })
 })
+app.post('/deleteBook', bodyParser.json(), (req, res) => {
+  bookToDelete = JSON.parse(JSON.stringify(req.body));
+  book.deleteBook(bookToDelete);
+  res.json(req.body);
+})
 
 app.post('/createBookCategory', bodyParser.json(), (req, res) => {
   return new Promise( (resolve, reject) => {

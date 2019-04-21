@@ -33,11 +33,27 @@
                 <a [routerLink]="['/admin/books/', b.BookID]">Details</a>
               </td>
               <td>
-                <a [routerLink]="['/admin/books/', b.BookID]">Edit</a>
+                <button class="btn btn-outline-danger" (click)="deleteBook(b.BookID)">Delete</button>
+                <!-- <a [routerLink]="['/admin/books/', b.BookID]">Delete</a> -->
               </td>
             </tr>
           </tbody>
         </table>
   </div>
 </div>
+
+<ng-template #deleteBook let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Warning</h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Delete the book?</p>
+    </div>
+    <div class="modal-footer">
+    <button class="btn btn-dark">Delete</button>
+    </div>
+</ng-template>
 

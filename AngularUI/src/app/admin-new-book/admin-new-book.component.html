@@ -11,8 +11,11 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="title">ISBN-13</label>
-                  <input #isbn="ngModel" ngModel name="Isbn13" id="title" type="number" class="form-control" required>
-                  <div class="alert alert-danger" *ngIf="isbn.touched && isbn.invalid">ISBN-13 is required.</div>
+                  <input #isbn="ngModel" ngModel name="Isbn13" id="title" type="number" class="form-control" minlength="13" maxlength="13" required>
+                  <div class="alert alert-danger" *ngIf="isbn.touched && isbn.invalid">
+                      <div *ngIf="isbn?.errors?.minlength ||isbn?.errors?.maxlength">Must have 13 digits.</div>
+                      <div *ngIf="isbn?.errors?.required">Required.</div>
+                  </div>
                 </div>
               </div>
               <div class="form-group">
@@ -152,7 +155,7 @@
 </div>
 
 <!-- NG_TEMPLATES -->
-<ng-template #newCategory let-modal let-c="close">
+<ng-template #newCategory let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Add New Category</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">

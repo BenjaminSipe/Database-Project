@@ -64,7 +64,8 @@ export class AdminNewBookComponent{
       console.log('error during post is ', error)
     }
     );
-    //this.router.navigate(['/admin/books']);
+    this.router.navigate(['/admin/books']);
+    location.reload();
    }
    saveBookCategory(nbc){
     this.postService.createBookCategory(nbc).subscribe((response)=>{
