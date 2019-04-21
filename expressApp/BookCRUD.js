@@ -57,7 +57,7 @@ exports.readBooks = function() {
     return new Promise( (resolve, reject) => {
     dbInfo.pool.query(`CALL usp_ReadBooksByCategory( ${v } )`, function (err, rows, fields) {
         if (err) {
-          console.log(err);
+          console.log("Error in books by category" + err);
           reject('{"error":"No Books in Category"}');}
         else
           resolve(rows[0])

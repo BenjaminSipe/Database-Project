@@ -47,6 +47,10 @@ export class GETService {
   getBookCategory(id){
     return this.http.get(`http://localhost:3000/readBookCategory/${id}`);
   }
+  getBooksByCategory(name){
+    console.log("Getting books by category..")
+    return this.http.get(`http://localhost:3000/readBooksByCategory/${name}`);
+  }
   getCategory(id){
     return this.http.get(`http://localhost:3000/readCategory/${id}`);
   }

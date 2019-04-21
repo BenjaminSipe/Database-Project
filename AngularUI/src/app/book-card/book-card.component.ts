@@ -23,7 +23,7 @@ export class BookCardComponent implements OnInit{
               private cart : ShoppingCartService) {
   }
   ngOnInit() {
-    console.log("from on init " + this.book.BookID);
+    //console.log("from on init " + this.book.BookID);
     this.format$ = this.getService.getBookFormat(this.book.BookID);
     this.category$ = this.getService.getBookCategory(this.book.BookID);
     this.author$ = this.getService.getBookAuthor(this.book.BookID);
