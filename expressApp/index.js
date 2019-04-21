@@ -106,6 +106,7 @@ app.get('/readBookCategory/:id', (req, res) => {
   })
 });
 
+
 app.get('/readCategories', (req, res) => {
   category.readCategories().then( (message) => {
     res.send(message);
@@ -233,7 +234,7 @@ app.get('/readBookFormat/:id', (req, res) =>
   book.readBookFormat(req.params.id).then( (message) => {
     //console.log(message[0].AuthorID);
     book.readFormat(message[0].FormatID).then((message2) =>{
-      console.log(message[0].FormatName = message2[0].FormatName);
+      message[0].FormatName = message2[0].FormatName;
       res.send(message);
     })
   }).catch( (message) => {

@@ -10,7 +10,7 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   templateUrl: './book-card.component.html',
   styleUrls: ['./book-card.component.sass']
 })
-export class BookCardComponent implements OnDestroy, OnInit{
+export class BookCardComponent implements OnInit{
   @Input('book') book;
   format$;
   category$;
@@ -23,15 +23,13 @@ export class BookCardComponent implements OnDestroy, OnInit{
               private cart : ShoppingCartService) {
   }
   ngOnInit() {
-    //console.log("from on init " + this.bookId);
+    console.log("from on init " + this.book.BookID);
     this.format$ = this.getService.getBookFormat(this.book.BookID);
     this.category$ = this.getService.getBookCategory(this.book.BookID);
     this.author$ = this.getService.getBookAuthor(this.book.BookID);
     this.book$ = this.getService.getBook(this.book.BookID);
   }
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+
 
   addToCart(book){
    this.cart.getOrCreateCart();
