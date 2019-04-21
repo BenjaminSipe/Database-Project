@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
   appTitle = 'myapp';
-  constructor(private userservice : UserService, private router: Router) { 
-  
+  constructor(private userservice : UserService, private router: Router) {
+
   }
 
   myProfile() {
@@ -21,7 +21,7 @@ export class NavComponent implements OnInit {
   }
 
   adminBooks() {
-    this.router.navigate(["/admin/books"]);
+    this.router.navigate(['/admin/books']);
   }
 
   login() {

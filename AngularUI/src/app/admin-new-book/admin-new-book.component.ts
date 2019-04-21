@@ -93,6 +93,7 @@ export class AdminNewBookComponent{
    },(error)=>{
      console.log('error during post is ', error)
    });
+
   }
   savePublisher(newPublisher){
     this.postService.createPublisher(newPublisher).subscribe((response)=>{
@@ -123,6 +124,7 @@ export class AdminNewBookComponent{
   //ADD NEW (PUBLISHER/CATEGORY ETC)
   addNew(content) {
     this.modalService.open(content, { centered: true });
+    this.router.navigate(['/admin/books/new']);
   }
 
   setBookID(id) {

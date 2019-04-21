@@ -2,21 +2,28 @@
   <div class="col-md-3">
     <div class="sticky-top">
         <ul class="list-group-flush">
-            <li *ngFor="let c of categories$ | async" class="list-group-item">
+            <li *ngFor="let c of categories$ | async"
+            routerLink="/books"
+            [queryParams]="{ category : c.CategoryID }"
+            class="list-group-item list-group-item-action"
+            [class.active]="category == c.CategoryID">
                {{ c.CategoryName }}
+            </li>
+            <li class="list-group-item">
+                <input #query
+                (keyup)="filter(query.value)" class="form-control" type="text"  placeholder=" Search for Book...">
             </li>
          </ul>
     </div>
   </div>
-  <!-- <div class="col-1"></div> -->
   <div class="col-md">
       <div class="row">
           <div class="card-columns">
-          <ng-container *ngFor="let b of books$ | async; let i = index">
+          <div *ngFor="let b of filteredBooks; let i = index">
             <div class="col">
             <book-card [book]="b"></book-card>
           </div>
-          </ng-container>
+          </div>
           </div>
         </div>
   </div>
