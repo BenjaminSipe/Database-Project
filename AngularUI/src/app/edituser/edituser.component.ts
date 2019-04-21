@@ -10,8 +10,13 @@ import { Router } from '@angular/router';
 })
 export class EdituserComponent implements OnInit {
   user:User;
-  edit:boolean;
+  passCheck:boolean;
   error = "";
+  showChangePassword= false;
+  showChangeEmail = false;
+
+  inputs = ["", ""];
+  
   constructor(private userservice: UserService,
     private router: Router) {
       if (!userservice.changePassword) {
@@ -20,7 +25,7 @@ export class EdituserComponent implements OnInit {
         this.user = new User();
         this.user.password = "";
         this.user.email = userservice.user.email;
-        this.edit = false;
+        this.passCheck = false;
         userservice.changePassword = false;
 
       }
@@ -38,7 +43,7 @@ export class EdituserComponent implements OnInit {
   onClick() {
     return new Promise((resolve, reject) => {
       this.userservice.login(this.user).then((message) => {
-        this.edit = true;
+        this.passCheck = true;
         resolve(true);
       }).catch((message) => {
         this.error = "Password Incorrect";
