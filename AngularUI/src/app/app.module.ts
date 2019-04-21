@@ -19,6 +19,7 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { BooksService } from './services/books.service';
 import { CategoryService } from './services/category.service';
 import { PostsComponent } from './posts/posts.component';
+import { CustomFormsModule } from 'ngx-custom-validators';
 
 import { AdminBooksComponent } from './admin-books/admin-books.component';
 import { SearchComponent } from './search/search.component';
@@ -65,6 +66,7 @@ import { EdituserComponent } from './edituser/edituser.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    CustomFormsModule,
     NgbModule.forRoot(),
   ],
   entryComponents: [

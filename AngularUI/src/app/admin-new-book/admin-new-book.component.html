@@ -2,20 +2,26 @@
   <div class="row">
         <div class="col-8">
             <h4  class="text-center">Add New Book</h4><br>
-            <form #AddBook="ngForm" (ngSubmit)="saveBook(AddBook.value)">
+            <form #AddBook="ngForm" (ngSubmit)="saveBook(AddBook.value)" aria-required="true">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="title">Title</label>
-                  <input #bookTitle="ngModel" ngModel name="title" id="title" type="text" class="form-control">
+                  <input #bookTitle="ngModel" ngModel name="title" id="title" type="text" class="form-control" required>
+                  <div class="alert alert-danger" *ngIf="bookTitle.touched && bookTitle.invalid">Title is required.</div>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="title">ISBN-13</label>
-                  <input  ngModel name="Isbn13" id="title" type="text" class="form-control">
+                  <input #isbn="ngModel" ngModel name="Isbn13" id="title" type="number" class="form-control" required>
+                  <div class="alert alert-danger" *ngIf="isbn.touched && isbn.invalid">ISBN-13 is required.</div>
                 </div>
               </div>
               <div class="form-group">
                   <label for="imageUrl">Image URL</label>
-                  <input #imageUrl="ngModel" ngModel name="imageUrl" id="imageUrl" type="text" class="form-control">
+                  <input #imageUrl="ngModel" ngModel name="imageUrl" id="imageUrl" type="text" class="form-control" url required>
+                  <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+                      <div *ngIf="imageUrl?.errors?.url">Invalid URL.</div>
+                      <div *ngIf="imageUrl?.errors?.required">Required.</div>
+                  </div>
               </div>
               <div class="form-row">
                   <div class="form-group col-md-7">
@@ -24,16 +30,19 @@
                           <div class="input-group-prepend">
                             <button class="btn btn-outline-dark" type="button" data-toggle="tooltip" data-placement="left" title="Add New Publisher" (click)="addNew(newPublisher)">+</button>
                           </div>
-                          <select  ngModel name="publisher" id="publisher"  class="form-control">
+                          <select #publisher="ngModel" ngModel name="publisher" id="publisher"  class="form-control"required>
+                              <div class="alert alert-danger" *ngIf="publisher.touched && publisher.invalid">Publisher is required.</div>
                             <option *ngFor="let p of publishers$ | async" [value]="p.PublisherID">
                               {{ p.Name }}
                             </option>
                           </select>
                       </div>
+                      <div class="alert alert-danger" *ngIf="publisher.touched && publisher.invalid">Publisher is required.</div>
                   </div>
                   <div class="form-group col-md-5">
                     <label for="publication-date">Publiction Date</label>
-                    <input  ngModel name="date" id="date" class="form-control" type="date" >
+                    <input  #publicationDate="ngModel" ngModel name="date" id="date" class="form-control" type="date" required>
+                    <div class="alert alert-danger" *ngIf="publicationDate.touched && publicationDate.invalid">Publication Date is required.</div>
                   </div>
               </div>
               <div class="form-row">
@@ -43,12 +52,13 @@
                           <div class="input-group-prepend">
                             <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Author" (click)="addNew(newAuthor)">+</button>
                           </div>
-                          <select  ngModel name="author" id="author"  class="form-control">
+                          <select #author="ngModel" ngModel name="author" id="author"  class="form-control" required>
                             <option *ngFor="let a of authors$ | async" [value]="a.AuthorID">
                               {{ a.Name }}
                             </option>
                           </select>
                       </div>
+                      <div class="alert alert-danger" *ngIf="author.touched && author.invalid">Author is required.</div>
                   </div>
                   <div class="form-group col-md-6">
                       <label for="category">Category</label>
@@ -56,12 +66,13 @@
                           <div class="input-group-prepend">
                             <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Category" (click)="addNew(newCategory)">+</button>
                           </div>
-                          <select  ngModel name="category" id="category"  class="form-control">
+                          <select #category="ngModel" ngModel name="category" id="category"  class="form-control" required>
                             <option *ngFor="let c of categories$ | async" [value]="c.CategoryID">
                               {{ c.CategoryName }}
                             </option>
                           </select>
                       </div>
+                      <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Category is required.</div>
                   </div>
               </div>
               <div class="form-row">
@@ -71,12 +82,13 @@
                           <div class="input-group-prepend">
                             <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Format" (click)="addNew(newFormat)">+</button>
                           </div>
-                          <select  ngModel name="format" id="format"  class="form-control">
+                          <select #format="ngModel" ngModel name="format" id="format"  class="form-control" required>
                             <option *ngFor="let f of formats$ | async" [value]="f.FormatID">
                               {{ f.FormatName }}
                             </option>
                           </select>
                       </div>
+                      <div class="alert alert-danger" *ngIf="format.touched && format.invalid">Format is required.</div>
                   </div>
                   <div class="form-group col-md-2">
                       <label for="price">Price</label>
@@ -84,7 +96,12 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">$</span>
                         </div>
-                        <input #bookPrice="ngModel" ngModel name="formatPrice" id="price" type="number" class="form-control">
+                        <input #bookPrice="ngModel" ngModel name="formatPrice"
+                        id="price" type="number" class="form-control" [min]="1" required>
+                        <div class="alert alert-danger" *ngIf="bookPrice.touched && bookPrice.invalid">
+                            <div *ngIf="bookPrice?.errors?.min">Must be more than 0.</div>
+                            <div *ngIf="bookPrice?.errors?.required">Required.</div>
+                        </div>
                       </div>
                   </div>
                   <div class="form-group col-md-2">
@@ -93,18 +110,30 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                       </div>
-                      <input ngModel name="formatCost" id="cost" type="number" class="form-control">
+                      <input #bookCost="ngModel" ngModel name="formatCost" id="cost" type="number" class="form-control" [min]="1" required>
+                      <div class="alert alert-danger" *ngIf="bookCost.touched && bookCost.invalid">
+                          <div *ngIf="bookCost?.errors?.min">Must be more than 0.</div>
+                          <div *ngIf="bookCost?.errors?.required">Required.</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group col-md-2">
                       <label for="quantity">Quantity</label>
                       <div class="input-group mb-3">
-                        <input ngModel name="formatQuantity" id="quantity" type="number" class="form-control">
+                        <input #quantity="ngModel" ngModel name="formatQuantity" id="quantity" type="number" class="form-control" [range]="[1, 150]" required>
+                        <div class="alert alert-danger" *ngIf="quantity.touched && quantity.invalid">
+                            <div *ngIf="quantity?.errors?.range">Must be 1-150.</div>
+                            <div *ngIf="quantity?.errors?.required">Required.</div>
+                        </div>
                       </div>
                   </div>
               </div>
-              <button type="submit" class="btn btn-dark">Save</button>
             </form>
+            <div class="alert" *ngIf="AddBook.valid">
+                <button type="submit" class="btn btn-dark">Save</button>
+            </div>
+
+
           </div>
           <div class="col-4 text-center">
             <h4>Preview</h4><br>
@@ -123,7 +152,7 @@
 </div>
 
 <!-- NG_TEMPLATES -->
-<ng-template #newCategory let-modal>
+<ng-template #newCategory let-modal let-c="close">
     <div class="modal-header">
       <h4 class="modal-title">Add New Category</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -137,12 +166,13 @@
                   <div class="form-group">
                       <div class="input-group mb-3">
                         <input  ngModel name="newCategoryName" id="newCategory" type="text" class="form-control">
+
                       </div>
                     </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-dark">Save</button>
+              <button class="btn btn-dark" type="submit">Save</button>
               </div>
           </form>
 </ng-template>
@@ -166,7 +196,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-dark">Save</button>
+              <button class="btn btn-dark" type="submit">Save</button>
               </div>
           </form>
 </ng-template>
@@ -249,9 +279,4 @@
                   </div>
           </form>
 </ng-template>
-
-
-// TODO: fix passing image link,
-// TODO: add validation
-// TODO: fix date input
 
