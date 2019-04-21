@@ -51,6 +51,19 @@ exports.readBooks = function() {
           resolve(rows[0])
       });
   })}
+
+  exports.readBooksByCategory = function(category) {
+    let v = "'" + category + "'";
+    return new Promise( (resolve, reject) => {
+    dbInfo.pool.query(`CALL usp_ReadBooksByCategory( ${v } )`, function (err, rows, fields) {
+        if (err) {
+          console.log(err);
+          reject('{"error":"No Books in Category"}');}
+        else
+          resolve(rows[0])
+      });
+  })};
+
   exports.readBookCategory = function(id) {
     return new Promise( (resolve, reject) => {
       console.log(id);

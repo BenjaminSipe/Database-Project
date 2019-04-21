@@ -1,7 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from "../services/user.service";
-import { User } from '../user';
-import { Router } from '@angular/router';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  UserService
+} from "../services/user.service";
+import {
+  User
+} from '../user';
+import {
+  Router
+} from '@angular/router';
 
 @Component({
   selector: 'app-edituser',
@@ -9,35 +18,45 @@ import { Router } from '@angular/router';
   styleUrls: ['./edituser.component.sass']
 })
 export class EdituserComponent implements OnInit {
-  user:User;
-  passCheck:boolean;
+  user: User;
+  passCheck: boolean;
   error = "";
-  showChangePassword= false;
+  showChangePassword = false;
   showChangeEmail = false;
-
+  whatsBeingEdited: string;
   inputs = ["", ""];
-  
+
   constructor(private userservice: UserService,
     private router: Router) {
-      if (!userservice.changePassword) {
-        router.navigate(['userprofile']);
-      } else {
-        this.user = new User();
-        this.user.password = "";
-        this.user.email = userservice.user.email;
-        this.passCheck = false;
-        userservice.changePassword = false;
+    if (!userservice.changePassword) {
+      //router.navigate(['userprofile']);
+      this.user = new User();
+      this.user.password = "";
+      this.user.email = "sipe.nation3@gmail.com";
+      this.passCheck = false;
+      userservice.changePassword = false;
+    } else {
+      this.user = new User();
+      this.user.password = "";
+      this.user.email = userservice.user.email;
+      this.passCheck = false;
+      userservice.changePassword = false;
 
-      }
-     }
+    }
+  }
 
-     editPassword() {
-      this.onClick().then().catch();
-     }
+  editPassword() {
+    this.onClick().then((m) => {
+      this.whatsBeingEdited = "password";
+    }).catch();
+  }
 
-     editEmail() {
-      this.onClick().then().catch();
-     }
+  editEmail() {
+    console.log("This is running")
+    this.onClick().then((m) => {
+      this.whatsBeingEdited = "email";
+    }).catch();
+  }
 
 
   onClick() {
@@ -50,10 +69,12 @@ export class EdituserComponent implements OnInit {
         reject(false);
       });
     });
-    
+
   }
 
-  ngOnInit() {
+  changeUser() {
+    
   }
+  ngOnInit() {}
 
 }

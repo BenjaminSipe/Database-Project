@@ -192,6 +192,13 @@ app.get('/readFormat/:id', (req, res) =>
     res.send(message)
   })
 });
+app.get('/readBooksByCategory/:category', (req, res) => {
+  book.readBooksByCategory(req.params.category).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })  
+})
 app.get('/readBookFormats', (req, res) =>
 {
   book.readBookFormats().then( (message) => {

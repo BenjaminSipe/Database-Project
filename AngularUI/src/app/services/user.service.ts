@@ -33,7 +33,7 @@ export class UserService {
               this.userName = this.user.name;
               this.user.password = "";
               resolve(true);
-})}})})}
+  })}})})}
 
   logout() {
     this.user = new User("", "");
@@ -56,6 +56,7 @@ export class UserService {
   getUser():Observable<User[]> {
     return this.http.get<User[]>("http://localhost:3000/readUsers");
   }
+
   constructor(private http: HttpClient) {   
     this.loginText = "Login";
   }
