@@ -131,12 +131,11 @@
                       </div>
                   </div>
               </div>
+              <!-- <div class="alert" *ngIf="AddBook.valid">
+
+              </div> -->
+              <button type="submit" class="btn btn-dark" [disabled]="!AddBook.valid">Save</button>
             </form>
-            <div class="alert" *ngIf="AddBook.valid">
-                <button type="submit" class="btn btn-dark">Save</button>
-            </div>
-
-
           </div>
           <div class="col-4 text-center">
             <h4>Preview</h4><br>

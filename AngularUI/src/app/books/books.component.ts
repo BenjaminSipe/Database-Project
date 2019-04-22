@@ -28,10 +28,9 @@ export class BooksComponent implements OnDestroy{
       this.category = params.get('category');
       console.log(this.category);
       if(this.category){
-        console.log("in if...")
         this.subscription = this.getService.getBooksByCategory(this.category)
         .subscribe(books => {console.log(Object.values(books));
-          this.filteredBooks = Object.values(books)});
+                             this.filteredBooks = Object.values(books)});
 
       } else if (this.category === null) {
         this.subscription = this.getService.getBooks()

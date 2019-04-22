@@ -43,6 +43,7 @@ export class AdminNewBookComponent{
 
    //SAVE
    saveBook(newBook){
+     console.log("saving..." +newBook)
      this.postService.createBook(newBook).subscribe((response)=>{
       console.log('response from post data is ', response);
       console.log(response[0].BookID);
@@ -55,22 +56,20 @@ export class AdminNewBookComponent{
       this.fb.price = newBook.formatPrice;
       this.fb.cost = newBook.formatCost;
       this.fb.quantity = newBook.formatQuantity;
-      //console.log("This is fb: "+Object.values(this.fb));
       this.saveBookCategory(this.bc);
-      //console.log('This is ab: '+this.ab);
       this.saveBookAuthor(this.ab);
       this.saveBookFormat(this.fb);
     }, (error)=>{
       console.log('error during post is ', error)
     }
     );
-    this.router.navigate(['/admin/books']);
-    location.reload();
+     this.router.navigate(['/admin/books']);
+     location.reload();
    }
    saveBookCategory(nbc){
     this.postService.createBookCategory(nbc).subscribe((response)=>{
      console.log('response from bc post data is ', response);
-   },(error)=>{
+   }, (error)=>{
      console.log('error during post is ', error)
    });
   }
@@ -84,14 +83,14 @@ export class AdminNewBookComponent{
   saveBookFormat(nfb){
     this.postService.createBookFormat(nfb).subscribe((response)=>{
      console.log('response from fb post data is ', response);
-   },(error)=>{
+   },(error) => {
      console.log('error during post is ', error)
    });
   }
   saveCategory(newCategory){
     this.postService.createCategory(newCategory).subscribe((response)=>{
      console.log('response from post data is ', response);
-   },(error)=>{
+   }, (error)=> {
      console.log('error during post is ', error)
    });
 

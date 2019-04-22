@@ -73,7 +73,7 @@ export class EdituserComponent implements OnInit {
   }
 
   changeUser() {
-    
+
   }
   ngOnInit() {}
 

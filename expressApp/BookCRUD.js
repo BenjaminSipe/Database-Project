@@ -11,7 +11,7 @@ exports.readBooks = function() {
   })}
   exports.readBook = function(id) {
     return new Promise( (resolve, reject) => {
-      console.log(id);
+      //console.log(id);
     dbInfo.pool.query(`CALL usp_ReadBook( ${id} )`, function (err, rows, fields) {
         if (err) {
           console.log(err);
@@ -31,7 +31,7 @@ exports.readBooks = function() {
   })}
   exports.readBookFormat = function(id) {
     return new Promise( (resolve, reject) => {
-      console.log(id);
+      //console.log(id);
     dbInfo.pool.query(`CALL usp_ReadBookFormat( ${id} )`, function (err, rows, fields) {
         if (err) {
           console.log(err);
@@ -42,7 +42,7 @@ exports.readBooks = function() {
   })}
   exports.readBookAuthor = function(id) {
     return new Promise( (resolve, reject) => {
-      console.log(id);
+      //console.log(id);
     dbInfo.pool.query(`CALL usp_ReadBookAuthor( ${id} )`, function (err, rows, fields) {
         if (err) {
           console.log(err);
@@ -66,7 +66,7 @@ exports.readBooks = function() {
 
   exports.readBookCategory = function(id) {
     return new Promise( (resolve, reject) => {
-      console.log(id);
+      //console.log(id);
     dbInfo.pool.query(`CALL usp_ReadBookCategory( ${id} )`, function (err, rows, fields) {
         if (err) {
           console.log(err);
@@ -78,6 +78,15 @@ exports.readBooks = function() {
   exports.readPublisher = function(index) {
     return new Promise( (resolve, reject) => {
     dbInfo.pool.query('CALL usp_ReadPublisher( ? )', index, function (err, rows, fields) {
+        if (err)
+          reject('Something went wrong.');
+        else
+          resolve(rows[0])
+      });
+  })}
+  exports.readBookPublisher = function(index) {
+    return new Promise( (resolve, reject) => {
+    dbInfo.pool.query('CALL usp_ReadBookPublisher( ? )', index, function (err, rows, fields) {
         if (err)
           reject('Something went wrong.');
         else
@@ -113,7 +122,7 @@ exports.readBooks = function() {
   })}
   exports.readFormat = function(id) {
     return new Promise( (resolve, reject) => {
-      console.log(id);
+      //console.log(id);
     dbInfo.pool.query(`CALL usp_ReadFormat( ${id} )`, function (err, rows, fields) {
         if (err) {
           console.log(err);
@@ -145,14 +154,14 @@ exports.readBooks = function() {
       });
   }
   exports.createBookCategory = function(newBookCategory) {
-    console.log("This is new book category: " + newBookCategory);
+    //console.log("This is new book category: " + newBookCategory);
       dbInfo.pool.query('CALL usp_CreateBookCategory("'+newBookCategory.BookID+'", "'+newBookCategory.CategoryID+'")', function (err, rows, fields) {
         if (err) throw(err);
         else console.log(rows[0]);
       });
   }
   exports.createBookAuthor = function(newBookAuthor) {
-   console.log("This is createAuthorBook newAB: " + newBookAuthor);
+   //console.log("This is createAuthorBook newAB: " + newBookAuthor);
     dbInfo.pool.query('CALL usp_CreateAuthorBook("'+newBookAuthor.AuthorID+'", "'+newBookAuthor.BookID+'")', function (err, rows, fields) {
         if (err) throw(err);
         else console.log(rows[0]);
@@ -166,7 +175,7 @@ exports.readBooks = function() {
        });
    }
   exports.createFormat = function(newFormat) {
-    console.log(newFormat);
+    //console.log(newFormat);
       dbInfo.pool.query('CALL usp_CreateFormat("'+newFormat.newFormatName+'")', function (err, rows, fields) {
         if (err) throw(err);
       });
@@ -174,7 +183,7 @@ exports.readBooks = function() {
 
   
 exports.createAuthor = function(newAuthor) {
-    console.log(newAuthor);
+    //console.log(newAuthor);
       dbInfo.pool.query('CALL usp_CreateAuthor("'+newAuthor.newAuthorName+'", "'+newAuthor.newAuthorBio+'", "'+newAuthor.newAuthorImageLink+'")', function (err, rows, fields) {
         if (err)
           throw(err);
@@ -182,7 +191,7 @@ exports.createAuthor = function(newAuthor) {
   }
 
   exports.deleteBook = function(book) {
-    console.log(book);
+    //console.log(book);
       dbInfo.pool.query('CALL usp_DeleteBook("'+book.BookID+'")', function (err, rows, fields) {
         if (err) throw(err);
       });

@@ -35,6 +35,8 @@ app.all('/connection', (req, res) => {
 })
 
 app.put("/update/:object", (req, res) => {
+  console.log("Updating object .." + req.params.object);
+  console.log("Updating body.." + req.body);
   put.updateObject(req.body, req.params.object).then( (message) => {
     res.send(message);
   }).catch( (message) => {
@@ -248,6 +250,18 @@ app.get('/readBookFormat/:id', (req, res) =>
     book.readFormat(message[0].FormatID).then((message2) =>{
       message[0].FormatName = message2[0].FormatName;
       res.send(message);
+    })
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+
+app.get('/readBookPublisher/:id', (req, res) =>
+{
+  book.readBookPublisher(req.params.id).then( (message) => {
+    //console.log(message[0].AuthorID);
+    book.readPublisher(message[0].PublisherID).then((message2) =>{
+      res.send(message2);
     })
   }).catch( (message) => {
     res.send(message)

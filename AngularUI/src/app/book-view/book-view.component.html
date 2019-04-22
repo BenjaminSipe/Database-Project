@@ -1,0 +1,41 @@
+<div class="modal-dialog modal-lg">
+          <div class="modal-body">
+              <div class="card flex-row flex-wrap">
+                  <div class="card-header ">
+                      <img *ngFor="let b of book$ | async" class="img-fluid" [src]="b.ImageLink">
+                  </div>
+                  <div class="card-block ">
+                      <h4 class="card-title"*ngFor="let b of book$ | async" >{{ b.Title }} </h4>
+                      <div *ngFor="let a of author$ | async">
+                          <h6>By {{ a.Name }}</h6>
+                          <!-- <p>{{ a.Bio }}</p> -->
+                      </div>
+                      <div *ngFor="let f of format$ | async">
+                          <p>Format: {{f.FormatName}}</p>
+                          <p>Price: {{ f.Price | currency:'USD':true }}</p>
+                      </div>
+                      <p  *ngFor="let p of publisher$ | async">Publisher: {{ p.Name }}</p>
+                      <a href="#" class="btn btn-dark">Add To Cart</a>
+                  </div>
+                  <!-- <div class="w-100"></div>
+                  <div class="card-footer w-100 text-muted">
+                  </div>
+              </div> -->
+          </div>
+</div>
+
+<!-- <div class="row">
+    <div class="col">
+        <img *ngFor="let b of book$ | async" class="img-fluid" [src]="b.ImageLink">
+    </div>
+    <div class="col">
+      <div *ngFor="let a of author$ | async">
+          <h6>By {{ a.Name }}</h6>
+          <p>{{ a.Bio }}</p>
+      </div>
+        <div *ngFor="let f of format$ | async">
+        <p>Format: {{f.FormatName}}</p>
+        <p>Price: {{ f.Price | currency:'USD':true }}</p>
+        </div>
+    </div>
+  </div> -->
