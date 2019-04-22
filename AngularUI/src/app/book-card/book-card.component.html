@@ -5,7 +5,7 @@
     </a>
     <!-- </div> -->
     <div class="card-body">
-      <!-- <h5 class="card-title" >{{ book.Title }}</h5> -->
+      <h5 class="card-title" >{{ book.Title }}</h5>
       <div *ngFor="let f of format$ | async">
           <!-- <p>{{f.FormatName}}</p> -->
           <p>{{ f.Price | currency:'USD':true }}</p>

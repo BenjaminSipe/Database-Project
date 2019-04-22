@@ -15,21 +15,6 @@ import { PUTService } from '../put.service';
   styleUrls: ['./edit-book.component.sass']
 })
 export class EditBookComponent implements OnDestroy{
-  bc = {
-    BookID: '',
-    CategoryID: ''
-  };
-  ab = {
-    AuthorID: '',
-    BookID: ''
-  };
-  fb = {
-    FormatID: '',
-    BookID: '',
-    price: '',
-    cost: '',
-    quantity: '',
-  };
   categories$;
   publishers$;
   authors$;
@@ -37,13 +22,19 @@ export class EditBookComponent implements OnDestroy{
   books$;
   book$;
   subscription : Subscription;
-  book : any[];
+  bookCategory: string;
+  bookPublisher: any[];
+  bookAuthor: string;
+  bookFormatID: any;
+  bookFormatPrice: any;
+  bookFormatCost: any;
+  bookFormatQuantity: any;
   title: string;
   Isbn13: any;
-  imageUrl:string;
-  publisher:string;
-  id:string;
-  date:string;
+  imageUrl: string;
+  publisher: string;
+  id: string;
+  date: string;
 
   constructor(private getService : GETService, private putService: PUTService,
               private modalService: NgbModal, private router: Router, private route: ActivatedRoute) {
@@ -56,14 +47,25 @@ export class EditBookComponent implements OnDestroy{
     console.log("id?"+this.id);
     // this.book$ = this.getService.getBook(id);
     this.subscription = this.getService.getBook(this.id)
-      .subscribe(book => {this.book = Object.values(book[0]);
-                          this.imageUrl = book[0].ImageLink;
+      .subscribe(book => {this.imageUrl = book[0].ImageLink;
                           this.title = book[0].Title;
                           this.Isbn13 = book[0].Isbn13;
                           this.date = book[0].PublishingDate.slice(0, 10);
                           this.publisher = book[0].PublisherID;
-      //console.log(book[0]);
+    });
 
+    this.subscription = this.getService.getBookCategory(this.id)
+    .subscribe(category => {this.bookCategory = category[0].CategoryID;
+    });
+
+    this.subscription = this.getService.getBookAuthor(this.id)
+    .subscribe(author => {this.bookAuthor = author[0].AuthorID;
+    });
+    this.subscription = this.getService.getBookFormat(this.id)
+    .subscribe(format => {this.bookFormatID = format[0].FormatID;
+                          this.bookFormatPrice = format[0].Price;
+                          this.bookFormatCost = format[0].Cost;
+                          this.bookFormatQuantity = format[0].Quantity;
     });
 
   }
@@ -72,28 +74,9 @@ export class EditBookComponent implements OnDestroy{
    editBook(newBook){
      console.log("saving..." +newBook.bookTitle);
      this.putService.putBook(newBook);
+     this.router.navigate(['/admin/books/edit']);
+     location.reload();
 
-    //  this.postService.createBook(newBook).subscribe((response)=>{
-    //   console.log('response from post data is ', response);
-    //   console.log(response[0].BookID);
-    //   this.ab.BookID = response[0].BookID;
-    //   this.bc.BookID = response[0].BookID;
-    //   this.fb.BookID = response[0].BookID;
-    //   this.bc.CategoryID = newBook.category;
-    //   this.ab.AuthorID = newBook.author;
-    //   this.fb.FormatID = newBook.format;
-    //   this.fb.price = newBook.formatPrice;
-    //   this.fb.cost = newBook.formatCost;
-    //   this.fb.quantity = newBook.formatQuantity;
-    //   this.saveBookCategory(this.bc);
-    //   this.saveBookAuthor(this.ab);
-    //   this.saveBookFormat(this.fb);
-    // }, (error)=>{
-    //   console.log('error during post is ', error)
-    // }
-    // );
-    //  this.router.navigate(['/admin/books']);
-    //  location.reload();
    }
 
   //ADD NEW (PUBLISHER/CATEGORY ETC)

@@ -54,6 +54,90 @@
                 </div>
                 <button type="submit" class="btn btn-dark" [disabled]="!AddBook.valid">Update</button>
               </form>
+              <br>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="Author">Author</label>
+                  <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Author" (click)="addNew(newAuthor)">+</button>
+                      </div>
+                      <select #author="ngModel" [(ngModel)]="bookAuthor" name="bookAuthor" id="author"  class="form-control" required>
+                        <option *ngFor="let a of authors$ | async" [value]="a.AuthorID">
+                          {{ a.Name }}
+                        </option>
+                      </select>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="author.touched && author.invalid">Author is required.</div>
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="category">Category</label>
+                  <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Category" (click)="addNew(newCategory)">+</button>
+                      </div>
+                      <select #category="ngModel" [(ngModel)]="bookCategory" name="bookCategory" id="category"  class="form-control" required>
+                        <option *ngFor="let c of categories$ | async" [value]="c.CategoryID">
+                          {{ c.CategoryName }}
+                        </option>
+                      </select>
+                  </div>
+                  <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Category is required.</div>
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="format">Format</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <button class="btn btn-outline-dark " type="button" data-toggle="tooltip" data-placement="left" title="Add New Format" (click)="addNew(newFormat)">+</button>
+                        </div>
+                        <select #format="ngModel"  [(ngModel)]="bookFormatID" name="bookFormatID" id="format"  class="form-control" required>
+                          <option *ngFor="let f of formats$ | async" [value]="f.FormatID">
+                            {{ f.FormatName }}
+                          </option>
+                        </select>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="format.touched && format.invalid">Format is required.</div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="price">Price</label>
+                    <div class="input-group md-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                      </div>
+                      <input #bookPrice="ngModel" [(ngModel)]="bookFormatPrice" name="bookFormatPrice"
+                      id="price" type="number" class="form-control" [min]="1" required>
+                      <div class="alert alert-danger" *ngIf="bookPrice.touched && bookPrice.invalid">
+                          <div *ngIf="bookPrice?.errors?.min">Must be more than 0.</div>
+                          <div *ngIf="bookPrice?.errors?.required">Required.</div>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="cost">Cost</label>
+                  <div class="input-group md-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                    <input #bookCost="ngModel" [(ngModel)]="bookFormatCost" name="bookFormatCost" id="cost" type="number" class="form-control" [min]="1" required>
+                    <div class="alert alert-danger" *ngIf="bookCost.touched && bookCost.invalid">
+                        <div *ngIf="bookCost?.errors?.min">Must be more than 0.</div>
+                        <div *ngIf="bookCost?.errors?.required">Required.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="quantity">Quantity</label>
+                    <div class="input-group mb-3">
+                      <input #quantity="ngModel"  [(ngModel)]="bookFormatQuantity" name="bookFormatQuantity" id="quantity" type="number" class="form-control" [range]="[1, 150]" required>
+                      <div class="alert alert-danger" *ngIf="quantity.touched && quantity.invalid">
+                          <div *ngIf="quantity?.errors?.range">Must be 1-150.</div>
+                          <div *ngIf="quantity?.errors?.required">Required.</div>
+                      </div>
+                    </div>
+                </div>
+            </div>
           </div>
           <div class="col-4 text-center">
               <h4>Preview</h4><br>
