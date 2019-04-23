@@ -11,9 +11,6 @@ import {
 import {
   Router
 } from '@angular/router';
-import {
-  validateConfig
-} from '@angular/router/src/config';
 
 @Component({
   selector: 'app-edituser',

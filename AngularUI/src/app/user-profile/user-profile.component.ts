@@ -17,7 +17,6 @@ export class UserProfileComponent implements OnInit {
   error = ["", ""];
   constructor(private userservice: UserService,
               private router: Router) { 
-    console.log(this.userservice.loginText);
     if (this.userservice.user.userID == undefined) {
       this.router.navigate(['/login']);
     } else {

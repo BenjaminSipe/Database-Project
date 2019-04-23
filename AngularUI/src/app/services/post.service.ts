@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { getLocaleDateTimeFormat } from '@angular/common';
+import { Creditcard } from '../creditcard';
 
 @Injectable({
   providedIn: 'root'
@@ -46,4 +47,11 @@ export class POSTService {
      console.log("From service " + Object.values(datetime));
      return this.http.post(this.urlBase + 'createCart', datetime);
    }
+   createCreditCard(creditCard: Creditcard){
+    return this.http.post(this.urlBase + 'createCreditCard', creditCard);
+  }
+  
+  deleteCreditCard(creditCard: Creditcard){
+    return this.http.delete(this.urlBase + 'deleteCreditCard/'+ creditCard.CreditCardID);
+  }
 }
