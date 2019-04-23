@@ -65,9 +65,6 @@ export class GETService {
     return this.http.get(`http://localhost:3000/readBookPublisher/${id}`);
   }
   getCart(id) {
-    let cart$;
-    cart$ = this.http.get(`http://localhost:3000/ReadCart/${id}`);
-    console.log(cart$);
-    return cart$;
+    return this.http.get(`http://localhost:3000/ReadCart/${id}`);
   }
 }

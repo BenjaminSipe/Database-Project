@@ -19,6 +19,7 @@ import { ShoppingCartService } from './services/shopping-cart.service';
 import { BooksService } from './services/books.service';
 import { CategoryService } from './services/category.service';
 import { CustomFormsModule } from 'ngx-custom-validators';
+import {DataTableModule} from "angular-6-datatable";
 
 import { AdminBooksComponent } from './admin-books/admin-books.component';
 import { SearchComponent } from './search/search.component';
@@ -71,6 +72,7 @@ import { EditBookComponent } from './edit-book/edit-book.component';
     AppRoutingModule,
     FormsModule,
     CustomFormsModule,
+    DataTableModule,
     NgbModule.forRoot(),
   ],
   entryComponents: [

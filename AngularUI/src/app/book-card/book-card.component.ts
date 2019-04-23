@@ -32,6 +32,11 @@ export class BookCardComponent implements OnInit{
 
 
   addToCart(book){
-   this.cart.getOrCreateCart();
+  console.log("adding..");
+  this.cart.addItemsToCart(book);
+  const cartTotal: number = localStorage.getItem('selectedProducts')
+  ? parseFloat(localStorage.getItem('selectedProductsCount')) : 0;
+  this.cartTotal = cartTotal;
+  console.log('Cart total in component = ' + this.cartTotal);
   }
 }

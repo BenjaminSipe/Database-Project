@@ -27,7 +27,9 @@
           <div class="card-columns">
           <div *ngFor="let b of filteredBooks; let i = index">
             <div class="col">
-            <book-card [book]="b"></book-card>
+              <div class="container">
+                <book-card [book]="b"></book-card>
+              </div>
           </div>
           </div>
           </div>

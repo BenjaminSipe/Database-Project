@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];
+    console.log(this.selectedProducts);
+   }
 
   ngOnInit() {
+
   }
 
 }

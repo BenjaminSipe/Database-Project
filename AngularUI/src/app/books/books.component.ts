@@ -49,16 +49,4 @@ export class BooksComponent implements OnDestroy{
     this.books.filter(b => b.Title.toLowerCase().includes(query.toLowerCase())) :
     this.books;
        }
-
-
-    // let cartId = localStorage.getItem('cartId');
-    // console.log('This cart id = '+cartId); //test
-
-    //make if sttmt
-    //if cart not exists - create
-    //then add to cart
-
-    //if exists
-    //add to cart
-
 }

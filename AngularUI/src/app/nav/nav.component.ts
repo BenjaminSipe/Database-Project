@@ -33,6 +33,12 @@ export class NavComponent implements OnInit {
     }
   }
 
+  getCartItems(){
+    const cartTotal: number = localStorage.getItem('selectedProducts')
+    ? parseFloat(localStorage.getItem('selectedProductsCount')) : 0;
+    this.cartTotal = cartTotal;
+    return this.cartTotal;
+  }
   ngOnInit() {
   }
 
