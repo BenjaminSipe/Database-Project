@@ -8,25 +8,14 @@
         </div>
         <div class="col">
             <p  *ngFor="let a of author$ | async">Author: {{ a.Name }}</p>
+            <p  *ngFor="let c of category$ | async">Category: {{ c.CategoryName }}</p>
             <div *ngFor="let f of format$ | async">
+            <p>Format: {{f.FormatName}}</p>
             <p>Price: {{ f.Price | currency:'USD':true }}</p>
             <p>Cost: {{ f.Cost | currency:'USD':true }}</p>
             <p>Quantity: {{ f.Quantity }}</p>
-            <p>Format: {{f.FormatName}}</p>
             </div>
+            <p  *ngFor="let p of publisher$ | async">Publisher: {{ p.Name }}</p>
         </div>
       </div>
-<!-- <div class="card" style="width: 18rem;">
-    <img *ngFor="let b of book$ | async" class="img-fluid" [src]="b.ImageLink">
-    <div class="card-body">
-      <h5  *ngFor="let b of book$ | async" class="card-title">{{ b.Title }}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div> -->
 </div>
-<!-- <div class="modal-body">
-  <img *ngFor="let b of book$ | async" class="img-fluid" [src]="b.ImageLink">
-  <p  *ngFor="let a of author$ | async">{{ a.Name }}</p>
-  <p  *ngFor="let f of format$ | async">{{ f.Price | currency:'USD':true }}</p>
-</div> -->

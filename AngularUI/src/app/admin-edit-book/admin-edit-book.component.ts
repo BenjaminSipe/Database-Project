@@ -4,11 +4,11 @@ import { Subscription } from 'rxjs';
 import { POSTService } from '../services/post.service';
 
 @Component({
-  selector: 'admin-books',
-  templateUrl: './admin-books.component.html',
-  styleUrls: ['./admin-books.component.sass']
+  selector: 'admin-edit-book',
+  templateUrl: './admin-edit-book.component.html',
+  styleUrls: ['./admin-edit-book.component.sass']
 })
-export class AdminBooksComponent implements OnDestroy{
+export class AdminEditBookComponent implements OnDestroy{
   format;
   bookToDelete = {BookID : ''};
   books : {Title : string}[];

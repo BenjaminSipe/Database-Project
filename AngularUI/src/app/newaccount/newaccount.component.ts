@@ -18,7 +18,7 @@ export class NewaccountComponent implements OnInit {
   validate() {
     let b = true;
     if (this.user.name == "") {
-      this.error[0] = "The name Field Cannot be empty";
+      this.error[0] = "The Name Field Cannot be empty";
       b = false;
     }
     if (!this.user.email.includes("@")) {
@@ -33,16 +33,16 @@ export class NewaccountComponent implements OnInit {
       this.error[3] = "Passwords do Not Match";
       b = false;
     }
-    let num1 = this.user.homePhone.replace(/[- _]/g,"");    
+    let num1 = this.user.homePhone.replace(/[- _]/g,"");
     if (isNaN(+num1)|| !(num1.length == 7 || num1.length == 10)) {
       this.error[4] = "Not a phone number";
       b = false;
-    } 
-    let num2 = this.user.workPhone.replace(/[- _]/g,"");    
+    }
+    let num2 = this.user.workPhone.replace(/[- _]/g,"");
     if (isNaN(+num2)|| !(num2.length == 7 || num2.length == 10)) {
       this.error[5] = "Not a phone number";
       b = false;
-    } 
+    }
 
     if (b) {
       this.user.homePhone = num1;
@@ -50,12 +50,12 @@ export class NewaccountComponent implements OnInit {
     }
     return b;
   }
-  
+
   onClick() {
     this.bool = true;
-    this.error = ["","","","","",""];    
+    this.error = ["","","","","",""];
     if (this.validate()) {
-      
+
       this.user.userID = 1;
       this.userService.postUser(this.user).then((message) => {
         this.userService.login(this.user).then((message) => {
@@ -70,7 +70,7 @@ export class NewaccountComponent implements OnInit {
     }
     }
 
-  
+
 
   ngOnInit() {
   }

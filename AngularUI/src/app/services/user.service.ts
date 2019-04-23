@@ -27,7 +27,7 @@ export class UserService {
           this.http.get<User>(`http://localhost:3000/ReadUser/${res[0].userID}`,httpOptions)
           .subscribe(res2 =>
             {
-              
+
               this.user = res2[0];
               this.loginText = "Log Out";
               this.userName = this.user.name;
@@ -54,7 +54,7 @@ export class UserService {
     this.user = new User("", "");
     this.loginText="Login";
     this.userName = "Guest";
-  
+
   }
   postUser( user: User) {
     return new Promise((resolve, reject) => {
@@ -72,7 +72,7 @@ export class UserService {
     return this.http.get<User[]>("http://localhost:3000/readUsers");
   }
 
-  constructor(private http: HttpClient) {   
+  constructor(private http: HttpClient) {
     this.loginText = "Login";
   }
 
@@ -84,9 +84,9 @@ export class UserService {
     user.name = u.name;
     this.http.put<User>("http://localhost:3000/update/User", user, httpOptions)
     .subscribe((res) =>
-    { 
+    {
       return "Successful";
     })
-    
+
   }
 }

@@ -22,10 +22,20 @@ export class BooksComponent implements OnDestroy{
   constructor(private getService: GETService, route: ActivatedRoute) {
     this.categories$ = getService.getCategories();
     this.books$ = getService.getBooks();
-    this.subscription = this.getService.getBooks().subscribe(books => this.filteredBooks = this.books = Object.values(books));
+    this.subscription = this.getService.getBooks()
+    .subscribe(books => this.filteredBooks = this.books = Object.values(books));
     route.queryParamMap.subscribe(params => {
       this.category = params.get('category');
       console.log(this.category);
+      if(this.category){
+        this.subscription = this.getService.getBooksByCategory(this.category)
+        .subscribe(books => {console.log(Object.values(books));
+                             this.filteredBooks = Object.values(books)});
+
+      } else if (this.category === null) {
+        this.subscription = this.getService.getBooks()
+        .subscribe(books => this.filteredBooks = this.books = Object.values(books));
+      }
     });
   }
 

@@ -18,7 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { BooksService } from './services/books.service';
 import { CategoryService } from './services/category.service';
-import { PostsComponent } from './posts/posts.component';
+import { CustomFormsModule } from 'ngx-custom-validators';
 
 import { AdminBooksComponent } from './admin-books/admin-books.component';
 import { SearchComponent } from './search/search.component';
@@ -30,9 +30,12 @@ import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component
 import { GETService } from './services/get.service';
 import { POSTService } from './services/post.service';
 import { BookCardComponent } from './book-card/book-card.component';
-import { DetailsComponent } from './details/details.component';
 import { ModalContainerComponent } from './modal-container/modal-container.component';
 import { EdituserComponent } from './edituser/edituser.component';
+import { CatalogModalContainerComponent } from './catalog-modal-container/catalog-modal-container.component';
+import { BookViewComponent } from './book-view/book-view.component';
+import { AdminEditBookComponent } from './admin-edit-book/admin-edit-book.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +48,6 @@ import { EdituserComponent } from './edituser/edituser.component';
     CheckoutComponent,
     MyOrdersComponent,
     CategoriesComponent,
-    PostsComponent,
     AdminBooksComponent,
     SearchComponent,
     AdminCategoriesComponent,
@@ -54,9 +56,12 @@ import { EdituserComponent } from './edituser/edituser.component';
     UserProfileComponent,
     AdminNewBookComponent,
     BookCardComponent,
-    DetailsComponent,
     ModalContainerComponent,
     EdituserComponent,
+    CatalogModalContainerComponent,
+    BookViewComponent,
+    AdminEditBookComponent,
+    EditBookComponent,
 
 
   ],
@@ -65,10 +70,12 @@ import { EdituserComponent } from './edituser/edituser.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    CustomFormsModule,
     NgbModule.forRoot(),
   ],
   entryComponents: [
-    AdminCategoriesComponent
+    AdminCategoriesComponent,
+    BookViewComponent
   ],
   providers: [
     CategoryService,

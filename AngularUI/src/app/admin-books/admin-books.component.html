@@ -1,12 +1,17 @@
 <div class="container-fluid">
-  <div class="row-fluid">
-      <a routerLink="/admin/books/new" class="btn btn-dark">Add New Book</a>
-  </div>
-  <div class="row p-4">
+  <div class="row ">
     <label for="bookTable">
-      <h3>Book List:</h3>
+      <h3 class="p-3">Book List:</h3>
     </label>
   </div>
+  <div class="row">
+      <div class="col-2">
+          <a routerLink="/admin/books/new" class="btn btn-dark">Add New Book</a>
+      </div>
+      <div class="col-2">
+          <a routerLink="/admin/books/edit" class="btn btn-dark">Edit Books</a>
+      </div>
+    </div><br>
   <div class="row-fluid">
     <p>
       <input #query
@@ -20,7 +25,6 @@
               <th scope="col">Title</th>
               <th scope="col">ISBN-13</th>
               <th></th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -32,12 +36,10 @@
               <td>
                 <a [routerLink]="['/admin/books/', b.BookID]">Details</a>
               </td>
-              <td>
-                <a [routerLink]="['/admin/books/', b.BookID]">Edit</a>
-              </td>
             </tr>
           </tbody>
         </table>
   </div>
 </div>
+
 

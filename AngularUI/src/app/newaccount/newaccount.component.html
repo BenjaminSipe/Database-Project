@@ -1,7 +1,7 @@
 <form #AddBook="ngForm" class="d-flex justify-content-center" (ngSubmit)="onClick()">
 
   <div class="card" style="padding: 1em;width: 25rem; ">
-    
+
     <div class="form-group">
       <label for="nameInput">Name</label>
       <div *ngIf="error[0]!=''" class="alert alert-danger" role="alert">
@@ -21,10 +21,10 @@
 
     <div class="form-group">
         <label for="passwordInput">Password</label>
-      
+
       <div *ngIf="error[2]!=''" class="alert alert-danger" role="alert">
           {{error[2]}}
-      </div>  
+      </div>
       <input [value]="user.password" (input)="user.password = $event.target.value" type="password" class="form-control"
         id="passwordInput" placeholder="Password" aria-required="true">
     </div>

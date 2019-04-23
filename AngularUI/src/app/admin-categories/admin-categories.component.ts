@@ -18,18 +18,12 @@ export class AdminCategoriesComponent implements OnInit {
   formatName$: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private getService : GETService) {
-    //let id = this.route.snapshot.paramMap.get('id');
-    //console.log(id);
-    // this.format$ = this.getService.getBookFormat(id);
-    // this.category$ = this.getService.getBookCategory(id);
-    // this.author$ = this.getService.getBookAuthor(id);
-    // this.book$ = this.getService.getBook(id);
     console.log(this.bookId);
    }
 
    getFormat(id){
-     console.log("in get format " + id);
-    this.formatName$ = this.getService.getBookFormat(this.bookId);
+     //console.log("in get format " + id);
+     this.formatName$ = this.getService.getBookFormat(this.bookId);
    }
 
   ngOnInit() {
@@ -38,7 +32,7 @@ export class AdminCategoriesComponent implements OnInit {
      this.category$ = this.getService.getBookCategory(this.bookId);
      this.author$ = this.getService.getBookAuthor(this.bookId);
      this.book$ = this.getService.getBook(this.bookId);
-     //console.log(this.format$);
+     this.publisher$ = this.getService.getBookPublisher(this.bookId);
   }
 
 }

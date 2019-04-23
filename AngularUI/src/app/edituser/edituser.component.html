@@ -29,7 +29,7 @@
             <label for="input2">Re-enter new {{whatsBeingEdited}}</label>
             <input [value]="inputs[1]" (input)="inputs[1] = $event.target.value" type="{{whatsBeingEdited}}" class="form-control"
               id="input2" placeholder="Enter {{whatsBeingEdited}}">
-          </div>  
+          </div>
         <div class="form-group">
           <button type="submit" [disabled]="bool" class="btn btn-dark">Change</button>
         </div>

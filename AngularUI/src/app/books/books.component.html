@@ -2,11 +2,17 @@
   <div class="col-md-3">
     <div class="sticky-top">
         <ul class="list-group-flush">
+            <li
+            routerLink="/books"
+            class="list-group-item list-group-item-action"
+            [class.active]="category === null">
+               All
+            </li>
             <li *ngFor="let c of categories$ | async"
             routerLink="/books"
-            [queryParams]="{ category : c.CategoryID }"
+            [queryParams]="{ category : c.CategoryName }"
             class="list-group-item list-group-item-action"
-            [class.active]="category == c.CategoryID">
+            [class.active]="category == c.CategoryName">
                {{ c.CategoryName }}
             </li>
             <li class="list-group-item">
