@@ -42,6 +42,13 @@ app.put("/update/:object", (req, res) => {
   })
 }); 
 
+app.put("/updateUserLoginInfo", (req, res) => {
+  userCRUD.updateUserLoginInfo(req.body).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+}); 
 
 app.post('/createUser', (req, res) => {
   obj = JSON.parse(JSON.stringify(req.body));

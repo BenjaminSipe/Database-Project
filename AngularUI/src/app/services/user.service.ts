@@ -35,6 +35,21 @@ export class UserService {
               resolve(true);
   })}})})}
 
+  changeUserInfo(inputs, update) {
+    return new Promise((resolve, reject) => {
+
+    
+    let aaa = [ this.user.userID, inputs[0], update];
+    this.http.put("http://localhost:3000/updateUserLoginInfo", aaa, httpOptions)
+    .subscribe((obj) => {
+      if (update == "email") {
+        this.user.email = inputs[0];
+        
+      }
+      resolve(true);
+    })})
+  }
+
   logout() {
     this.user = new User("", "");
     this.loginText="Login";
