@@ -52,9 +52,6 @@
                       <div class="alert alert-danger" *ngIf="publicationDate.touched && publicationDate.invalid">Publication Date is required.</div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-dark" [disabled]="!AddBook.valid">Update</button>
-              </form>
-              <br>
             <div class="form-row">
               <div class="form-group col-md-6">
                   <label for="Author">Author</label>
@@ -138,6 +135,8 @@
                     </div>
                 </div>
             </div>
+            <button type="submit" class="btn btn-dark" [disabled]="!AddBook.valid">Update</button>
+          </form>
           </div>
           <div class="col-4 text-center">
               <h4>Preview</h4><br>

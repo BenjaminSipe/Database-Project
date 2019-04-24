@@ -55,20 +55,20 @@ export class ShoppingCartService {
    addItemsToCart(item) {
     let exists = false;
     this.getLocalStorageData();
-    this.selectedProducts = this.selectedProducts.map(_items => {
+    this.selectedProducts = this.selectedProducts.map(items => {
         console.log("item.BookID = " + item.BookID);
-        if (_items.BookID === item.BookID) {
+        if (items.BookID === item.BookID) {
             exists = true;
-            console.log("_items.productCount = " + _items.productCount);
+            console.log("items.productCount = " + items.productCount);
             if (item.productCount) {
-                _items.productCount += item.productCount;
+                items.productCount += item.productCount;
                 this.cartTotal += item.productCount;
             } else {
-                _items.productCount += 1;
+                items.productCount += 1;
                 this.cartTotal += 1;
             }
         }
-        return _items;
+        return items;
     });
     if (!exists) {
         console.log('should be here adding...' + item);;
@@ -103,7 +103,7 @@ HandleCart(params){
   localStorage.setItem('selectedProducts', JSON.stringify(params.products));
   localStorage.setItem('selectedProductsCount', JSON.stringify(params.productTotal));
 }
-   public getLocalStorageData() {
+public getLocalStorageData() {
     this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];
     const cartTotal: number = localStorage.getItem('selectedProducts')
     ? parseFloat(localStorage.getItem('selectedProductsCount')) : 0;
@@ -111,7 +111,9 @@ HandleCart(params){
     console.log('Cart total in service = ' + this.cartTotal);
     const productTotal: number = localStorage.getItem('productTotal') ? parseFloat(localStorage.getItem('productTotal')) : 0;
     this.productTotal = productTotal;
-    console.log(this.selectedProducts);
-  }
+}
+
 
 }
+
+

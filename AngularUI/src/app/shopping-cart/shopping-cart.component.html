@@ -2,7 +2,8 @@
     <table id="cart" class="table table-hover table-condensed">
               <thead>
               <tr>
-                <th style="width:40%">Product</th>
+                <th style="width:10%"></th>
+                <th style="width:25%">Product</th>
                 <th style="width:10%">Price</th>
                 <th style="width:8%">Quantity</th>
                 <th style="width:12%" class="text-center">Subtotal</th>
@@ -11,34 +12,33 @@
             </thead>
             <tbody *ngFor="let s of selectedProducts">
               <tr>
+                <td>
+                  <img [src]="s.ImageLink" class="img-responsive" height="130">
+                </td>
                 <td data-th="Product">
-                  <div class="row">
-                    <div class="col-3"><img [src]="s.ImageLink" class="img-responsive" height="130"></div>
-                    <div class="col-9">
-                      <h4 class="nomargin">{{s.Title}}</h4>
-                      <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
-                    </div>
-                  </div>
+                      <h4>{{s.Title}}</h4>
                 </td>
-                <td data-th="Price">$1.99</td>
+                <td data-th="Price">{{s.price | currency:'USD':true}}</td>
                 <td data-th="Quantity">
-                  <input type="number" class="form-control text-center" [value]="s.productCount">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-dark custom">-</button>
+                        <input type="number" class="form-control text-center" [value]="s.productCount" readonly>
+                        <button type="button" class="btn btn-dark custom">+</button>
+                      </div>
                 </td>
-                <td data-th="Subtotal" class="text-center">1.99</td>
+                <td data-th="Subtotal" class="text-center">{{s.price * s.productCount | currency:'USD':true}}</td>
                 <td class="actions" data-th="">
-                  <button class="btn btn-outline-danger">Remove</button>
+                  <button class="btn btn-outline-danger" (click)="removeItem(s)">Remove</button>
                 </td>
               </tr>
             </tbody>
             <tfoot>
-              <tr class="visible-xs">
-                <td class="text-center"><strong>Total 1.99</strong></td>
-              </tr>
               <tr>
-                <td><button routerLink="/books" class="btn btn-outline-dark"><i class="fa fa-angle-left"></i> Continue Shopping</button></td>
+                <td><button routerLink="/books" class="btn btn-outline-dark"><i class="fa fa-angle-left"></i>Book Catalog</button></td>
                 <td colspan="2" class="hidden-xs"></td>
-                <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-                <td><a href="#" class="btn btn-dark btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+                <td colspan="1" class="hidden-xs"></td>
+                <td class="hidden-xs text-center"><strong>Cart Total: {{ productTotal | currency:'USD':true}}</strong></td>
+                <td><button  routerLink="/checkout"  class="btn btn-dark btn-block">Checkout <i class="fa fa-angle-right"></i></button></td>
               </tr>
             </tfoot>
           </table>

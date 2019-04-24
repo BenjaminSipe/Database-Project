@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
   appTitle = 'myapp';
+  cartTotal;
   constructor(private userservice : UserService, private router: Router) {
 
   }

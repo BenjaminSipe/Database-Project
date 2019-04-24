@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./checkout.component.sass']
 })
 export class CheckoutComponent implements OnInit {
-
-  constructor() { }
+  productTotal;
+  cartTotal;
+  selectedProducts;
+  constructor() {
+    this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];}
 
   ngOnInit() {
+    const productTotal: number = localStorage.getItem('productTotal')
+    ? parseFloat(localStorage.getItem('productTotal')) : 0;
+    this.productTotal = productTotal;
+
+    const cartTotal: number = localStorage.getItem('selectedProducts')
+    ? parseFloat(localStorage.getItem('selectedProductsCount')) : 0;
+    this.cartTotal = cartTotal;
   }
 
 }

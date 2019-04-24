@@ -11,7 +11,14 @@ var objectParam = {
             ,"Isbn13"
             ,"imageUrl"
             ,"publisher"
-            ,"date"]
+            ,"date"
+            ,"bookAuthor"
+            ,"bookCategory"
+            ,"bookFormatID"
+            ,"bookFormatPrice"
+            ,"bookFormatCost"
+            ,"bookFormatQuantity"
+            ,]
 }
 
 exports.updateObject = function(body, object) {
