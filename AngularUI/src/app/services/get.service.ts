@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Creditcard } from '../creditcard';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -67,4 +68,15 @@ export class GETService {
   getCart(id) {
     return this.http.get(`http://localhost:3000/ReadCart/${id}`);
   }
+
+  getCreditCardByUser(id){
+    return this.http.get<Creditcard[]>(`http://localhost:3000/readCreditCardByUser/${id}`);
+  }
+  getCreditCard(id){
+    return this.http.get(`http://localhost:3000/readCreditCard/${id}`);
+  }
+  getCreditCardNumber(creditCard:Creditcard){
+    return this.http.get(`http://localhost:3000/readCreditCardNumber/${creditCard.CreditCardID}/${creditCard.CCV}`, httpOptions);
+  }
+  
 }

@@ -8,7 +8,7 @@ const test = require('./dbInfo')
 const promises = require('./promiseTest');
 const category = require('./CategoryCRUD');
 const put = require('./updateService');
-
+const creditCard = require('./CreditCardCRUD');
 const publisher = require('./PublisherCRUD');
 const userCRUD = require('./userCRUD');
 const book = require('./BookCRUD');
@@ -202,6 +202,39 @@ app.get('/readFormat/:id', (req, res) =>
     res.send(message)
   })
 });
+
+app.get('/ReadCreditCardNumber/:id/:ccv', (req, res) => {
+  creditCard.readCreditCardNumber(req.params).then((m) => {
+    res.send(m);
+  }).catch( (message) => {
+    res.send(message);
+  })
+})
+
+app.get('/ReadCreditCard/:id', (req, res) => {
+  creditCard.readCreditCardNumber(req.params.id).then((m) => {
+    res.send(m);
+  }).catch( (message) => {
+    res.send(message);
+  })
+})
+app.get('/ReadCreditCardByUser/:id', (req, res) => {
+  creditCard.readCreditCardByUser(req.params.id).then((m) => {
+    res.send(m);
+  }).catch( (message) => {
+    res.send(message);
+  })
+})
+
+app.post('/CreateCreditCard', (req, res) => {
+  creditCard.createCreditCard(req.body);
+  res.send("Credit Card added");
+})
+
+app.delete('/DeleteCreditCard/id', (req, res) =>{
+  creditCard.deleteCreditCard(req.params.id);
+  res.send("CreditCard Deleted");
+})
 app.get('/readBooksByCategory/:category', (req, res) => {
   book.readBooksByCategory(req.params.category).then( (message) => {
     res.send(message);

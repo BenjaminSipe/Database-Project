@@ -18,7 +18,13 @@ var objectParam = {
             ,"bookFormatPrice"
             ,"bookFormatCost"
             ,"bookFormatQuantity"
-            ,]
+            ],
+           // ,"date"],
+    "CreditCard":["CreditCardID",
+            ,"UserID"
+            ,"BillingAddress"
+            ,"NameOnCard"
+            ,"ExpirationDate"],
 }
 
 exports.updateObject = function(body, object) {
@@ -29,12 +35,10 @@ exports.updateObject = function(body, object) {
             args.push(body[y]);
             console.log(args);
             if (x === "") {
-
                 x = " ? "
             } else {
                 x = x + " , ? "
             }
-            
         }
 
         dbInfo.pool.query(`CALL usp_Update${object}(${x})`, args , function (err, rows, fields) {

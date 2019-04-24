@@ -1,3 +1,31 @@
-<p>
-  credit-card works!
-</p>
+
+<div class="container-fluid" (click)="test()">
+    <div class="row ">
+      <label for="bookTable">
+        <h3 class="p-3">My Credit Cards:</h3>
+      </label>
+    </div>
+    <div class="row-fluid">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Billing Address</th>
+                <th scope="col">Name On Card</th>
+                <th scope="col">Expiration Date</th>
+                <th scope="col">Credit Card Number</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let c of creditCards; let i = index" (click)="cardDetails(i)">
+                <td>{{ c.BillingAddress }}</td>
+                <td> {{ c.NameOnCard }}</td>
+                <td>{{ c.ExpirationDate }}</td>
+                <td>
+                  ****************{{c.CreditCardPrompt}}
+                  <!-- <a [routerLink]="['/admin/books/', b.BookID]">Details</a> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
