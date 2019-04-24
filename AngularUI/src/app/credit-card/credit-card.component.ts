@@ -30,12 +30,13 @@ export class CreditCardComponent implements OnInit {
         for (let vl of obj) {
           console.log(vl);
           this.creditCards.push(vl);
-          
         }
       })
-      
   }
 
+  cardDetails(id:number) {
+    console.log(id);
+  }
   ngOnInit() {}
 
 }

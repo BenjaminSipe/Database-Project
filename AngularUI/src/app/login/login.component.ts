@@ -25,14 +25,18 @@ export class LoginComponent implements OnInit {
   onClick() {
     this.error = "";
     this.bool = true;
+    if (this.user.email == ""){
+      this.error = "No Information Entered.";
+      this.bool = false;
+    } else {
     this.userService.login(this.user).then((message) =>
     {
       this.bool = false;
-      this.router.navigate(['/userprofile']);
+      this.router.navigate(['/books']);
     }).catch((message) => {
       this.error = "Email or Password are incorrect.";
       this.bool = false;
-    })
+    })}
   }
 
   ngOnInit() {
