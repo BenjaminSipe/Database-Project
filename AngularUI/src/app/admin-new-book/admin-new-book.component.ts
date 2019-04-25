@@ -5,7 +5,8 @@ import { POSTService } from '../services/post.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Router } from '@angular/router';
-
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin-new-book',
@@ -68,6 +69,7 @@ export class AdminNewBookComponent{
    }
    saveBookCategory(nbc){
     this.postService.createBookCategory(nbc).subscribe((response)=>{
+      
      console.log('response from bc post data is ', response);
    }, (error)=>{
      console.log('error during post is ', error)
@@ -90,7 +92,9 @@ export class AdminNewBookComponent{
   saveCategory(newCategory){
     this.postService.createCategory(newCategory).subscribe((response)=>{
      console.log('response from post data is ', response);
-   }, (error)=> {
+     this.categories$ = this.getService.getCategories();
+    
+     }, (error)=> {
      console.log('error during post is ', error)
    });
 

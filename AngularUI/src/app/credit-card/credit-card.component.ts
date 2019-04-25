@@ -19,8 +19,9 @@ import { POSTService } from '../services/post.service';
 })
 export class CreditCardComponent implements OnInit {
     creditCards:Creditcard[] = [];
-
-
+    creditCard:Creditcard;
+    showDetails = false;
+    newCardPage=false;
   constructor(private userservice: UserService,
     private router: Router, 
     private get: GETService,
@@ -34,9 +35,22 @@ export class CreditCardComponent implements OnInit {
       })
   }
 
-  cardDetails(id:number) {
-    console.log(id);
+  cardDetails(index:number) {
+    console.log(index);
+    this.creditCard = this.creditCards[index];
+    this.showDetails = true;
   }
+
+  deleteCard(card:Creditcard, index:number) {
+    let cc = this.creditCards.splice(index,1);
+    this.post.deleteCreditCard(cc[0]);
+  }
+
+  newCreditCard() {
+    this.newCardPage=true;
+  }
+
+
   ngOnInit() {}
 
 }

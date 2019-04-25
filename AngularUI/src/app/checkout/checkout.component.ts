@@ -1,17 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
+import { User } from '../user';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.sass']
 })
 export class CheckoutComponent implements OnInit {
+  user = new User("test", "test", "test", "test");
   productTotal;
   cartTotal;
   discount: boolean;
   selectedProducts;
-  constructor() {
-    this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];}
+  constructor(userservice: UserService, router:Router) {
+    console.log(this.user.name + "test Quote");
+    this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];
+    if (userservice.user.userID == undefined) {
+      //router.navigate(["/login"]);
+    }
+  }
 
   ngOnInit() {
     const productTotal: number = localStorage.getItem('productTotal')

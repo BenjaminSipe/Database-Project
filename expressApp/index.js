@@ -308,10 +308,10 @@ app.get('/readBookPublisher/:id', (req, res) =>
   })
 });
 app.post('/createCategory', bodyParser.json(), (req, res) => {
-  return new Promise( (resolve, reject) => {
-    res.json(req.body);
-    category.createCategory(req.body);
-  });
+    category.createCategory(req.body).then((message) => {
+      res.send(message);
+    }).catch((message) => {
+      res.send('{"error":"Unable to create Category"}')});
 });
 
 app.post('/createPublisher', bodyParser.json(), (req, res) => {

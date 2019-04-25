@@ -30,7 +30,11 @@ exports.readCategoryBook = function(index) {
 })}
 exports.createCategory = function(newCategory) {
   console.log(newCategory);
+  return new Promise((resolve, reject) => {
     dbInfo.pool.query('CALL usp_CreateCategory("'+newCategory.newCategoryName+'")', function (err, rows, fields) {
-      if (err) throw(err);
+      if (err) reject(err);
+      else resolve(rows[0]);
     });
+  })
+    
 }
