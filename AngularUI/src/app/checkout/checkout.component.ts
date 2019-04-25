@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CheckoutComponent implements OnInit {
   productTotal;
   cartTotal;
+  discount: boolean;
   selectedProducts;
   constructor() {
     this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];}
@@ -16,10 +17,20 @@ export class CheckoutComponent implements OnInit {
     const productTotal: number = localStorage.getItem('productTotal')
     ? parseFloat(localStorage.getItem('productTotal')) : 0;
     this.productTotal = productTotal;
-
+    this.discount = (this.productTotal > 70) ? true : false;
+    this.productTotal = (this.productTotal > 70) ? (this.productTotal - (this.productTotal*0.1)) : this.productTotal;
     const cartTotal: number = localStorage.getItem('selectedProducts')
     ? parseFloat(localStorage.getItem('selectedProductsCount')) : 0;
     this.cartTotal = cartTotal;
+  }
+
+  getDiscount(){
+    console.log(this.discount);
+    return this.discount;
+  }
+  getProductTotal(){
+
+    return this.productTotal = this.discount ? (this.productTotal - (this.productTotal*0.1)) : this.productTotal;
   }
 
 }

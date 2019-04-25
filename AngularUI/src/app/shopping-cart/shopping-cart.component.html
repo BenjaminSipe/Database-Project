@@ -2,7 +2,7 @@
     <table id="cart" class="table table-hover table-condensed">
               <thead>
               <tr>
-                <th style="width:10%"></th>
+                <th style="width:11%"></th>
                 <th style="width:25%">Product</th>
                 <th style="width:10%">Price</th>
                 <th style="width:8%">Quantity</th>
@@ -16,7 +16,7 @@
                   <img [src]="s.ImageLink" class="img-responsive" height="130">
                 </td>
                 <td data-th="Product">
-                      <h4>{{s.Title}}</h4>
+                      <h5>{{s.Title}}</h5>
                 </td>
                 <td data-th="Price">{{s.price | currency:'USD':true}}</td>
                 <td data-th="Quantity">

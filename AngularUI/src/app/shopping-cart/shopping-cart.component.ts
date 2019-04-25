@@ -22,7 +22,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   removeItem(item){
-    //this.cart.removeItemFromCart(item);
+    this.cart.removeItemFromCart(item);
     console.log('removed...');
     location.reload();
   }

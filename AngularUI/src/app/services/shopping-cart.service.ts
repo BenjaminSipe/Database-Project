@@ -96,6 +96,28 @@ export class ShoppingCartService {
     console.log('Working? ' + localStorage.getItem('selectedProducts'));
 
 }
+removeItemFromCart(item) {
+  this.getLocalStorageData();
+  let deletedCount: any = 0;
+  this.selectedProducts = this.selectedProducts.filter(items => {
+      if (items.BookID === item.BookID) {
+          deletedCount = items.productCount;
+          return false;
+      }
+      return true;
+  });
+  this.cartTotal -= deletedCount;
+  this.productTotal = 0;
+  this.selectedProducts.forEach(_price => {
+      const tempPrice = Number(_price.price);
+      this.productTotal += (tempPrice * _price.productCount);
+  });
+  const cartParams: any = {};
+  cartParams.products = this.selectedProducts;
+  cartParams.productTotal = this.cartTotal;
+  cartParams.totalPrice = this.productTotal;
+  this.HandleCart(cartParams);
+}
 
 HandleCart(params){
   console.log("in Handle Cart...");
