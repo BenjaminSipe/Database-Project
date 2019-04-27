@@ -12,6 +12,7 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 })
 export class BookCardComponent implements OnInit{
   @Input('book') book;
+  outOfStock: boolean;
   cartTotal;
   format$;
   category$;
@@ -52,12 +53,29 @@ export class BookCardComponent implements OnInit{
   }
 
   addToCart(book){
-  console.log('Book to cart: '+ Object.values(this.bookToCart));
-  console.log("adding.." + book.BookID);
-  this.cart.addItemsToCart(this.bookToCart);
-  const cartTotal: number = localStorage.getItem('selectedProducts')
-  ? parseFloat(localStorage.getItem('selectedProductsCount')) : 0;
-  this.cartTotal = cartTotal;
-  console.log('Cart total in component = ' + this.cartTotal);
+  let itemProductCount = 0;
+  //console.log('quantity1: ' + this.bookToCart.quantity);
+  let selectedProducts = localStorage.getItem('selectedProducts') ?
+  JSON.parse(localStorage.getItem('selectedProducts')) : [];
+  selectedProducts.map(items => {
+    console.log("items.BookID = " + items.BookID);
+    if (items.BookID === this.bookToCart.BookID) {
+       itemProductCount = items.productCount;
+       itemProductCount +=1;
+       console.log('Product count test: ' + itemProductCount);
+    }
+  });
+  if(itemProductCount > this.bookToCart.quantity){
+    this.outOfStock = true;
+  } else {
+   //console.log('Book to cart: '+ Object.values(this.bookToCart));
+   //console.log("adding.." + book.BookID);
+   this.cart.addItemsToCart(this.bookToCart);
+   const cartTotal: number = localStorage.getItem('selectedProducts')
+   ? parseFloat(localStorage.getItem('selectedProductsCount')) : 0;
+   this.cartTotal = cartTotal;
+   //console.log('quantity2: ' + this.bookToCart.quantity);
+   //console.log('Cart total in component = ' + this.cartTotal);
+  }
   }
 }

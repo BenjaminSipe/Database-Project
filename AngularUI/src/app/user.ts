@@ -8,13 +8,13 @@ export class User {
   public homePhone:string;
   public workPhone:string;
   public userLevel:string;
-  
-  constructor(pemail?:string, 
+
+  constructor(pemail?:string,
     ppassword?:string
     ,pworkPhone?:string
     ,phomePhone?:string
     ,pname?:string
-    ) {  
+    ) {
 
       this.password = ppassword;
       this.email = pemail;

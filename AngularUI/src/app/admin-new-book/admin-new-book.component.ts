@@ -34,6 +34,7 @@ export class AdminNewBookComponent{
   authors$;
   formats$;
   books$;
+  submit:boolean = false;
   constructor(private getService : GETService, private postService:POSTService,
               private modalService: NgbModal, private router: Router) {
     this.categories$ = getService.getCategories();
@@ -69,7 +70,7 @@ export class AdminNewBookComponent{
    }
    saveBookCategory(nbc){
     this.postService.createBookCategory(nbc).subscribe((response)=>{
-      
+
      console.log('response from bc post data is ', response);
    }, (error)=>{
      console.log('error during post is ', error)
@@ -93,24 +94,30 @@ export class AdminNewBookComponent{
     this.postService.createCategory(newCategory).subscribe((response)=>{
      console.log('response from post data is ', response);
      this.categories$ = this.getService.getCategories();
-    
+     this.submit = true;
      }, (error)=> {
      console.log('error during post is ', error)
+     this.submit = false;
    });
 
   }
   savePublisher(newPublisher){
     this.postService.createPublisher(newPublisher).subscribe((response)=>{
      console.log('response from post data is ', response);
+     this.submit = true;
    },(error)=>{
      console.log('error during post is ', error)
+     this.submit = false;
    });
   }
   saveFormat(newFormat){
     this.postService.createFormat(newFormat).subscribe((response)=>{
+      this.formats$ = this.getService.getFormats();
      console.log('response from post data is ', response);
+     this.submit = true;
    },(error)=>{
-     console.log('error during post is ', error)
+     console.log('error during post is ', error);
+     this.submit = false;
    });
   }
 
@@ -121,12 +128,16 @@ export class AdminNewBookComponent{
     console.log(newAuthor.newAuthorBio);
     this.postService.createAuthor(newAuthor).subscribe((response)=>{
      console.log('response from post data is ', response);
+     this.authors$ = this.getService.getFormats();
+     this.submit = true;
    },(error)=>{
-     console.log('error during post is ', error)
+     console.log('error during post is ', error);
+     this.submit = false;
    });
   }
   //ADD NEW (PUBLISHER/CATEGORY ETC)
   addNew(content) {
+    this.submit=false;
     this.modalService.open(content, { centered: true });
     this.router.navigate(['/admin/books/new']);
   }

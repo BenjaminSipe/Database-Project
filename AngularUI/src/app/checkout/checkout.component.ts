@@ -8,18 +8,21 @@ import { User } from '../user';
   styleUrls: ['./checkout.component.sass']
 })
 export class CheckoutComponent implements OnInit {
-  user = new User("test", "test", "test", "test");
+  user = new User();
   productTotal;
   cartTotal;
   discount: boolean;
   selectedProducts;
   constructor(userservice: UserService, router:Router) {
-    console.log(this.user.name + "test Quote");
+    this.user = userservice.user;
+    console.log(this.user);
     this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];
     if (userservice.user.userID == undefined) {
-      //router.navigate(["/login"]);
+      router.navigate(["/login"]);
     }
-  }
+    let str = this.user.name;
+    console.log(str.split(" "));
+    }
 
   ngOnInit() {
     const productTotal: number = localStorage.getItem('productTotal')

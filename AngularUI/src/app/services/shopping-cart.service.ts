@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, catchError, tap, count } from 'rxjs/operators';
 import { POSTService } from './post.service';
 import { GETService } from './get.service';
 
@@ -56,10 +56,10 @@ export class ShoppingCartService {
     let exists = false;
     this.getLocalStorageData();
     this.selectedProducts = this.selectedProducts.map(items => {
-        console.log("item.BookID = " + item.BookID);
+        //console.log("item.BookID = " + item.BookID);
         if (items.BookID === item.BookID) {
             exists = true;
-            console.log("items.productCount = " + items.productCount);
+            //console.log("items.productCount = " + items.productCount);
             if (item.productCount) {
                 items.productCount += item.productCount;
                 this.cartTotal += item.productCount;
@@ -71,7 +71,7 @@ export class ShoppingCartService {
         return items;
     });
     if (!exists) {
-        console.log('should be here adding...' + item);;
+        //console.log('should be here adding...' + item);;
         this.selectedProducts.push(item);
         //console.log("should be here...");
         if (!item.productCount) {
@@ -84,7 +84,7 @@ export class ShoppingCartService {
     this.selectedProducts.forEach(_price => {
         const tempPrice = Number(_price.price * _price.productCount);
         this.productTotal += tempPrice;
-        console.log('total price = ' + this.productTotal);
+        //console.log('total price = ' + this.productTotal);
     });
     const cartParams: any = {};
     cartParams.products = this.selectedProducts;
@@ -93,7 +93,7 @@ export class ShoppingCartService {
     this.HandleCart(cartParams);
     console.log('Book '  + item.Title + ' is added to cart.');
     this.getLocalStorageData();
-    console.log('Working? ' + localStorage.getItem('selectedProducts'));
+    //console.log('Working? ' + localStorage.getItem('selectedProducts'));
 
 }
 removeItemFromCart(item) {
@@ -118,23 +118,84 @@ removeItemFromCart(item) {
   cartParams.totalPrice = this.productTotal;
   this.HandleCart(cartParams);
 }
+ChangeCount(item, operation) {
+  //let itemCount: number;
+  this.getLocalStorageData();
+  if (operation) {
+      this.selectedProducts = this.selectedProducts.map(items => {
+          if (items.BookID === item.BookID) {
+              items.productCount += 1;
+              this.cartTotal += 1;
+          }
+          console.log("in service items: " + items.productCount);
+          //itemCount = items.productCount
+          return items;
+      });
+  } else if (!operation) {
+      if (item.productCount > 1) {
+          this.selectedProducts = this.selectedProducts.map(items => {
+              if (items.BookID === item.BookID) {
+                  items.productCount -= 1;
+                  this.cartTotal -= 1;
+              }
+              //itemCount = items.productCount;
+              return items;
+          });
+      } else if (item.productCount === 1) {
+          console.log("should be here if 1.." + item.productCount);
+          this.cartTotal -= 1;
+          this.selectedProducts = this.selectedProducts.filter(items => {
+              console.log("items.count: " + items.productCount);
+              if (items.BookID === item.BookID) {
+                  return false;
+              } else {
+                  return true;
+              }
+          });
+          //return false;
+      }
+  }
+
+  this.productTotal = 0;
+  this.selectedProducts.forEach(_price => {
+      const tempPrice = Number(_price.price);
+      this.productTotal += (tempPrice * _price.productCount);
+  });
+  const cartParams: any = {};
+  cartParams.products = this.selectedProducts;
+  cartParams.productTotal = this.cartTotal;
+  cartParams.totalPrice = this.productTotal;
+  this.HandleCart(cartParams);
+  //return itemCount;
+}
 
 HandleCart(params){
-  console.log("in Handle Cart...");
+  //console.log("in Handle Cart...");
   localStorage.setItem('productTotal', JSON.stringify(params.totalPrice));
   localStorage.setItem('selectedProducts', JSON.stringify(params.products));
   localStorage.setItem('selectedProductsCount', JSON.stringify(params.productTotal));
+}
+
+public ClearCart() {
+  const cartParams: any = {};
+  cartParams.products = [];
+  cartParams.productTotal = 0;
+  cartParams.totalPrice = 0;
+  this.HandleCart(cartParams);
+}
+
+public Checkout(){
+
 }
 public getLocalStorageData() {
     this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];
     const cartTotal: number = localStorage.getItem('selectedProducts')
     ? parseFloat(localStorage.getItem('selectedProductsCount')) : 0;
     this.cartTotal = cartTotal;
-    console.log('Cart total in service = ' + this.cartTotal);
+    //console.log('Cart total in service = ' + this.cartTotal);
     const productTotal: number = localStorage.getItem('productTotal') ? parseFloat(localStorage.getItem('productTotal')) : 0;
     this.productTotal = productTotal;
 }
-
 
 }
 

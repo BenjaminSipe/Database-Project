@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
   appTitle = 'myapp';
   cartTotal;
-  constructor(private userservice : UserService, private router: Router) {
+  constructor(public userservice : UserService, private router: Router) {
 
   }
 
@@ -23,6 +23,10 @@ export class NavComponent implements OnInit {
 
   adminBooks() {
     this.router.navigate(['/admin/books']);
+  }
+
+  adminOther() {
+    this.router.navigate(['/admin/other']);
   }
 
   login() {
