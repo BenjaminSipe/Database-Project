@@ -13,6 +13,7 @@ const publisher = require('./PublisherCRUD');
 const userCRUD = require('./userCRUD');
 const book = require('./BookCRUD');
 const cart = require('./CartCRUD');
+const purchase = require("./Purchase");
 const app = express();
 const port = 3000;
 
@@ -353,5 +354,45 @@ app.get('/readCart/:id', (req, res) =>
     res.send(message)
   })
 })
+//I need to create these Cards. I will assume the following structure:
+/*
+Body :
+{
+  "CreditCardID":ccID,
+  "ShippingAddress":shippingAddress,
+  "Discount":percentage,
+  "Books": [
+    {
+      "BookID":bID,
+      "FormatID":formatID,
+      "Quantity":quantity
+    }, . . .
+  ]
+}
+*/
+app.post("/CreatePurchase", (req, res) => {
+  purchase.CreateInvoice(req.body).then((message) => {
+    req.body.InvoiceID = message;
+    //This is where I add all of the books
+    let list = [];
+    let book;
+    for (book of req.body.Books) {
+      //console.log(book);
+      purchase.AddBook(book, message).then((message2) => {
+      }).catch((message2) => {
+        list.push(message2);
+      })  
+    }
+    if (list.length > 0) {
+      res.send(list);
+    } else {
+      res.send('{"Result":"Order Placed"}')
+    }
+  }).catch((message) => {
+    console.log(message);
+    res.send("message");
+   })
+})
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
