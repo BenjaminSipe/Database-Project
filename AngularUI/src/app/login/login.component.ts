@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
         router.navigate(["/"]);
       }
    }
+   testObject = "This is a test String"
   error = "";
   user = new User("", "", "", "", "");
   boolean = false;

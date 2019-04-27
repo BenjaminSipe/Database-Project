@@ -17,8 +17,10 @@ export class NewaccountComponent implements OnInit {
 
   validate() {
     let b = true;
-    if (this.user.name == "") {
-      this.error[0] = "The Name Field Cannot be empty";
+    this.user.name.trim;
+    let i = this.user.name.split(" ");
+    if (i.length < 2 || i[0] == "" || i[1] == "") {
+      this.error[0] = "Enter first and Last Name";
       b = false;
     }
     if (!this.user.email.includes("@")) {

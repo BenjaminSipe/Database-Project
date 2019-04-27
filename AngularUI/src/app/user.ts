@@ -2,6 +2,8 @@ export class User {
   public userID:number;
   public email:string;
   public name:string;
+  public firstName:string;
+  public lastName:string;
   public password:string;
   public homePhone:string;
   public workPhone:string;
@@ -28,8 +30,7 @@ export class User {
       this.workPhone = pworkPhone;
     }
   }
-
-  toString():string[] {
+    toString():string[] {
     return [this.userID + "", this.name, this.email, this.homePhone, this.workPhone, "***********".substr(this.password.length)]
   }
 }

@@ -20,12 +20,19 @@ import { POSTService } from '../services/post.service';
 export class CreditCardComponent implements OnInit {
     creditCards:Creditcard[] = [];
     creditCard:Creditcard;
+    newCard = new Creditcard();
+
+  
+
+    error = ["","","","",""]
     showDetails = false;
     newCardPage=false;
   constructor(private userservice: UserService,
     private router: Router, 
     private get: GETService,
     private post: POSTService) {
+
+  
       get.getCreditCardByUser(userservice.user.userID).subscribe((obj) => {
         
         for (let vl of obj) {
@@ -47,9 +54,28 @@ export class CreditCardComponent implements OnInit {
   }
 
   newCreditCard() {
+    this.newCard.BillingAddress = "";
+    this.newCard.NameOnCard ="";
+    this.newCard.ExpirationDate = "";
+    this.newCard.CreditCardNumber = "";
+    this.newCard.CCV = "";
     this.newCardPage=true;
   }
 
+  validate():boolean {
+
+    this.newCard.BillingAddress = "";
+    this.newCard.NameOnCard ="";
+    this.newCard.ExpirationDate = "";
+    this.newCard.CreditCardNumber = "";
+    this.newCard.CCV = "";
+    return true;
+  }
+  onClick() {
+    if (this.validate()) {
+      //Save credit Card
+    }
+  }
 
   ngOnInit() {}
 

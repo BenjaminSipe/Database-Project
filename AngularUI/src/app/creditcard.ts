@@ -8,6 +8,5 @@ export class Creditcard {
     CreditCardNumber : string;
     CCV: string;
     constructor() {
-
     }
 }

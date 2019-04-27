@@ -31,6 +31,10 @@ export class UserService {
               this.user = res2[0];
               this.loginText = "Log Out";
               this.userName = this.user.name;
+              this.user.name.trim;
+              let i = this.user.name.split(" ");
+              this.user.firstName = i[0];
+              this.user.lastName = i[i.length - 1];
               this.user.password = "";
               resolve(true);
   })}})})}
