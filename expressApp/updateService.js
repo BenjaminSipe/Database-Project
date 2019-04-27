@@ -25,6 +25,9 @@ var objectParam = {
             ,"BillingAddress"
             ,"NameOnCard"
             ,"ExpirationDate"],
+
+    "Category":["categoryID",
+               "categoryName"],
 }
 
 exports.updateObject = function(body, object) {

@@ -42,10 +42,18 @@
                         <tr *ngFor="let c of bookCategories | slice: (cPage-1) * pageSize : (cPage-1) * pageSize + pageSize, let i = index">
                             <td>{{ i+1 }}</td>
                             <td>{{ c.CategoryID }}</td>
-                            <td>{{ c.CategoryName }}</td>
                             <td>
-                              <a>Edit</a>
+                            <form #EditCategory="ngForm" aria-required="true">
+                              <div class="form-group">
+                                <input #CategoryName="ngModel" [(ngModel)]="c.CategoryName" name="categoryName" id="categoryName" type="text" class="form-control" required>
+                                <div class="alert alert-danger" *ngIf="CategoryName.touched && CategoryName.invalid">Name is required.</div>
+                              </div>
+                            </form>
                             </td>
+                            <td>
+                                <button type="submit" class="btn btn-outline-dark"
+                                 [disabled]="!EditCategory.valid"
+                                 (click)="editCategory(EditCategory.value, c.CategoryID)">Update</button>                            </td>
                           </tr>
                 </tbody>
             </table>

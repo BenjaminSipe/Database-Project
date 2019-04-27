@@ -39,6 +39,9 @@ import { EditBookComponent } from './edit-book/edit-book.component';
 import { AdminOthersComponent } from './admin-others/admin-others.component';
 import { DataTableModule } from 'angular7-data-table';
 import { AuthorCardComponent } from './author-card/author-card.component';
+import { EditAuthorComponent } from './edit-author/edit-author.component';
+import { EditPublisherComponent } from './edit-publisher/edit-publisher.component';
+import { EditFormatComponent } from './edit-format/edit-format.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +70,9 @@ import { AuthorCardComponent } from './author-card/author-card.component';
     EditBookComponent,
     AdminOthersComponent,
     AuthorCardComponent,
+    EditAuthorComponent,
+    EditPublisherComponent,
+    EditFormatComponent,
 
   ],
   imports: [

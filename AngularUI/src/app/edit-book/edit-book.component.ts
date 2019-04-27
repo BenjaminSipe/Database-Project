@@ -44,7 +44,7 @@ export class EditBookComponent implements OnDestroy{
     this.authors$ = getService.getAuthors();
 
     this.id = this.route.snapshot.paramMap.get('id');
-    console.log("id?"+this.id);
+    //console.log("id?"+this.id);
     // this.book$ = this.getService.getBook(id);
     this.subscription = this.getService.getBook(this.id)
       .subscribe(book => {this.imageUrl = book[0].ImageLink;
@@ -61,12 +61,7 @@ export class EditBookComponent implements OnDestroy{
     this.subscription = this.getService.getBookAuthor(this.id)
     .subscribe(author => {this.bookAuthor = author[0].AuthorID;
     });
-    this.subscription = this.getService.getBookFormat(this.id)
-    .subscribe(format => {this.bookFormatID = format[0].FormatID;
-                          this.bookFormatPrice = format[0].Price;
-                          this.bookFormatCost = format[0].Cost;
-                          this.bookFormatQuantity = format[0].Quantity;
-    });
+
 
   }
 

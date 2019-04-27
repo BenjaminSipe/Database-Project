@@ -23,4 +23,14 @@ export class PUTService {
     })
 
   }
+
+  putCategory(category) {
+    console.log("Putting category...");
+    this.http.put("http://localhost:3000/update/Category", category, httpOptions)
+    .subscribe((res) =>
+    {
+      return "Successful";
+    })
+
+  }
 }

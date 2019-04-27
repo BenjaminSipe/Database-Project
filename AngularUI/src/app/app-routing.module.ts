@@ -20,6 +20,9 @@ import { AdminEditBookComponent } from './admin-edit-book/admin-edit-book.compon
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { AdminOthersComponent } from './admin-others/admin-others.component';
 import { DataTableModule } from 'angular7-data-table';
+import { EditAuthorComponent } from './edit-author/edit-author.component';
+import { EditPublisherComponent } from './edit-publisher/edit-publisher.component';
+import { EditFormatComponent } from './edit-format/edit-format.component';
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent},
@@ -37,6 +40,9 @@ const routes: Routes = [
   { path: 'admin/books/:id', component: ModalContainerComponent},
   { path: 'admin/books', component: AdminBooksComponent},
   { path: 'edituser', component: EdituserComponent},
+  { path: 'admin/other/author/:id', component: EditAuthorComponent},
+  { path: 'admin/other/publisher/:id', component: EditPublisherComponent},
+  { path: 'admin/other/format/:id', component: EditFormatComponent},
   { path: 'admin/other', component: AdminOthersComponent}
 ];
 
