@@ -64,6 +64,7 @@ export class AdminOthersComponent implements OnInit, OnDestroy {
 
 
   editCategory(category, categoryID){
+    if(confirm('Would you like to rename this category to ' + category.categoryName+ '?')){
     let updateCategory = { categoryID: '',
                            categoryName: ''
                           }
@@ -74,7 +75,21 @@ export class AdminOthersComponent implements OnInit, OnDestroy {
     // console.log('id..' + categoryID);
     console.log('uc..' + Object.values(updateCategory));
     this.putService.putCategory(updateCategory);
+    }
 
+  }
+
+  editFormat(format, formatID){
+    if(confirm('Would you like to rename this format to ' + format.FormatName + '?')) {
+    let updateFormat = { formatID: '',
+                           formatName: ''
+                          }
+    console.log('editing..');
+    updateFormat.formatID = formatID;
+    updateFormat.formatName = format.FormatName;
+    console.log('uc..' + Object.values(updateFormat));
+    this.putService.putFormat(updateFormat);
+    }
   }
 
   ngOnInit() {

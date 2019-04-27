@@ -33,4 +33,28 @@ export class PUTService {
     })
 
   }
+  putFormat(format) {
+    console.log("Putting format...");
+    this.http.put("http://localhost:3000/update/Format", format, httpOptions)
+    .subscribe((res) =>
+    {
+      return "Successful";
+    });
+  }
+  putPublisher(publisher) {
+    console.log("Putting Publisher...");
+    this.http.put("http://localhost:3000/update/Publisher", publisher, httpOptions)
+    .subscribe((res) =>
+    {
+      return "Successful";
+    });
+  }
+  putAuthor(author) {
+    console.log("Putting author...");
+    this.http.put("http://localhost:3000/update/Author", author, httpOptions)
+    .subscribe((res) =>
+    {
+      return "Successful";
+    });
+  }
 }

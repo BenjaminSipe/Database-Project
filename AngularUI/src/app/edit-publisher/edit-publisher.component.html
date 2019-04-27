@@ -1,3 +1,32 @@
-<p>
-  edit-publisher works!
-</p>
+<div class="container-fluid">
+  <h4  class="text-center">Update Author</h4><br>
+  <form #EditPublisher="ngForm" (ngSubmit)="editPublisher(EditPublisher.value)" aria-required="true">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="title">PublisherID</label>
+            <input #publisherID="ngModel" [(ngModel)]="publisher.PublisherID" name="publisherID" id="publisherID" class="form-control" readonly>
+          </div>
+      <div class="form-group col-md">
+        <label for="name">Publisher</label>
+        <input #publisherName="ngModel" [(ngModel)]="publisher.Name" name="publisherName" id="publisherName" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="publisherName.touched && publisherName.invalid">Publisher Name is required.</div>
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="name">Contact Name</label>
+        <input #contactName="ngModel" [(ngModel)]="publisher.ContactName" name="contactName" id="contactName" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="contactName.touched && contactName.invalid">Contact Name is required.</div>
+      </div>
+      <div class="form-group">
+        <label for="name">Address</label>
+        <input #address="ngModel" [(ngModel)]="publisher.Address" name="address" id="address" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="address.touched && address.invalid">Address is required.</div>
+      </div>
+      <div class="form-group">
+        <label for="name">Phone Number</label>
+        <input #phone="ngModel" [(ngModel)]="publisher.PhoneNumber" name="phone" id="phone" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">Address is required.</div>
+      </div>
+<button type="submit" class="btn btn-dark" [disabled]="!EditPublisher.valid">Update</button>
+</form>
+</div>

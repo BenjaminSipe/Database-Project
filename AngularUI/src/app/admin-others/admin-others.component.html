@@ -10,14 +10,14 @@
             [attr.aria-expanded]="!categoryCollapsed" aria-controls="collapseCategory">
               Categories
             </button>
+            <button type="button" class="btn btn-dark m-1" (click)="formatCollapsed = !formatCollapsed"
+            [attr.aria-expanded]="!formatCollapsed" aria-controls="collapseFormat">
+            Formats
+            </button>
             <button type="button" class="btn btn-dark m-1" (click)="authorCollapsed = !authorCollapsed"
             [attr.aria-expanded]="!authorCollapsed" aria-controls="collapseAuthor">
              Authors
             </button>
-            <button type="button" class="btn btn-dark m-1" (click)="formatCollapsed = !formatCollapsed"
-            [attr.aria-expanded]="!formatCollapsed" aria-controls="collapseFormat">
-            Formats
-          </button>
           <button type="button" class="btn btn-dark m-1" (click)="publisherCollapsed = !publisherCollapsed"
           [attr.aria-expanded]="!publisherCollapsed" aria-controls="collapsePublisher">
           Publishers
@@ -53,7 +53,8 @@
                             <td>
                                 <button type="submit" class="btn btn-outline-dark"
                                  [disabled]="!EditCategory.valid"
-                                 (click)="editCategory(EditCategory.value, c.CategoryID)">Update</button>                            </td>
+                                 (click)="editCategory(EditCategory.value, c.CategoryID)">Update</button>
+                            </td>
                           </tr>
                 </tbody>
             </table>
@@ -87,7 +88,9 @@
                       <td>{{ a.Name }}</td>
                       <td>{{ a.Bio }}</td>
                       <td>
-                        <a>Edit</a>
+                          <a [routerLink]="['/admin/other/author', a.AuthorID]">
+                            Edit
+                          </a>
                       </td>
                     </tr>
                   </tbody>
@@ -116,9 +119,18 @@
                       <tr *ngFor="let f of bookFormats, let i = index">
                         <td>{{ i+1 }}</td>
                         <td>{{ f.FormatID }}</td>
-                        <td>{{ f.FormatName }}</td>
                         <td>
-                          <a>Edit</a>
+                            <form #EditFormat="ngForm" aria-required="true">
+                                <div class="form-group">
+                                  <input #FormatName="ngModel" [(ngModel)]="f.FormatName" name="FormatName" id="FormatName" type="text" class="form-control" required>
+                                  <div class="alert alert-danger" *ngIf="FormatName.touched && FormatName.invalid">Name is required.</div>
+                                </div>
+                              </form>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-outline-dark"
+                            [disabled]="!EditFormat.valid"
+                            (click)="editFormat(EditFormat.value, f.FormatID)">Update</button>
                         </td>
                       </tr>
                     </tbody>
@@ -150,7 +162,9 @@
                               <td>{{ p.Address }}</td>
                               <td>{{ p.PhoneNumber }}</td>
                               <td>
-                                <a>Edit</a>
+                                <a [routerLink]="['/admin/other/publisher', p.PublisherID]">
+                                  Edit
+                                </a>
                               </td>
                             </tr>
                   </tbody>

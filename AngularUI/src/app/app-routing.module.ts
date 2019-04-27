@@ -42,7 +42,6 @@ const routes: Routes = [
   { path: 'edituser', component: EdituserComponent},
   { path: 'admin/other/author/:id', component: EditAuthorComponent},
   { path: 'admin/other/publisher/:id', component: EditPublisherComponent},
-  { path: 'admin/other/format/:id', component: EditFormatComponent},
   { path: 'admin/other', component: AdminOthersComponent}
 ];
 

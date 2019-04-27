@@ -1,3 +1,41 @@
-<p>
-  edit-author works!
-</p>
+<!-- <div class="card text-center" style="width: 22rem;">
+    <img src="{{author.ImageLink}}" class="card-img-top" alt="Author Image" >
+  <div class="card-body">
+    <h5 class="card-title" >{{ author.Name }}</h5>
+    <p>{{ author.Bio }}</p>
+  </div>
+</div> -->
+<div class="container-fluid">
+            <h4  class="text-center">Update Author</h4><br>
+            <form #EditAuthor="ngForm" (ngSubmit)="editAuthor(EditAuthor.value)" aria-required="true">
+              <div class="form-row">
+                  <div class="form-group col-md-1">
+                      <label for="title">AuthorID</label>
+                      <input #authorID="ngModel" [(ngModel)]="author.AuthorID" name="authorID" id="authorID" class="form-control" readonly>
+                    </div>
+                <div class="form-group col-md">
+                  <label for="name">Author Name</label>
+                  <input #authorName="ngModel" [(ngModel)]="author.Name" name="authorName" id="authorName" type="text" class="form-control" required>
+                  <div class="alert alert-danger" *ngIf="authorName.touched && authorName.invalid">Name is required.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label for="ImageUrl">Image URL</label>
+                  <input #ImageUrl="ngModel" [(ngModel)]="author.ImageLink" name="imageUrl" id="imageUrl" type="text" class="form-control" url required>
+                  <div class="alert alert-danger" *ngIf="ImageUrl.touched && ImageUrl.invalid">
+                      <div *ngIf="ImageUrl?.errors?.url">Invalid URL.</div>
+                      <div *ngIf="ImageUrl?.errors?.required">Required.</div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control"
+                #Bio="ngModel" [(ngModel)]="author.Bio" name="authorBio"
+                id="imageBio" type="text" class="form-control" required>
+              </textarea>
+              <div class="alert alert-danger" *ngIf="Bio.touched && Bio.invalid">
+                <div *ngIf="Bio?.errors?.required">Required.</div>
+            </div>
+              </div>
+          <button type="submit" class="btn btn-dark" [disabled]="!EditAuthor.valid">Update</button>
+        </form>
+</div>

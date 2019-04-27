@@ -28,6 +28,18 @@ var objectParam = {
 
     "Category":["categoryID",
                "categoryName"],
+    "Format":["formatID",
+               "formatName"],
+    "Author":["authorID",
+               "authorName",
+                "imageUrl",
+                "authorBio"], 
+    "Publisher":["publisherID",
+               "publisherName",
+                "contactName",
+                "address",
+                "phone"
+            ]           
 }
 
 exports.updateObject = function(body, object) {
