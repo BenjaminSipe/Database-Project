@@ -1,4 +1,5 @@
 <div class="container">
+  <h3 class="text-center">Your Cart</h3>
     <table id="cart" class="table table-hover table-condensed">
               <thead>
               <tr>
@@ -7,7 +8,7 @@
                 <th style="width:10%">Price</th>
                 <th style="width:8%">Quantity</th>
                 <th style="width:12%" class="text-center">Subtotal</th>
-                <th style="width:10%"></th>
+                <th style="width:10%"><a class="text-danger" (click)="clearCart()" *ngIf="productTotal">Clear Cart</a></th>
               </tr>
             </thead>
             <tbody *ngFor="let s of selectedProducts">
@@ -21,12 +22,12 @@
                 <td data-th="Price">{{s.price | currency:'USD':true}}</td>
                 <td data-th="Quantity">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-dark custom">-</button>
-                        <input type="number" class="form-control text-center" [value]="s.productCount" readonly>
-                        <button type="button" class="btn btn-dark custom">+</button>
+                        <button type="button" class="btn btn-dark custom" (click)="decreaseItem(s)">-</button>
+                        <input type="number" class="form-control text-center" [value]="getProductCount(s)" readonly>
+                        <button type="button" class="btn btn-dark custom" (click)="increaseItem(s)">+</button>
                       </div>
                 </td>
-                <td data-th="Subtotal" class="text-center">{{s.price * s.productCount | currency:'USD':true}}</td>
+                <td data-th="Subtotal" class="text-center">{{s.price * getProductCount(s) | currency:'USD':true}}</td>
                 <td class="actions" data-th="">
                   <button class="btn btn-outline-danger" (click)="removeItem(s)">Remove</button>
                 </td>
@@ -38,7 +39,7 @@
                 <td colspan="2" class="hidden-xs"></td>
                 <td colspan="1" class="hidden-xs"></td>
                 <td class="hidden-xs text-center"><strong>Cart Total: {{ productTotal | currency:'USD':true}}</strong></td>
-                <td><button  routerLink="/checkout"  class="btn btn-dark btn-block">Checkout <i class="fa fa-angle-right"></i></button></td>
+                <td><button  routerLink="/checkout"  class="btn btn-dark btn-block" [disabled]="!productTotal">Checkout <i class="fa fa-angle-right"></i></button></td>
               </tr>
             </tfoot>
           </table>

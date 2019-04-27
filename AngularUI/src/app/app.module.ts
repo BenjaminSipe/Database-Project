@@ -36,6 +36,9 @@ import { CatalogModalContainerComponent } from './catalog-modal-container/catalo
 import { BookViewComponent } from './book-view/book-view.component';
 import { AdminEditBookComponent } from './admin-edit-book/admin-edit-book.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { AdminOthersComponent } from './admin-others/admin-others.component';
+import { DataTableModule } from 'angular7-data-table';
+import { AuthorCardComponent } from './author-card/author-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +65,8 @@ import { EditBookComponent } from './edit-book/edit-book.component';
     BookViewComponent,
     AdminEditBookComponent,
     EditBookComponent,
-
+    AdminOthersComponent,
+    AuthorCardComponent,
 
   ],
   imports: [
@@ -71,6 +75,7 @@ import { EditBookComponent } from './edit-book/edit-book.component';
     AppRoutingModule,
     FormsModule,
     CustomFormsModule,
+    DataTableModule.forRoot(),
     NgbModule.forRoot(),
   ],
   entryComponents: [

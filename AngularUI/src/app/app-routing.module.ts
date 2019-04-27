@@ -18,6 +18,8 @@ import { ModalContainerComponent } from './modal-container/modal-container.compo
 import { CatalogModalContainerComponent } from './catalog-modal-container/catalog-modal-container.component';
 import { AdminEditBookComponent } from './admin-edit-book/admin-edit-book.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
+import { AdminOthersComponent } from './admin-others/admin-others.component';
+import { DataTableModule } from 'angular7-data-table';
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent},
@@ -35,6 +37,7 @@ const routes: Routes = [
   { path: 'admin/books/:id', component: ModalContainerComponent},
   { path: 'admin/books', component: AdminBooksComponent},
   { path: 'edituser', component: EdituserComponent},
+  { path: 'admin/other', component: AdminOthersComponent}
 ];
 
 @NgModule({

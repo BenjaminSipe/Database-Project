@@ -1,0 +1,160 @@
+<div class="container">
+    <div class="row">
+      <label for="bookTable">
+        <h3>Edit:</h3>
+      </label>
+    </div>
+      <div class="row">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-dark m-1" (click)="categoryCollapsed = !categoryCollapsed"
+            [attr.aria-expanded]="!categoryCollapsed" aria-controls="collapseCategory">
+              Categories
+            </button>
+            <button type="button" class="btn btn-dark m-1" (click)="authorCollapsed = !authorCollapsed"
+            [attr.aria-expanded]="!authorCollapsed" aria-controls="collapseAuthor">
+             Authors
+            </button>
+            <button type="button" class="btn btn-dark m-1" (click)="formatCollapsed = !formatCollapsed"
+            [attr.aria-expanded]="!formatCollapsed" aria-controls="collapseFormat">
+            Formats
+          </button>
+          <button type="button" class="btn btn-dark m-1" (click)="publisherCollapsed = !publisherCollapsed"
+          [attr.aria-expanded]="!publisherCollapsed" aria-controls="collapsePublisher">
+          Publishers
+        </button>
+      </div>
+      </div>
+  </div>
+  <div class="m-4">
+    <div id="collapseCategory" [ngbCollapse]="categoryCollapsed">
+      <div class="card">
+        <div class="card-body">
+            <table class="table table-hover" >
+                <thead>
+                  <tr>
+                    <th scope="col-1">#</th>
+                    <th scope="col-1">ID</th>
+                    <th scope="col">Category</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let c of bookCategories | slice: (cPage-1) * pageSize : (cPage-1) * pageSize + pageSize, let i = index">
+                            <td>{{ i+1 }}</td>
+                            <td>{{ c.CategoryID }}</td>
+                            <td>{{ c.CategoryName }}</td>
+                            <td>
+                              <a>Edit</a>
+                            </td>
+                          </tr>
+                </tbody>
+            </table>
+            <ngb-pagination
+            [(page)]="cPage"
+            [pageSize]="pageSize"
+            [collectionSize]="categoryCount">
+            </ngb-pagination>
+        </div>
+      </div>
+    </div>
+    <div id="collapseAuthor" [ngbCollapse]="authorCollapsed">
+        <div class="card">
+          <div class="card-body">
+              <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col-1">#</th>
+                      <th scope="col-1"></th>
+                      <th scope="col">Author</th>
+                      <th scope="col">Bio</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let a of bookAuthors | slice: (aPage-1) * pageSize : (aPage-1) * pageSize + pageSize, let i = index">
+                      <td>{{ i+1 }}</td>
+                      <td>
+                          <img [src]="a.ImageLink" class="img-responsive" height="130">
+                        </td>
+                      <td>{{ a.Name }}</td>
+                      <td>{{ a.Bio }}</td>
+                      <td>
+                        <a>Edit</a>
+                      </td>
+                    </tr>
+                  </tbody>
+              </table>
+              <ngb-pagination
+              [(page)]="aPage"
+              [pageSize]="pageSize"
+              [collectionSize]="authorCount">
+              </ngb-pagination>
+          </div>
+        </div>
+    </div>
+    <div id="collapseFormat" [ngbCollapse]="formatCollapsed">
+          <div class="card">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col-1">#</th>
+                        <th scope="col-1">ID</th>
+                        <th scope="col">Format</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let f of bookFormats, let i = index">
+                        <td>{{ i+1 }}</td>
+                        <td>{{ f.FormatID }}</td>
+                        <td>{{ f.FormatName }}</td>
+                        <td>
+                          <a>Edit</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+    </div>
+    <div id="collapsePublisher" [ngbCollapse]="publisherCollapsed">
+        <div class="card">
+          <div class="card-body">
+              <table class="table table-hover" >
+                  <thead>
+                    <tr>
+                      <th scope="col-1">#</th>
+                      <th scope="col-1">ID</th>
+                      <th scope="col">Publisher</th>
+                      <th scope="col">Contact Name</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                          <tr *ngFor="let p of bookPublishers | slice: (cPage-1) * pageSize : (cPage-1) * pageSize + pageSize, let i = index">
+                              <td>{{ i+1 }}</td>
+                              <td>{{ p.PublisherID }}</td>
+                              <td>{{ p.Name }}</td>
+                              <td>{{ p.ContactName }}</td>
+                              <td>{{ p.Address }}</td>
+                              <td>{{ p.PhoneNumber }}</td>
+                              <td>
+                                <a>Edit</a>
+                              </td>
+                            </tr>
+                  </tbody>
+              </table>
+              <ngb-pagination
+              [(page)]="pPage"
+              [pageSize]="pageSize"
+              [collectionSize]="publisherCount">
+              </ngb-pagination>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
