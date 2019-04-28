@@ -1,27 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { User } from '../user';
+import { Creditcard } from '../creditcard';
+import { GETService } from '../services/get.service';
+import { Subscription } from 'rxjs';
+import { Book } from '../book';
+import { Invoice } from '../invoice';
+import { POSTService } from '../services/post.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.sass']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
   user = new User();
+  invoice = new Invoice();
+  creditCards: Creditcard[] = [];
+  books: Book[] = [];
+  creditCard: Creditcard;
+  subscription: Subscription;
   productTotal;
   cartTotal;
   discount: boolean;
   selectedProducts;
-  constructor(userservice: UserService, router:Router) {
+  firstName;
+  lastName;
+  showDetails = false;
+  cardUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOoO5-jDGtrt4fxCsovzwpK-HvRGFDxm2UTUGwTr2O9U-8LScZ";
+  convertedToString: String;
+  constructor(userservice: UserService, private userService: UserService,
+              router: Router, private get: GETService, private post: POSTService) {
     this.user = userservice.user;
     console.log(this.user);
+    this.convertedToString = JSON.stringify(this.user);
+    console.log('string:'+this.convertedToString);
     this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];
     if (userservice.user.userID == undefined) {
-      router.navigate(["/login"]);
+      //router.navigate(["/login"]);
+      this.user.userID = 29;
+      this.user.name = "Ailen Sarmukhanova";
+      this.user.email = "ailensarmukhanova@gmail.com";
+      this.user.password = "password1234";
+      this.userService.login(this.user);
     }
     let str = this.user.name;
-    console.log(str.split(" "));
+    let newStr = [];
+    newStr = str.split(" ");
+    console.log()
+    this.firstName = newStr[0];
+    this.lastName = newStr[1];
+    this.subscription = get.getCreditCardByUser(userservice.user.userID).subscribe((obj) => {
+      for (let vl of obj) {
+        console.log(vl);
+        this.creditCards.push(vl);
+      }
+    });
     }
 
   ngOnInit() {
@@ -35,13 +69,53 @@ export class CheckoutComponent implements OnInit {
     this.cartTotal = cartTotal;
   }
 
+  placeOrder(order){
+    //console.log('Order: ' + order.cardID);
+    this.invoice.CardID = order.cardID;
+    this.invoice.discount = this.discount ? 10 : 0;
+    this.invoice.shippingAddress = this.convertAddress(order);;
+    this.invoice.Books = this.getItems();
+    console.log(this.invoice);
+    //this.post.createInvoice(this.invoice);
+
+  }
+
+  cardDetails(index:number) {
+    console.log(index);
+    this.creditCard = this.creditCards[index];
+    this.showDetails = true;
+  }
+
   getDiscount(){
-    console.log(this.discount);
+    //console.log(this.discount);
     return this.discount;
   }
-  getProductTotal(){
-
+  getProductTotal() {
     return this.productTotal = this.discount ? (this.productTotal - (this.productTotal*0.1)) : this.productTotal;
   }
+  getItems(){
+    this.selectedProducts.forEach(item => {
+      const bookToOrder = {
+        BookID: item.BookID,
+        FormatID: item.FormatID,
+        productCount: item.productCount
+      };
+      this.books.push(bookToOrder);
+  });
+    return this.books;
+  }
+
+  convertAddress(address){
+    let newAddress = '';
+    newAddress = address.firstName + ' ' + address.lastName + ' ' + address.address1 + ' ' +
+          address.address2 + ' ' + address.city + ' ' + address.state + ' ' + address.zip +
+          ' ' + address.phone;
+    return newAddress;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
 
 }

@@ -22,11 +22,12 @@ export class BookCardComponent implements OnInit{
   bookPrice: any;
   subscription : Subscription;
   bookToCart = {
-    BookID: "int",
-    Title: "string",
+    BookID: "i",
+    Title: "",
     ImageLink: "",
-    price: 20,
-    quantity: 20
+    FormatID: "",
+    price: 0,
+    quantity: 0
   };
 
   constructor(private getService : GETService, private postService: POSTService,
@@ -43,7 +44,8 @@ export class BookCardComponent implements OnInit{
     this.bookToCart.Title = this.book.Title;
     this.bookToCart.ImageLink = this.book.ImageLink;
     this.subscription = this.getService.getBookFormat(this.book.BookID)
-    .subscribe(format => {this.bookToCart.price = format[0].Price;
+    .subscribe(format => {this.bookToCart.FormatID = format[0].FormatID,
+                          this.bookToCart.price = format[0].Price;
                           this.bookToCart.quantity = format[0].Quantity;
     });
   }
@@ -58,7 +60,7 @@ export class BookCardComponent implements OnInit{
   let selectedProducts = localStorage.getItem('selectedProducts') ?
   JSON.parse(localStorage.getItem('selectedProducts')) : [];
   selectedProducts.map(items => {
-    console.log("items.BookID = " + items.BookID);
+    //console.log("items.BookID = " + items.BookID);
     if (items.BookID === this.bookToCart.BookID) {
        itemProductCount = items.productCount;
        itemProductCount +=1;

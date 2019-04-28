@@ -185,6 +185,19 @@ public ClearCart() {
 }
 
 public Checkout(){
+//   Body :
+// {
+//   "CreditCardID":ccID,
+//   "ShippingAddress":shippingAddress,
+//   "Discount":percentage,
+//   "Books": [
+//     {
+//       "BookID":bID,
+//       "FormatID":formatID,
+//       "Quantity":quantity
+//     }, . . .
+//   ]
+// }
 
 }
 public getLocalStorageData() {

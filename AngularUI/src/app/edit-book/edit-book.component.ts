@@ -62,6 +62,13 @@ export class EditBookComponent implements OnDestroy{
     .subscribe(author => {this.bookAuthor = author[0].AuthorID;
     });
 
+    this.subscription = this.getService.getBookFormat(this.id)
+    .subscribe(format => {this.bookFormatID = format[0].FormatID;
+                          this.bookFormatPrice = format[0].Price;
+                          this.bookFormatCost = format[0].Cost;
+                          this.bookFormatQuantity = format[0].Quantity;
+    });
+
 
   }
 

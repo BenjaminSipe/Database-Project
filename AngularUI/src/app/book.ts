@@ -1,7 +1,6 @@
 export class Book {
-  Title: string;
-  constructor( title
-  ) {
-    this.Title = title;
-  }
+  BookID: number;
+  FormatID: number;
+  productCount: number;
+  constructor() {}
 }

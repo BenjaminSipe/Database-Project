@@ -43,15 +43,19 @@ export class POSTService {
    createAuthor(author){
     return this.http.post(this.urlBase + 'createAuthor', author);
    }
-   createCart(datetime){
-     console.log("From service " + Object.values(datetime));
-     return this.http.post(this.urlBase + 'createCart', datetime);
-   }
+  //  createCart(datetime){
+  //    console.log("From service " + Object.values(datetime));
+  //    return this.http.post(this.urlBase + 'createCart', datetime);
+  //  }
    createCreditCard(creditCard: Creditcard){
     return this.http.post(this.urlBase + 'createCreditCard', creditCard);
   }
-  
+
   deleteCreditCard(creditCard: Creditcard){
     return this.http.delete(this.urlBase + 'deleteCreditCard/'+ creditCard.CreditCardID);
+  }
+
+  createInvoice(invoice){
+    return this.http.post(this.urlBase + 'CreatePurchase', invoice);
   }
 }
