@@ -15,12 +15,14 @@ Body :
 }
 */
 exports.CreateInvoice = function (body) {
+    console.log("Create Invoice")
     return new Promise((resolve, reject) => {
         let obj = [
-            body.CreditCardID,
-            body.ShippingAddress
+            body.CardID,
+            body.shippingAddress,
+            body.discount
         ];
-        dbInfo.pool.query('Call usp_CreateInvoice( ?, ? )', obj, function (err, rows, fields) {
+        dbInfo.pool.query('Call usp_CreateInvoice( ?, ?, ? )', obj, function (err, rows, fields) {
             if (err) {
                 console.log(err);
                 reject("Something Went Wrong");
@@ -36,7 +38,7 @@ exports.AddBook = function (book, InvoiceID) {
         dbInfo.pool.query("Call usp_CreateBookInvoice( ?, ? ,? ,? )", [
             book.BookID,
             book.FormatID,
-            book.Quantity,
+            book.productCount,
             InvoiceID
         ], function (err, rows, fields) {
             if (err) {

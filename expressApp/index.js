@@ -23,6 +23,13 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
+app.all("/testBody",(req, res) =>{
+  res.send(req.body);
+})
+app.all("/testParams",(req, res) =>{
+  res.send(req.params);
+})
+
 app.get('/', (req, res) => {
   fs.readFile('index.html', function(err, data) {
     res.writeHead(200, {'Content-Type': 'text/html'});
@@ -370,9 +377,11 @@ Body :
   ]
 }
 */
-app.post("/CreatePurchase", (req, res) => {
+app.post('/CreatePurchase', (req, res) => {
+  console.log("Create Purchase reached")
   purchase.CreateInvoice(req.body).then((message) => {
     req.body.InvoiceID = message;
+    
     //This is where I add all of the books
     let list = [];
     let book;
@@ -395,4 +404,4 @@ app.post("/CreatePurchase", (req, res) => {
 })
 
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Express API listening on port ${port}!`));

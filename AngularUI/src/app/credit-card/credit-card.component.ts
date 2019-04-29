@@ -42,14 +42,14 @@ export class CreditCardComponent implements OnInit {
       })
   }
 
-  cardDetails(index:number) {
+  cardDetails(index: number) {
     console.log(index);
     this.creditCard = this.creditCards[index];
     this.showDetails = true;
   }
 
-  deleteCard(card:Creditcard, index:number) {
-    let cc = this.creditCards.splice(index,1);
+  deleteCard(card: Creditcard, index: number) {
+    let cc = this.creditCards.splice(index, 1);
     this.post.deleteCreditCard(cc[0]);
   }
 
@@ -73,7 +73,7 @@ export class CreditCardComponent implements OnInit {
   }
   onClick() {
     if (this.validate()) {
-      //Save credit Card
+      // Save credit Card
     }
   }
 

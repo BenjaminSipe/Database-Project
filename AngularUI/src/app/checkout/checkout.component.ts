@@ -38,11 +38,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];
     if (userservice.user.userID == undefined) {
       //router.navigate(["/login"]);
-      this.user.userID = 29;
-      this.user.name = "Ailen Sarmukhanova";
-      this.user.email = "ailensarmukhanova@gmail.com";
-      this.user.password = "password1234";
-      this.userService.login(this.user);
+      // this.user.userID = 29;
+      // this.user.name = "Ailen Sarmukhanova";
+      // this.user.email = "ailensarmukhanova@gmail.com";
+      // this.user.password = "password1234";
+      // this.userService.login(this.user);
     }
     let str = this.user.name;
     let newStr = [];
@@ -76,7 +76,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.invoice.shippingAddress = this.convertAddress(order);;
     this.invoice.Books = this.getItems();
     console.log(this.invoice);
-    //this.post.createInvoice(this.invoice);
+    this.post.createInvoice(this.invoice);
 
   }
 
