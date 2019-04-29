@@ -23,6 +23,7 @@ import { DataTableModule } from 'angular7-data-table';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { EditPublisherComponent } from './edit-publisher/edit-publisher.component';
 import { EditFormatComponent } from './edit-format/edit-format.component';
+import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent},
@@ -42,7 +43,8 @@ const routes: Routes = [
   { path: 'edituser', component: EdituserComponent},
   { path: 'admin/other/author/:id', component: EditAuthorComponent},
   { path: 'admin/other/publisher/:id', component: EditPublisherComponent},
-  { path: 'admin/other', component: AdminOthersComponent}
+  { path: 'admin/other', component: AdminOthersComponent},
+  { path: 'order-success', component: ConfirmationPageComponent}
 ];
 
 @NgModule({
