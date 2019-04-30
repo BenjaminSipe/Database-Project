@@ -174,6 +174,7 @@ HandleCart(params){
   localStorage.setItem('productTotal', JSON.stringify(params.totalPrice));
   localStorage.setItem('selectedProducts', JSON.stringify(params.products));
   localStorage.setItem('selectedProductsCount', JSON.stringify(params.productTotal));
+
 }
 
 public ClearCart() {

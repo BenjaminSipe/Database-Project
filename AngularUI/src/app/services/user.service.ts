@@ -23,21 +23,28 @@ export class UserService {
         if (res[0].UserID == 0) {
           reject(false);
         } else {
+          this.getUser(res[0].userID).then((m) => {
+            resolve(m);
+          }).catch((m)=>reject(m));
 
-          this.http.get<User>(`http://localhost:3000/ReadUser/${res[0].userID}`,httpOptions)
-          .subscribe(res2 =>
-            {
+}})})}
+  getUser(userID) {
+    return new Promise((resolve, reject) => {
+      this.http.get<User>(`http://localhost:3000/ReadUser/${userID}`,httpOptions)
+      .subscribe(res2 =>
+        {
+          this.user = res2[0];
+          this.loginText = "Log Out";
+          this.userName = this.user.name;
+          this.user.name.trim;
+          let i = this.user.name.split(" ");
+          this.user.firstName = i[0];
+          this.user.lastName = i[i.length - 1];
+          localStorage.setItem("UserID", this.user.userID + "");
+          this.user.password = "";
+          resolve(true);
+})})}
 
-              this.user = res2[0];
-              this.loginText = "Log Out";
-              this.userName = this.user.name;
-              this.user.name.trim;
-              let i = this.user.name.split(" ");
-              this.user.firstName = i[0];
-              this.user.lastName = i[i.length - 1];
-              this.user.password = "";
-              resolve(true);
-  })}})})}
 
   changeUserInfo(inputs, update) {
     return new Promise((resolve, reject) => {
@@ -58,6 +65,7 @@ export class UserService {
     this.user = new User("", "");
     this.loginText="Login";
     this.userName = "Guest";
+    localStorage.setItem("UserID",0 + "");
 
   }
   postUser( user: User) {
@@ -72,12 +80,19 @@ export class UserService {
       reject("Failed");
     });})}
 
-  getUser():Observable<User[]> {
+  getUsers():Observable<User[]> {
     return this.http.get<User[]>("http://localhost:3000/readUsers");
   }
 
   constructor(private http: HttpClient) {
+    let l = localStorage.getItem("UserID");
+    if (l == undefined || l == "0")
     this.loginText = "Login";
+    else {
+      this.loginText = "Log out";
+      this.getUser(l);
+    }
+
   }
 
   putUser(u:User) {
@@ -91,6 +106,5 @@ export class UserService {
     {
       return "Successful";
     })
-
   }
 }

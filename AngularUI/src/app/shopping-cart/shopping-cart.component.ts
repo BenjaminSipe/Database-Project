@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -26,9 +27,13 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   removeItem(item){
+    
     this.cart.removeItemFromCart(item);
     console.log('removed...');
-    location.reload();
+    
+    this.selectedProducts = localStorage.getItem('selectedProducts') ?
+    JSON.parse(localStorage.getItem('selectedProducts')) : [];
+    
   }
 
   decreaseItem(item){
@@ -36,7 +41,11 @@ export class ShoppingCartComponent implements OnInit {
     this.cart.ChangeCount(item, false);
     const productTotal: number = localStorage.getItem('productTotal') ? parseFloat(localStorage.getItem('productTotal')) : 0;
     this.productTotal = productTotal;
-    location.reload();
+    this.selectedProducts = localStorage.getItem('selectedProducts') ?
+    JSON.parse(localStorage.getItem('selectedProducts')) : [];
+    
+    //location.reload();
+    //Example 2
 
   }
 
@@ -61,14 +70,23 @@ export class ShoppingCartComponent implements OnInit {
     this.cart.ChangeCount(item, true);
     const productTotal: number = localStorage.getItem('productTotal') ? parseFloat(localStorage.getItem('productTotal')) : 0;
     this.productTotal = productTotal;
-    location.reload();
+    this.selectedProducts = localStorage.getItem('selectedProducts') ?
+    JSON.parse(localStorage.getItem('selectedProducts')) : [];
+    
+    //location.reload();
+    //Example 3
   }
   }
 
   clearCart() {
     if(confirm("Are you sure you want to clear your cart?")){
-    location.reload();
-    return this.cart.ClearCart();
+    
+    
+    //location.reload();
+    //return 
+    this.selectedProducts = [];
+    this.cart.ClearCart();
+    //Example 4
     }
   }
 

@@ -34,9 +34,15 @@ exports.readCreditCard = function (index) {
     })
 }
 exports.createCreditCard = function (CreditCard) {
-    console.log(CreditCard);
-    dbInfo.pool.query('CALL usp_CreateCreditCard( ?,?,?,?,?,?,? )', CreditCard, function (err, rows, fields) {
-        if (err) throw (err);
+    creditCardp = CreditCard.CreditCardNumber + "";
+
+    creditCardp = creditCardp.substr(creditCardp.length - 4);
+    console.log(creditCardp + " " + CreditCard.CreditCardNumber);
+    list = [CreditCard.UserID, CreditCard.BillingAddress,
+    CreditCard.NameOnCard, CreditCard.ExpirationDate, creditCardp, CreditCard.CreditCardNumber, CreditCard.CCV]
+    console.log(list);
+    dbInfo.pool.query('CALL usp_CreateCreditCard( ?,?,?,?,?,?,? )', list, function (err, rows, fields) {
+        //if (err) throw (err);
     });
 }
 
