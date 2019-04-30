@@ -127,9 +127,9 @@
                 <div class="form-group col-md-2">
                     <label for="quantity">Quantity</label>
                     <div class="input-group mb-3">
-                      <input #quantity="ngModel"  [(ngModel)]="bookFormatQuantity" name="bookFormatQuantity" id="quantity" type="number" class="form-control" [range]="[1, 150]" required>
+                      <input #quantity="ngModel"  [(ngModel)]="bookFormatQuantity" name="bookFormatQuantity" id="quantity" type="number" class="form-control" [range]="[0, 150]" required>
                       <div class="alert alert-danger" *ngIf="quantity.touched && quantity.invalid">
-                          <div *ngIf="quantity?.errors?.range">Must be 1-150.</div>
+                          <div *ngIf="quantity?.errors?.range">Must be 0-150.</div>
                           <div *ngIf="quantity?.errors?.required">Required.</div>
                       </div>
                     </div>

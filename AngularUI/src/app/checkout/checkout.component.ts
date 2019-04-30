@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
 import { User } from '../user';
 import { Creditcard } from '../creditcard';
 import { GETService } from '../services/get.service';
@@ -8,6 +7,9 @@ import { Subscription } from 'rxjs';
 import { Book } from '../book';
 import { Invoice } from '../invoice';
 import { POSTService } from '../services/post.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ShoppingCartService } from '../services/shopping-cart.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -20,6 +22,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   books: Book[] = [];
   creditCard: Creditcard;
   subscription: Subscription;
+  order;
   productTotal;
   cartTotal;
   discount: boolean;
@@ -29,8 +32,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   showDetails = false;
   cardUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOoO5-jDGtrt4fxCsovzwpK-HvRGFDxm2UTUGwTr2O9U-8LScZ";
   convertedToString: String;
-  constructor(userservice: UserService, private userService: UserService,
-              router: Router, private get: GETService, private post: POSTService) {
+  constructor(userservice: UserService, private userService: UserService, private get: GETService,
+              private cart: ShoppingCartService, private modalService: NgbModal, private post: POSTService,
+              private router: Router) {
     this.user = userservice.user;
     console.log(this.user);
     this.convertedToString = JSON.stringify(this.user);
@@ -38,11 +42,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];
     if (userservice.user.userID == undefined) {
       //router.navigate(["/login"]);
-      // this.user.userID = 29;
-      // this.user.name = "Ailen Sarmukhanova";
-      // this.user.email = "ailensarmukhanova@gmail.com";
-      // this.user.password = "password1234";
-      // this.userService.login(this.user);
+      this.user.userID = 29;
+      this.user.name = "Ailen Sarmukhanova";
+      this.user.email = "ailensarmukhanova@gmail.com";
+      this.user.password = "password1234";
+      this.userService.login(this.user);
     }
     let str = this.user.name;
     let newStr = [];
@@ -69,15 +73,21 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.cartTotal = cartTotal;
   }
 
-  placeOrder(order){
-    //console.log('Order: ' + order.cardID);
+  placeOrder(order, content, confirm){
+    if(!confirm) {
+    this.order = order;
+    this.modalService.open(content, { centered: true, size: 'lg' });
+    } else if (confirm) {
     this.invoice.CardID = order.cardID;
     this.invoice.discount = this.discount ? 10 : 0;
     this.invoice.shippingAddress = this.convertAddress(order);;
     this.invoice.Books = this.getItems();
-    console.log(this.invoice);
+    //console.log(this.invoice);
     this.post.createInvoice(this.invoice);
-
+    this.modalService.dismissAll();
+    this.cart.ClearCart();
+    this.router.navigate(['/order-success']);
+    }
   }
 
   cardDetails(index:number) {

@@ -1,4 +1,4 @@
-    <div class="container">
+<div class="container">
   <div class="text-center">
     <h2>Checkout</h2>
   </div>
@@ -28,7 +28,7 @@
           <strong>{{ productTotal | currency:'USD':true}}</strong>
         </li>
       </ul>
-
+<!--
       <form class="card p-2">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Promo code">
@@ -36,12 +36,12 @@
             <button type="submit" class="btn btn-secondary">Redeem</button>
           </div>
         </div>
-      </form>
+      </form> -->
     </div>
 
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">1. Shipping Address</h4>
-      <form #Order="ngForm" (ngSubmit)="placeOrder(Order.value)">
+      <form #Order="ngForm" >
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
@@ -183,9 +183,46 @@
         </table>
         <pre></pre>
         <hr class="mb-4">
-        <button class="btn btn-dark btn-lg btn-block" type="submit">Continue to checkout</button>
+        <button class="btn btn-dark btn-lg btn-block" type="submit" data-toggle="tooltip" (click)="placeOrder(Order.value, confirm, false)">Confirm and Checkout</button>
       </form>
     </div>
   </div>
 </div>
 
+<ng-template #confirm let-modal>
+<div class="modal-lg">
+    <div class="modal-header">
+        <h4 class="modal-title">Order Summary</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <div class="modal-body">
+        <div class="row">
+          <div class="col-4">
+              <h5 class="mb-3">1. Shipping Address</h5>
+              <p> {{order.firstName}} {{order.lastName}}</p>
+              <p> {{order.address1}}</p>
+              <p *ngIf="order.address2"> {{order.address2}}</p>
+              <p> {{order.city}}, {{order.state}}, {{order.zip}}</p>
+              <p *ngIf="order.phone"> {{order.phone}}</p>
+              <p *ngIf="order.email"> {{order.email}}</p>
+          </div>
+          <div class="col-4">
+              <h5 class="mb-3">2. Payment Method</h5>
+              <p >Cardholder: {{ creditCard.NameOnCard }}</p>
+              <p >Ends with: {{creditCard.CreditCardPrompt}}</p>
+              <p >Expires: {{ creditCard.ExpirationDate }}</p>
+          </div>
+          <div class="col-4">
+              <h5 class="mb-3">3. Cart</h5>
+              <p *ngFor="let s of selectedProducts">{{ s.Title }}</p>
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <h6>Total: ${{ getProductTotal() }}</h6>
+        <button class="btn btn-dark" (click)="placeOrder(Order.value, confirm, true)">Place Order</button>
+        </div>
+</div>
+</ng-template>
