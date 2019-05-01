@@ -32,7 +32,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   showDetails = false;
   cardUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOoO5-jDGtrt4fxCsovzwpK-HvRGFDxm2UTUGwTr2O9U-8LScZ";
   convertedToString: String;
-  constructor(userservice: UserService, private userService: UserService, private get: GETService,
+  constructor(private userservice: UserService, private get: GETService,
               private cart: ShoppingCartService, private modalService: NgbModal, private post: POSTService,
               private router: Router) {
     this.user = userservice.user;
@@ -40,13 +40,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.convertedToString = JSON.stringify(this.user);
     console.log('string:'+this.convertedToString);
     this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];
-    if (userservice.user.userID == undefined) {
+    if (!userservice.isLoggedIn()) {
       //router.navigate(["/login"]);
       this.user.userID = 29;
       this.user.name = "Ailen Sarmukhanova";
       this.user.email = "ailensarmukhanova@gmail.com";
       this.user.password = "password1234";
-      this.userService.login(this.user);
+      this.userservice.login(this.user);
     }
     let str = this.user.name;
     let newStr = [];

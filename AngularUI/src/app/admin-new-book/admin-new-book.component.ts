@@ -7,6 +7,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-admin-new-book',
@@ -36,12 +37,16 @@ export class AdminNewBookComponent{
   books$;
   submit:boolean = false;
   constructor(private getService : GETService, private postService:POSTService,
-              private modalService: NgbModal, private router: Router) {
-    this.categories$ = getService.getCategories();
-    this.formats$ = getService.getFormats();
-    this.publishers$ = getService.getPublishers();
-    this.authors$ = getService.getAuthors();
-   }
+              private modalService: NgbModal, private router: Router, userservice:UserService) {
+    if (userservice.isAdmin()) {
+      this.categories$ = getService.getCategories();
+      this.formats$ = getService.getFormats();
+      this.publishers$ = getService.getPublishers();
+      this.authors$ = getService.getAuthors();
+    } else {
+      router.navigateByUrl("/login");
+    }
+  }
 
    //SAVE
    saveBook(newBook){

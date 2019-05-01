@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <div class="row ">
+      <label for="userTable">
+        <h3 class="p-3">User List:</h3>
+      </label>
+    </div>
+    <div class="row-fluid">
+      <p>
+        <input #query
+        (keyup)="filter(query.value)" class="form-control" type="text"  placeholder=" Search for User...">
+      </p>
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col-1">#</th>
+                <th scope="col-1">UserID</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Home Phone</th>
+                <th scope="col">Work Phone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Administator</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let u of filteredUsers; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ u.UserID }}</td>
+                <td>{{ u.Name }}</td>
+                <td>{{ u.HomePhone }}</td>
+                <td>{{ u.WorkPhone }}</td>
+                <td>{{ u.Email }}</td>
+                <td>{{ u.UserLevel == 2}}</td>
+                <!-- <td>
+                  <a [routerLink]="['/admin/books/', b.BookID]">Details</a>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+  
+  
+  

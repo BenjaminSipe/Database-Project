@@ -54,7 +54,9 @@ export class POSTService {
   }
 
   deleteCreditCard(creditCard: Creditcard){
-    return this.http.delete(this.urlBase + 'deleteCreditCard/'+ creditCard.CreditCardID);
+    return this.http.delete(this.urlBase + 'deleteCreditCard/'+ creditCard.CreditCardID).subscribe((obj) => {
+      console.log(obj);
+    });
   }
 
   createInvoice(invoice){

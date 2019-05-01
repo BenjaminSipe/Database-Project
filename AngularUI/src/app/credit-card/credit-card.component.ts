@@ -22,10 +22,6 @@ export class CreditCardComponent implements OnInit {
     creditCard:Creditcard;
     newCard = new Creditcard();
     address;
-    
-
-  
-
     error = ["","","","","","","","",""]
     showDetails = false;
     newCardPage=false;
@@ -58,6 +54,7 @@ export class CreditCardComponent implements OnInit {
 
   deleteCard(card: Creditcard, index: number) {
     let cc = this.creditCards.splice(index, 1);
+    console.log(cc);
     this.post.deleteCreditCard(cc[0]);
   }
 

@@ -4,6 +4,8 @@ import { GETService } from '../services/get.service';
 import { DataTableResource } from 'angular7-data-table';
 import { Category } from '../category';
 import { PUTService } from '../put.service';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-others',
@@ -42,7 +44,9 @@ export class AdminOthersComponent implements OnInit, OnDestroy {
   authorCollapsed = true;
   formatCollapsed = true;
   publisherCollapsed = true;
-  constructor(private getService: GETService, private putService: PUTService) {
+  constructor(private getService: GETService, private putService: PUTService, userservice:UserService, router:Router) {
+    if (userservice.isAdmin()) {
+
     this.subscription = this.getService.getFormats()
     .subscribe(bookFormats => {this.bookFormats = Object.values(bookFormats)
                                this.formatCount = Object.keys(bookFormats).length;});
@@ -56,6 +60,9 @@ export class AdminOthersComponent implements OnInit, OnDestroy {
     .subscribe(bookAuthors => {this.bookAuthors = Object.values(bookAuthors);
                                this.authorCount = Object.keys(bookAuthors).length});
     });
+  } else {
+    router.navigateByUrl("/login");
+  }
     }
 
   // reloadItems(params) {

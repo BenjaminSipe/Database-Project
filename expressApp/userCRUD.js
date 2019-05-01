@@ -25,9 +25,10 @@ exports.readUsers = function () {
     dbInfo.pool.query('CALL usp_ReadUsers()', function (err, rows, fields) {
       if (err)
         reject('{"error":"No Users Found"}');
-      else
+      else {
+        //console.log(rows[0]);
         resolve(rows[0])
-    });
+    }});
   })
 }
 

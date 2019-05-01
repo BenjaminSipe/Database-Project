@@ -31,6 +31,10 @@ export class GETService {
   getAuthors(){
     return this.http.get(this.url + 'readAuthors');
   }
+
+  getUsers() {
+    return this.http.get(this.url + 'ReadUsers');
+  }
   getFormats(){
     return this.http.get(this.url + 'readFormats');
   }

@@ -10,9 +10,10 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
   appTitle = 'myapp';
   cartTotal;
-  constructor(public userservice : UserService, private router: Router) {
 
+  constructor(public userservice : UserService, private router: Router) {
   }
+
 
   myProfile() {
     this.router.navigate(["/userprofile"]);
@@ -28,7 +29,9 @@ export class NavComponent implements OnInit {
   adminOther() {
     this.router.navigate(['/admin/other']);
   }
-
+  adminUsers() {
+    this.router.navigate(['/admin/users']);
+  }
   login() {
     if (this.userservice.user.userID == undefined) {
       this.router.navigate(["/login"]);

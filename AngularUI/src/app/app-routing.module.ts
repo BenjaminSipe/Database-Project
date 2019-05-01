@@ -19,6 +19,7 @@ import { CatalogModalContainerComponent } from './catalog-modal-container/catalo
 import { AdminEditBookComponent } from './admin-edit-book/admin-edit-book.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { AdminOthersComponent } from './admin-others/admin-others.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { DataTableModule } from 'angular7-data-table';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
 import { EditPublisherComponent } from './edit-publisher/edit-publisher.component';
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'admin/books/edit', component: AdminEditBookComponent},
   { path: 'admin/books/:id', component: ModalContainerComponent},
   { path: 'admin/books', component: AdminBooksComponent},
+  { path: 'admin/users', component: AdminUsersComponent},
   { path: 'edituser', component: EdituserComponent},
   { path: 'admin/other/author/:id', component: EditAuthorComponent},
   { path: 'admin/other/publisher/:id', component: EditPublisherComponent},

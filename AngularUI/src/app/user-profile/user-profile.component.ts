@@ -17,16 +17,23 @@ export class UserProfileComponent implements OnInit {
   error = ["", ""];
   constructor(private userservice: UserService,
               private router: Router) { 
-    if (this.userservice.user.userID == undefined) {
+    if (!userservice.isLoggedIn()) {
       this.router.navigate(['/login']);
     } else {
       this.user = new User();
-      this.addUserContents();
+      userservice.getUser(localStorage.getItem('UserID')).then((message) => {
+        this.addUserContents();
+      }).catch((m) =>{
+        this.router.navigate(["/login"]);
+      })
       this.showEdit = false;
     }     
   }
 
   addUserContents() {
+    while (this.userservice.user == undefined) {
+
+    }
     if (this.u == undefined) {
       this.u = this.userservice.user;
     }

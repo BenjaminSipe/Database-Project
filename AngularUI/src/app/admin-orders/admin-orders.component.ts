@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-orders',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminOrdersComponent implements OnInit {
 
-  constructor() { }
+  constructor(userservice:UserService, router:Router) { 
+    if (userservice.isAdmin()) {
+
+    } else {
+      router.navigateByUrl("/login");
+    }
+
+  }
 
   ngOnInit() {
   }

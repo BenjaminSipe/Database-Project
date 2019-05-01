@@ -7,6 +7,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PUTService } from '../put.service';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -37,7 +38,9 @@ export class EditBookComponent implements OnDestroy{
   date: string;
 
   constructor(private getService : GETService, private putService: PUTService,
-              private modalService: NgbModal, private router: Router, private route: ActivatedRoute) {
+              private modalService: NgbModal, private router: Router, private route: ActivatedRoute,
+              private userservice:UserService) {
+                if (userservice.isAdmin()) {
     this.categories$ = getService.getCategories();
     this.formats$ = getService.getFormats();
     this.publishers$ = getService.getPublishers();
@@ -70,7 +73,10 @@ export class EditBookComponent implements OnDestroy{
     });
 
 
+  } else {
+    router.navigate(["/login"]);
   }
+}
 
    //SAVE
    editBook(newBook){

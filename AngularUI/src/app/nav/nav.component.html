@@ -17,11 +17,12 @@
       <li ngbDropdown class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{userservice.userName}}</a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" (click)="myProfile()">My Profile</a>
-          <a class="dropdown-item" (click)="adminBooks()">Admin Books</a>
-          <a class="dropdown-item" (click)="adminOther()">Admin Other</a>
-          <a class="dropdown-item" (click)="myOrders()">My Orders</a>
           <a class="dropdown-item" (click)="login()">{{userservice.loginText}}</a>
+          <a class="dropdown-item" *ngIf="userservice.isLoggedIn()" (click)="myProfile()">My Profile</a>
+          <a class="dropdown-item" *ngIf="userservice.isLoggedIn()" (click)="myOrders()">My Orders</a>
+          <a class="dropdown-item" *ngIf="userservice.isAdmin()" (click)="adminBooks()">Admin Books</a>
+          <a class="dropdown-item" *ngIf="userservice.isAdmin()" (click)="adminUsers()">Admin Users</a>
+          <a class="dropdown-item" *ngIf="userservice.isAdmin()" (click)="adminOther()">Admin Other</a>
         </div>
       </li>
     </ul>

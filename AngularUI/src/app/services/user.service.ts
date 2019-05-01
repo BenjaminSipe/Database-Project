@@ -15,6 +15,15 @@ export class UserService {
   userName = "Guest";
   loginText = "Login";
   changePassword = false;
+
+  isLoggedIn() {
+    return !(localStorage.getItem("UserID") == "0" || localStorage.getItem("UserID") == undefined);
+  }
+
+  isAdmin() {
+    return (localStorage.getItem("UserLevel") == "2");
+  }
+
   login(user:User) {
     return new Promise((resolve, reject) => {
       this.http.post("http://localhost:3000/authUser", user, httpOptions)
@@ -36,11 +45,17 @@ export class UserService {
           this.user = res2[0];
           this.loginText = "Log Out";
           this.userName = this.user.name;
+          
+          
           this.user.name.trim;
           let i = this.user.name.split(" ");
           this.user.firstName = i[0];
           this.user.lastName = i[i.length - 1];
+          
+          localStorage.setItem("UserLevel", this.user.userLevel);
           localStorage.setItem("UserID", this.user.userID + "");
+          
+          
           this.user.password = "";
           resolve(true);
 })})}
@@ -66,6 +81,7 @@ export class UserService {
     this.loginText="Login";
     this.userName = "Guest";
     localStorage.setItem("UserID",0 + "");
+    localStorage.setItem("UserLevel", "0");
 
   }
   postUser( user: User) {

@@ -2,8 +2,8 @@ var mysql = require('mysql')
 
 exports.connectionString = {
     host     : 'db.cberkstresser.name',
-    user     : 'benandailendev',
-    password : 'Development2',
+    user     : 'benandailenapp',
+    password : 'Development1',
     database : 'teambenandailen'
 }
 

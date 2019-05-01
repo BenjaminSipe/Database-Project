@@ -239,7 +239,7 @@ app.post('/CreateCreditCard', (req, res) => {
   res.send("Credit Card added");
 })
 
-app.delete('/DeleteCreditCard/id', (req, res) =>{
+app.delete('/DeleteCreditCard/:id', (req, res) =>{
   creditCard.deleteCreditCard(req.params.id);
   res.send("CreditCard Deleted");
 })
