@@ -26,6 +26,10 @@ export class NavComponent implements OnInit {
     this.router.navigate(['/admin/books']);
   }
 
+  adminBookInvoice() {
+    this.router.navigate(['/admin/invoice']);
+  }
+
   adminOther() {
     this.router.navigate(['/admin/other']);
   }

@@ -7,21 +7,22 @@
                 <div class="form-group col-md-6">
                   <label for="title">Title</label>
                   <input #bookTitle="ngModel" ngModel name="title" id="title" type="text" class="form-control" required>
-                  <div class="alert alert-danger" *ngIf="bookTitle.touched && bookTitle.invalid">Title is required.</div>
+                  <div class="text-danger" *ngIf="bookTitle.touched && bookTitle.invalid">Title is required.</div>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="title">ISBN-13</label>
-                  <input #isbn="ngModel" ngModel name="Isbn13" id="title" type="number" class="form-control" minlength="13" maxlength="13" required>
-                  <div class="alert alert-danger" *ngIf="isbn.touched && isbn.invalid">
+                  <input #isbn="ngModel" ngModel name="Isbn13" id="title" type="text" class="form-control" minlength="13" maxlength="13" required>
+                  <div class="text-danger" *ngIf="isbn.touched && isbn.invalid">
                       <div *ngIf="isbn?.errors?.minlength ||isbn?.errors?.maxlength">Must have 13 digits.</div>
                       <div *ngIf="isbn?.errors?.required">Required.</div>
+
                   </div>
                 </div>
               </div>
               <div class="form-group">
                   <label for="imageUrl">Image URL</label>
                   <input #imageUrl="ngModel" ngModel name="imageUrl" id="imageUrl" type="text" class="form-control" url required>
-                  <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+                  <div class="text-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
                       <div *ngIf="imageUrl?.errors?.url">Invalid URL.</div>
                       <div *ngIf="imageUrl?.errors?.required">Required.</div>
                   </div>
@@ -34,18 +35,18 @@
                             <button class="btn btn-outline-dark" type="button" data-toggle="tooltip" data-placement="left" title="Add New Publisher" (click)="addNew(newPublisher)">+</button>
                           </div>
                           <select #publisher="ngModel" ngModel name="publisher" id="publisher"  class="form-control"required>
-                              <div class="alert alert-danger" *ngIf="publisher.touched && publisher.invalid">Publisher is required.</div>
+                              <div class="text-danger" *ngIf="publisher.touched && publisher.invalid">Publisher is required.</div>
                             <option *ngFor="let p of publishers$ | async" [value]="p.PublisherID">
                               {{ p.Name }}
                             </option>
                           </select>
                       </div>
-                      <div class="alert alert-danger" *ngIf="publisher.touched && publisher.invalid">Publisher is required.</div>
+                      <div class="text-danger" *ngIf="publisher.touched && publisher.invalid">Publisher is required.</div>
                   </div>
                   <div class="form-group col-md-5">
                     <label for="publication-date">Publiction Date</label>
                     <input  #publicationDate="ngModel" ngModel name="date" id="date" class="form-control" type="date" required>
-                    <div class="alert alert-danger" *ngIf="publicationDate.touched && publicationDate.invalid">Publication Date is required.</div>
+                    <div class="text-danger" *ngIf="publicationDate.touched && publicationDate.invalid">Publication Date is required.</div>
                   </div>
               </div>
               <div class="form-row">
@@ -61,7 +62,7 @@
                             </option>
                           </select>
                       </div>
-                      <div class="alert alert-danger" *ngIf="author.touched && author.invalid">Author is required.</div>
+                      <div class="text-danger" *ngIf="author.touched && author.invalid">Author is required.</div>
                   </div>
                   <div class="form-group col-md-6">
                       <label for="category">Category</label>
@@ -75,7 +76,7 @@
                             </option>
                           </select>
                       </div>
-                      <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Category is required.</div>
+                      <div class="text-danger" *ngIf="category.touched && category.invalid">Category is required.</div>
                   </div>
               </div>
               <div class="form-row">
@@ -91,7 +92,7 @@
                             </option>
                           </select>
                       </div>
-                      <div class="alert alert-danger" *ngIf="format.touched && format.invalid">Format is required.</div>
+                      <div class="text-danger" *ngIf="format.touched && format.invalid">Format is required.</div>
                   </div>
                   <div class="form-group col-md-2">
                       <label for="price">Price</label>
@@ -101,7 +102,7 @@
                         </div>
                         <input #bookPrice="ngModel" ngModel name="formatPrice"
                         id="price" type="number" class="form-control" [min]="1" required>
-                        <div class="alert alert-danger" *ngIf="bookPrice.touched && bookPrice.invalid">
+                        <div class="text-danger" *ngIf="bookPrice.touched && bookPrice.invalid">
                             <div *ngIf="bookPrice?.errors?.min">Must be more than 0.</div>
                             <div *ngIf="bookPrice?.errors?.required">Required.</div>
                         </div>
@@ -114,7 +115,7 @@
                         <span class="input-group-text">$</span>
                       </div>
                       <input #bookCost="ngModel" ngModel name="formatCost" id="cost" type="number" class="form-control" [min]="1" required>
-                      <div class="alert alert-danger" *ngIf="bookCost.touched && bookCost.invalid">
+                      <div class="text-danger" *ngIf="bookCost.touched && bookCost.invalid">
                           <div *ngIf="bookCost?.errors?.min">Must be more than 0.</div>
                           <div *ngIf="bookCost?.errors?.required">Required.</div>
                       </div>
@@ -124,7 +125,7 @@
                       <label for="quantity">Quantity</label>
                       <div class="input-group mb-3">
                         <input #quantity="ngModel" ngModel name="formatQuantity" id="quantity" type="number" class="form-control" [range]="[1, 150]" required>
-                        <div class="alert alert-danger" *ngIf="quantity.touched && quantity.invalid">
+                        <div class="text-danger" *ngIf="quantity.touched && quantity.invalid">
                             <div *ngIf="quantity?.errors?.range">Must be 1-150.</div>
                             <div *ngIf="quantity?.errors?.required">Required.</div>
                         </div>

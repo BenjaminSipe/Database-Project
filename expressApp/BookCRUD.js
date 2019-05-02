@@ -20,6 +20,26 @@ exports.readBooks = function() {
           resolve(rows[0])
       });
   })}
+  exports.readBooksInvoice = function() {
+    return new Promise( (resolve, reject) => {
+    dbInfo.pool.query('CALL usp_ReadBooksInvoice()', function (err, rows, fields) {
+        if (err)
+          reject('Something went wrong.');
+        else
+          resolve(rows[0])
+      });
+  })}
+  exports.readBookInvoice = function(id) {
+    return new Promise( (resolve, reject) => {
+      //console.log(id);
+    dbInfo.pool.query(`CALL usp_ReadBookInvoice( ${id} )`, function (err, rows, fields) {
+        if (err) {
+          console.log(err);
+          reject('{"error":"No Book Invoice Found"}');}
+        else
+          resolve(rows[0])
+      });
+  })}
   exports.readBookFormats = function() {
     return new Promise( (resolve, reject) => {
     dbInfo.pool.query('CALL usp_ReadBookFormats()', function (err, rows, fields) {
@@ -155,6 +175,7 @@ exports.readBooks = function() {
   }
   exports.createBookCategory = function(newBookCategory) {
     //console.log("This is new book category: " + newBookCategory);
+
       dbInfo.pool.query('CALL usp_CreateBookCategory("'+newBookCategory.BookID+'", "'+newBookCategory.CategoryID+'")', function (err, rows, fields) {
         if (err) throw(err);
         else console.log(rows[0]);

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <div class="mx-auto">
     <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top justify-content-center">
         <a class="navbar-brand" routerLink="/">READ</a>
@@ -34,3 +35,39 @@
     </nav>
 </div>
 
+=======
+<div >
+    <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top">
+        <a class="navbar-brand" routerLink="/">Bookstore</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/books">Books</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/shopping-cart">Cart
+                  <span class="badge badge-dark">{{ getCartItems() }}</span>
+                </a>
+              </li>
+            <li ngbDropdown class="nav-item dropdown">
+              <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{userservice.userName}}</a>
+              <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+                <a class="dropdown-item" (click)="login()">{{userservice.loginText}}</a>
+                <a class="dropdown-item" *ngIf="userservice.isLoggedIn()" (click)="myProfile()">My Profile</a>
+                <a class="dropdown-item" *ngIf="userservice.isLoggedIn()" (click)="myOrders()">My Orders</a>
+                <a class="dropdown-item" *ngIf="userservice.isAdmin()" (click)="adminBooks()">Admin Books</a>
+                <a class="dropdown-item" *ngIf="userservice.isAdmin()" (click)="adminBookInvoice()">Admin Invoice</a>
+                <a class="dropdown-item" *ngIf="userservice.isAdmin()" (click)="adminUsers()">Admin Users</a>
+                <a class="dropdown-item" *ngIf="userservice.isAdmin()" (click)="adminOther()">Admin Other</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+</div>
+>>>>>>> Stashed changes

@@ -44,6 +44,7 @@ import { EditPublisherComponent } from './edit-publisher/edit-publisher.componen
 import { EditFormatComponent } from './edit-format/edit-format.component';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { AdminInvoiceComponent } from './admin-invoice/admin-invoice.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +78,7 @@ import { AdminUsersComponent } from './admin-users/admin-users.component';
     EditFormatComponent,
     ConfirmationPageComponent,
     AdminUsersComponent,
+    AdminInvoiceComponent,
 
   ],
   imports: [

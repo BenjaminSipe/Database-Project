@@ -162,8 +162,21 @@ app.get('/readBook/:id', (req, res) =>
     res.send(message)
   })
 });
-
-
+app.get('/readBooksInvoice', (req, res) => {
+  book.readBooksInvoice().then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
+app.get('/readBookInvoice/:id', (req, res) =>
+{
+  book.readBookInvoice(req.params.id).then( (message) => {
+    res.send(message);
+  }).catch( (message) => {
+    res.send(message)
+  })
+});
 app.get('/readAuthors', (req, res) => {
   book.readAuthors().then( (message) => {
     res.send(message);

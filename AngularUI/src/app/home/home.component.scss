@@ -12,3 +12,33 @@ img{
 //   background-size: cover;
 //   -o-background-size: cover;
 // }
+=======
+html {
+  margin-left: 0px;
+  padding-left: 0px;
+}
+img {
+  -webkit-filter: grayscale(80%);
+  filter: grayscale(80%); /* make all photos black and white */
+  width: 100%; /* Set width to 100% */
+  height: auto;
+  // display: block;
+  // //padding-block-end: 0%;
+  // padding-block-start: 0%;
+  // margin-block-start: 0%;
+  // margin-right: 0;
+}
+
+.ml-n1 {
+  margin-left: -7.8rem !important;
+}
+
+.bg-image-full {
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+
+}
+>>>>>>> Stashed changes

@@ -82,5 +82,11 @@ export class GETService {
   getCreditCardNumber(creditCard:Creditcard){
     return this.http.get(`http://localhost:3000/readCreditCardNumber/${creditCard.CreditCardID}/${creditCard.CCV}`, httpOptions);
   }
+  getBooksInvoice(){
+    return this.http.get(this.url + 'readBooksInvoice');
+  }
+  getBookInvoice(id){
+    return  this.http.get(`http://localhost:3000/readBookInvoice/${id}`);;
+  }
 
 }

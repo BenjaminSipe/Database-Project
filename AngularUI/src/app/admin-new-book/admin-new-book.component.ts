@@ -50,7 +50,8 @@ export class AdminNewBookComponent{
 
    //SAVE
    saveBook(newBook){
-     console.log("saving..." +newBook)
+     console.log("saving keys..." +Object.keys(newBook));
+     console.log("saving values..." +Object.values(newBook));
      this.postService.createBook(newBook).subscribe((response)=>{
       console.log('response from post data is ', response);
       console.log(response[0].BookID);
@@ -71,7 +72,7 @@ export class AdminNewBookComponent{
     }
     );
      this.router.navigate(['/admin/books']);
-     location.reload();
+     //location.reload();
    }
    saveBookCategory(nbc){
     this.postService.createBookCategory(nbc).subscribe((response)=>{
@@ -109,6 +110,7 @@ export class AdminNewBookComponent{
   savePublisher(newPublisher){
     this.postService.createPublisher(newPublisher).subscribe((response)=>{
      console.log('response from post data is ', response);
+     this.publishers$ = this.getService.getPublishers();
      this.submit = true;
    },(error)=>{
      console.log('error during post is ', error)
@@ -133,7 +135,7 @@ export class AdminNewBookComponent{
     console.log(newAuthor.newAuthorBio);
     this.postService.createAuthor(newAuthor).subscribe((response)=>{
      console.log('response from post data is ', response);
-     this.authors$ = this.getService.getFormats();
+     this.authors$ = this.getService.getAuthors();
      this.submit = true;
    },(error)=>{
      console.log('error during post is ', error);
