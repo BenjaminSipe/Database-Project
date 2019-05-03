@@ -1,60 +1,52 @@
-<h3 class="text-center">Book Catalog</h3>
-<div class="row">
-  <div class="col-md-3">
-    <div class="sticky-top">
-        <ul class="list-group-flush">
-            <li
-            routerLink="/books"
-            class="list-group-item list-group-item-action"
-            [class.active]="category === null">
-               All
-            </li>
-            <li *ngFor="let c of categories$ | async"
-            routerLink="/books"
-            [queryParams]="{ category : c.CategoryName }"
-            class="list-group-item list-group-item-action"
-            [class.active]="category == c.CategoryName">
-               {{ c.CategoryName }}
-            </li>
-            <li class="list-group-item">
-                <input #query
-                (keyup)="filter(query.value)" class="form-control" type="text"  placeholder=" Search for Book...">
-            </li>
-         </ul>
-    </div>
-  </div>
-  <div class="col-md">
-      <ngb-pagination
-      class="d-flex flex-row-reverse justify-content-start"
-      [(page)]="page"
-      [pageSize]="pageSize"
-      [collectionSize]="count">
-      </ngb-pagination>
-      <div class="d-flex flex-row-reverse justify-content-center">
-          <div class="card-columns">
-          <div *ngFor="let b of filteredBooks | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i = index">
-            <div class="col">
-                <book-card [book]="b"></book-card>
-
-          </div>
-          </div>
-          </div>
->>>>>>> Stashed changes
+<div class="container">
+    <h3 class="text-center">BOOK CATALOG</h3>
+    <h5 class="text-center">Discount 10% on orders from $75.</h5>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="sticky-top">
+            <ul class="list-group-flush">
+                <li
+                routerLink="/books"
+                class="list-group-item list-group-item-action"
+                [class.active]="category === null">
+                   All
+                </li>
+                <li *ngFor="let c of categories$ | async"
+                routerLink="/books"
+                [queryParams]="{ category : c.CategoryName }"
+                class="list-group-item list-group-item-action"
+                [class.active]="category == c.CategoryName">
+                   {{ c.CategoryName }}
+                </li>
+                <li class="list-group-item">
+                    <input #query
+                    (keyup)="filter(query.value)" class="form-control" type="text"  placeholder=" Search for book...">
+                </li>
+             </ul>
         </div>
       </div>
       <div class="col-md">
-          <div class="row">
+          <div class="d-flex flex-row-reverse justify-content-start pl-4 pr-4">
+              <ngb-pagination
+              [(page)]="page"
+              [pageSize]="pageSize"
+              [collectionSize]="count">
+              </ngb-pagination>
+              <input #query
+              (keyup)="filter(query.value)" class="form-control" type="text"  placeholder=" Search for book...">
+          </div>
+          <div class="d-flex flex-row-reverse justify-content-center">
               <div class="card-columns">
-              <div *ngFor="let b of filteredBooks; let i = index">
+              <div *ngFor="let b of filteredBooks | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i = index">
                 <div class="col">
-                  <div class="container">
                     <book-card [book]="b"></book-card>
-                  </div>
+
               </div>
               </div>
               </div>
             </div>
-      </div>
+          </div>
     </div>
 </div>
+
 

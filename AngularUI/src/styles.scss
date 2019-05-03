@@ -4,12 +4,10 @@
 body, html {
     // height: 100%;
     // margin: 0 auto;
-    padding-top: 85px;
-    padding-bottom: 85px;
-<<<<<<< Updated upstream
+    //padding-top: 85px;
+    //padding-bottom: 85px;
     font-family: 'Spectral', serif;
-=======
->>>>>>> Stashed changes
+    background-color: white;
     // padding-left: 85px;
     // padding-right: 85px; //FIX RESIZE
     //silk: #dcd0c0
@@ -17,33 +15,22 @@ body, html {
     //pale gold: #c0b283
 
 }
+
 * {
   border-radius: 0 !important;
 }
 
-   // font-family: 'Montserrat';
-//}
+footer {
+  background-color: #dcd0c0;
+  color: #373737;
+  padding: 32px;
+}
 
-// body {
-//     font-family: 'Montserrat';
-//     font-size: 18px;
-// }
+footer a {
+  color: #373737;
+}
 
-// a {
-//     text-decoration: none;
-// }
-
-
-// .container {
-//     width: 80%;
-//     margin: 0 auto;
-//     padding: 1.3em;
-//     display: grid;
-//     grid-template-columns: 30% auto;
-// }
-
-// section {
-//     width: 80%;
-//     margin: 0 auto;
-//     padding: 2em;
-// }
+footer a:hover {
+  color: #777;
+  text-decoration: none;
+}
