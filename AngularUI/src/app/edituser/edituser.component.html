@@ -1,38 +1,41 @@
-<div class="d-flex justify-content-center">
-  <div class="card" style="padding: 1em;width: 20rem;">
-    <div *ngIf="!passCheck">
-      <form #changeUser="ngForm" >
-        <div class="form-group">
-          <label for="passwordInput">Enter Password for {{user.email}}</label>
-          <input [value]="user.password" (input)="user.password = $event.target.value" type="password"
-            class="form-control" id="passwordInput" placeholder="Password">
-        </div>
-        <div *ngIf="error[0]!=''" class="alert alert-danger" role="alert">
-          {{error[0]}}
-        </div>
-        <div class="d-flex justify-content-between">
-          <button  (click)="editEmail()"class="btn btn-dark">Edit Email</button>
-          <button (click)="editPassword()" class="btn btn-outline-dark">Edit Password</button>
-        </div>
-      </form>
-    </div>
-    <form #changePassword="ngForm" (ngSubmit)="changeUser()" *ngIf="passCheck">
-        <div class="form-group">
-          <label for="input1">Enter new {{whatsBeingEdited}}</label>
-          <input [value]="inputs[0]" (input)="inputs[0] = $event.target.value" type="{{whatsBeingEdited}}" class="form-control"
-            id="input1" placeholder="Enter {{whatsBeingEdited}}">
-        </div>
-        <div *ngIf="error[1]!=''" class="alert alert-danger" role="alert">
-          {{error[1]}}
-        </div>
-        <div class="form-group">
-            <label for="input2">Re-enter new {{whatsBeingEdited}}</label>
-            <input [value]="inputs[1]" (input)="inputs[1] = $event.target.value" type="{{whatsBeingEdited}}" class="form-control"
-              id="input2" placeholder="Enter {{whatsBeingEdited}}">
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <div class="card" style="padding: 1em;width: 20rem;">
+          <div *ngIf="!passCheck">
+            <form #changeUser="ngForm" >
+              <div class="form-group">
+                <label for="passwordInput">Enter Password for {{user.email}}</label>
+                <input [value]="user.password" (input)="user.password = $event.target.value" type="password"
+                  class="form-control" id="passwordInput" placeholder="Password">
+              </div>
+              <div *ngIf="error[0]!=''" class="alert alert-danger" role="alert">
+                {{error[0]}}
+              </div>
+              <div class="d-flex justify-content-between">
+                <button  (click)="editEmail()"class="btn btn-dark">Edit Email</button>
+                <button (click)="editPassword()" class="btn btn-outline-dark">Edit Password</button>
+              </div>
+            </form>
           </div>
-        <div class="form-group">
-          <button type="submit" [disabled]="bool" class="btn btn-dark">Change</button>
+          <form #changePassword="ngForm" (ngSubmit)="changeUser()" *ngIf="passCheck">
+              <div class="form-group">
+                <label for="input1">Enter new {{whatsBeingEdited}}</label>
+                <input [value]="inputs[0]" (input)="inputs[0] = $event.target.value" type="{{whatsBeingEdited}}" class="form-control"
+                  id="input1" placeholder="Enter {{whatsBeingEdited}}">
+              </div>
+              <div *ngIf="error[1]!=''" class="alert alert-danger" role="alert">
+                {{error[1]}}
+              </div>
+              <div class="form-group">
+                  <label for="input2">Re-enter new {{whatsBeingEdited}}</label>
+                  <input [value]="inputs[1]" (input)="inputs[1] = $event.target.value" type="{{whatsBeingEdited}}" class="form-control"
+                    id="input2" placeholder="Enter {{whatsBeingEdited}}">
+                </div>
+              <div class="form-group">
+                <button type="submit" [disabled]="bool" class="btn btn-dark">Change</button>
+              </div>
+            </form>
         </div>
-      </form>
-  </div>
+      </div>
 </div>
+<br>

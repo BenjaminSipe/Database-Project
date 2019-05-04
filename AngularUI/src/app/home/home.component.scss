@@ -1,0 +1,81 @@
+img {
+  -webkit-filter: grayscale(70%);
+  filter: grayscale(70%);
+  margin-top: -7rem;
+  width: 100%;
+}
+
+.caption {
+  font-size: 7em;
+  color: #dcd0c0;
+  position: absolute;
+  top: 33%;
+  left: 0;
+  width: 100%;
+}
+
+.thumbnail {
+  position: relative;
+}
+
+.custom {
+  padding-left: 5%;
+  padding-right: 5%;
+  font-size: 2em;
+}
+
+.map {
+  position: relative;
+  margin-bottom: -3rem;
+}
+
+.map-caption {
+  font-size: 2em;
+  color: #c0b283;
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 100%;
+}
+
+
+blockquote {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  font-size: 2em;
+  color: white;
+}
+
+footer {
+  background-color:#dcd0c0;
+  color: #373737;
+}
+
+h3{
+  color: #373737;
+}
+
+body {
+  background-color:#f4f4f4;
+}
+
+#explore {
+  font-size: 1.2em;
+  //background-color:#c0b283;
+}
+
+#send {
+  font-size: 0.7em;
+  //background-color:#c0b283;
+}
+
+.hr{
+  height: 1px;
+  color: #ccc;
+  background-color: #ccc;
+  border: none;
+}
+
+//silk: #dcd0c0
+    //charcoal: #373737
+    //pale gold: #c0b283
