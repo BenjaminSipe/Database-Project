@@ -13,6 +13,19 @@ exports.ReadAveragePrice = function () {
     })
 }
 
+exports.ReadOrderByInvoiceID = function (id) {
+    return new Promise((resolve, reject) => {
+        dbInfo.pool.query(`Call usp_ReadOrderByInvoiceID(${id})`, function (err, rows, fields) {
+            if (err) {
+                reject("Something Went Wrong");
+                throw err;
+            } else {
+                resolve(rows[0]);
+            }
+        })
+    })
+}
+
 exports.ReadOrders = function () {
     return new Promise((resolve, reject) => {
         dbInfo.pool.query('Call usp_ReadOrders()', function (err, rows, fields) {

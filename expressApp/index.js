@@ -331,6 +331,14 @@ app.get("/ReadOrdersByUser", (req, res) => {
   })
 })
 
+app.get("/ReadOrderByInvoiceID/:id", (req, res) => {
+  Admin.ReadOrderByInvoiceID(req.params.id).then((message) => {
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
+})
+
 app.get('/readBookFormats', (req, res) =>
 {
   book.readBookFormats().then( (message) => {
