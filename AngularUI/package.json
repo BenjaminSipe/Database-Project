@@ -27,6 +27,7 @@
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
+    "jshint": "^2.10.2",
     "ng2-validation": "^4.2.0",
     "ngx-custom-validators": "^7.0.0",
     "rxjs": "^6.3.3",

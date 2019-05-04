@@ -1,65 +1,61 @@
 <div class="thumbnail">
-    <img class="img-fluid d-block mx-auto" src="assets/images/paper.jpg">
-    <div class="caption">
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                  <div class="card text-center">
-                    <img *ngIf="!showEdit" class="card-img-top profile" src="{{emptyImageUrl}}">
-                    <div class="card-body">
-                      <div *ngIf="!showEdit">
-                        <h5 class="card-title">{{user.name}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{user.email}}</h6>
-                        <p class="card-subtitle mb-2 text-muted"><strong>Primary:</strong> {{user.homePhone}}</p>
-                        <p class="card-subtitle mb-2 text-muted"><strong>Secondary:</strong> {{user.workPhone}}</p>
-                      </div>
+  <img class="img-fluid d-block mx-auto" src="assets/images/paper.jpg">
+  <div class="caption">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <div class="card text-center">
+            <img *ngIf="!showEdit" class="card-img-top profile" src="{{emptyImageUrl}}">
+            <div class="card-body">
+              <div *ngIf="!showEdit">
+                <h5 class="card-title">{{user.name}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{user.email}}</h6>
+                <p class="card-subtitle mb-2 text-muted"><strong>Primary:</strong> {{user.homePhone}}</p>
+                <p class="card-subtitle mb-2 text-muted"><strong>Secondary:</strong> {{user.workPhone}}</p>
+              </div>
 
-                      <div *ngIf="showEdit" class="card-body mb-3">
-                        <form #AddBook="ngForm" (ngSubmit)="save()">
-                          <h6 class="card-subtitle mb-2 text-muted">{{user.email}}</h6>
-                          <div class="form-group">
-                            <label for="nameInput">Name</label>
-                            <input [value]="user.name" (input)="user.name = $event.target.value" type="text" class="form-control"
-                              id="nameInput" placeholder="Name">
-                          </div>
-                          <div class="form-group">
-                            <div *ngIf="error[0]!=''" class="alert alert-danger" role="alert">
-                              {{error[0]}}
-                            </div>
-                            <label for="homePhoneInput">Primary Phone</label>
-                            <input [value]="user.homePhone" (input)="user.homePhone = $event.target.value" type="tel"
-                              class="form-control" id="homePhoneInput" placeholder="Primary Phone">
-                          </div>
-                          <div class="form-group">
-                            <div *ngIf="error[1]!=''" class="alert alert-danger" role="alert">
-                              {{error[1]}}
-                            </div>
-                            <label for="exampleInputEmail1">Secondary Phone</label>
-                            <input [value]="user.workPhone" (input)="user.workPhone = $event.target.value" type="text"
-                              class="form-control" id="workPhoneInput" placeholder="Secondary Phone">
-                          </div>
-                          <div class="d-flex justify-content-between">
-                            <button type="submit" class="btn btn-dark">Save</button>
-                            <button *ngIf="showEdit" (click)="editContents()" class="btn btn-outline-dark">Cancel</button>
-                          </div>
-                            <button type="button" (click)="editPassword()" class="btn btn-secondary mt-4">Edit Email Or
-                              Password
-                            </button>
-                        </form>
-                      </div>
-                      <button *ngIf="!showEdit" (click)="editContents()" class="btn btn-dark">Edit</button>
-                    </div>
+              <div *ngIf="showEdit" class="card-body mb-3">
+                <form #AddBook="ngForm" (ngSubmit)="save()">
+                  <h6 class="card-subtitle mb-2 text-muted">{{user.email}}</h6>
+                  <div class="form-group">
+                    <label for="nameInput">Name</label>
+                    <input [value]="user.name" (input)="user.name = $event.target.value" type="text"
+                      class="form-control" id="nameInput" placeholder="Name">
                   </div>
-                </div>
-                <div class="col card">
-                      <app-credit-card></app-credit-card>
-                </div>
+                  <div class="form-group">
+                    <div *ngIf="error[0]!=''" class="alert alert-danger" role="alert">
+                      {{error[0]}}
+                    </div>
+                    <label for="homePhoneInput">Primary Phone</label>
+                    <input [value]="user.homePhone" (input)="user.homePhone = $event.target.value" type="tel"
+                      class="form-control" id="homePhoneInput" placeholder="Primary Phone">
+                  </div>
+                  <div class="form-group">
+                    <div *ngIf="error[1]!=''" class="alert alert-danger" role="alert">
+                      {{error[1]}}
+                    </div>
+                    <label for="exampleInputEmail1">Secondary Phone</label>
+                    <input [value]="user.workPhone" (input)="user.workPhone = $event.target.value" type="text"
+                      class="form-control" id="workPhoneInput" placeholder="Secondary Phone">
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-dark">Save</button>
+                    <button *ngIf="showEdit" (click)="editContents()" class="btn btn-outline-dark">Cancel</button>
+                  </div>
+                  <button type="button" (click)="editPassword()" class="btn btn-secondary mt-4">Edit Email Or
+                    Password
+                  </button>
+                </form>
+              </div>
+              <button *ngIf="!showEdit" (click)="editContents()" class="btn btn-dark">Edit</button>
             </div>
+          </div>
         </div>
+        <div class="col card">
+          <app-credit-card></app-credit-card>
+        </div>
+      </div>
     </div>
   </div>
-<div class="col card">
-  <app-credit-card></app-credit-card>
 </div>
-<div *ngIf="deleteUser" class="card">
-</div>
+

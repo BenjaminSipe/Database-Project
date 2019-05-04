@@ -84,8 +84,11 @@ export class ShoppingCartComponent implements OnInit {
     
     //location.reload();
     //return 
+
     this.selectedProducts = [];
     this.cart.ClearCart();
+    this.productTotal = 0;
+      
     //Example 4
     }
   }
