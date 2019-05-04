@@ -12,11 +12,11 @@ import { validateConfig } from '@angular/router/src/config';
 export class UserProfileComponent implements OnInit {
   u:User;
   user: User;
-  emptyImageUrl="https://us.123rf.com/450wm/salamatik/salamatik1801/salamatik180100019/92979836-stock-vector-profile-anonymous-face-icon-gray-silhouette-person-male-default-avatar-photo-placeholder-isolated-on.jpg?ver=6";
+  emptyImageUrl="http://www.stickpng.com/assets/images/585e4be1cb11b227491c3398.png";
   showEdit:boolean;
   error = ["", ""];
   constructor(private userservice: UserService,
-              private router: Router) { 
+              private router: Router) {
     if (!userservice.isLoggedIn()) {
       this.router.navigate(['/login']);
     } else {
@@ -27,7 +27,7 @@ export class UserProfileComponent implements OnInit {
         this.router.navigate(["/login"]);
       })
       this.showEdit = false;
-    }     
+    }
   }
 
   addUserContents() {
@@ -50,16 +50,16 @@ export class UserProfileComponent implements OnInit {
   }
   validate() {
     let b = true;
-    let num1 = this.user.homePhone.replace(/[- _]/g,"");    
+    let num1 = this.user.homePhone.replace(/[- _]/g,"");
     if (isNaN(+num1)|| !(num1.length == 7 || num1.length == 10)) {
       this.error[0] = "Not a phone number";
       b = false;
-    } 
-    let num2 = this.user.workPhone.replace(/[- _]/g,"");    
+    }
+    let num2 = this.user.workPhone.replace(/[- _]/g,"");
     if (isNaN(+num2)|| !(num2.length == 7 || num2.length == 10)) {
       this.error[1] = "Not a phone number";
       b = false;
-    } 
+    }
 
     if (b) {
       this.user.homePhone = num1;
@@ -72,7 +72,7 @@ export class UserProfileComponent implements OnInit {
     if (this.validate()) {
 
       this.userservice.putUser(this.user);
-      this.showEdit = false;      
+      this.showEdit = false;
     }
 
   }

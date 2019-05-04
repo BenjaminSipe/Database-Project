@@ -24,6 +24,9 @@
           <span class="text-success">-10%</span>
         </li>
         <li class="list-group-item d-flex justify-content-between">
+            <span>Shipping</span>FREE
+          </li>
+        <li class="list-group-item d-flex justify-content-between">
           <span>Total (USD)</span>
           <strong>{{ productTotal | currency:'USD':true}}</strong>
         </li>
@@ -46,16 +49,19 @@
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
             <input #FirstName="ngModel" [(ngModel)]="firstName" name="firstName" type="text" class="form-control" id="firstName" placeholder="" required>
+            <div class="text-danger" *ngIf="FirstName.touched && FirstName.invalid">First name is required.</div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastName">Last name</label>
             <input #LastName="ngModel" [(ngModel)]="lastName" name="lastName" type="text" class="form-control" id="lastName" placeholder="" required>
+            <div class="text-danger" *ngIf="LastName.touched && LastName.invalid">Last name is required.</div>
           </div>
         </div>
         <div class="mb-3">
           <label for="address">Address</label>
           <input #ShippingAddress1="ngModel" ngModel name="address1"
           type="text" class="form-control" id="address1" placeholder="1234 Main St" required>
+          <div class="text-danger" *ngIf="ShippingAddress1.touched && ShippingAddress1.invalid">Address is required.</div>
         </div>
 
         <div class="mb-3">
@@ -69,6 +75,7 @@
             <label for="city">City</label>
             <input #City="ngModel" ngModel name="city"
             type="text" class="form-control" id="city" placeholder="City" required>
+            <div class="text-danger" *ngIf="City.touched && City.invalid">City is required.</div>
           </div>
           <div class="col-md-4 mb-3">
             <label for="state">State</label>
@@ -127,11 +134,18 @@
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
             </select>
+            <div class="text-danger" *ngIf="State.touched && State.invalid">State is required.</div>
           </div>
           <div class="col-md-3 mb-3">
             <label for="zip">Zip</label>
             <input #Zip="ngModel" ngModel name="zip"
-            type="number" class="form-control" id="zip" placeholder="12345" required>
+            type="text" class="form-control" id="zip" placeholder="12345"
+            minlength="5" maxlength="5" required digits>
+            <div class="text-danger" *ngIf="Zip.touched && Zip.invalid">
+                <div *ngIf="Zip?.errors?.minlength ||Zip?.errors?.maxlength">Must have 5 digits.</div>
+                <div *ngIf="Zip?.errors?.digits">Digits only.</div>
+                <div *ngIf="Zip?.errors?.required">Zip is required.</div>
+            </div>
           </div>
         </div>
 
@@ -170,7 +184,7 @@
                   <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
                       <label ngbButtonLabel class="btn-outline-dark">
                         <input  #Card="ngModel" ngModel name="cardID"
-                        ngbButton type="radio" [value]="c.CreditCardID"> {{ i+1 }}
+                        ngbButton type="radio" [value]="c.CreditCardID" required> {{ i+1 }}
                       </label>
                     </div>
               </td>
@@ -183,7 +197,9 @@
         </table>
         <pre></pre>
         <hr class="mb-4">
-        <button class="btn btn-dark btn-lg btn-block" type="submit" data-toggle="tooltip" (click)="placeOrder(Order.value, confirm, false)">Confirm and Checkout</button>
+        <button class="btn btn-dark btn-lg btn-block" type="submit" data-toggle="tooltip"
+        (click)="placeOrder(Order.value, confirm, false)"
+        [disabled]="!Order.valid">Confirm and Checkout</button>
       </form>
     </div>
   </div>
@@ -221,7 +237,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <h6>Total: ${{ getProductTotal() }}</h6>
+        <h6>Total: ${{ productTotal }}</h6>
         <button class="btn btn-dark" (click)="placeOrder(Order.value, confirm, true)">Place Order</button>
         </div>
 </div>

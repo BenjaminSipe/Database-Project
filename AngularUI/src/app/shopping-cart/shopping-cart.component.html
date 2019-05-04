@@ -38,7 +38,7 @@
                 <td><button routerLink="/books" class="btn btn-outline-dark"><i class="fa fa-angle-left"></i>Book Catalog</button></td>
                 <td colspan="2" class="hidden-xs"></td>
                 <td colspan="1" class="hidden-xs"></td>
-                <td class="hidden-xs text-center"><strong>Cart Total: {{ productTotal | currency:'USD':true}}</strong></td>
+                <td class="hidden-xs text-center"><strong>Cart Total: {{ productTotal | currency:'USD':true}} </strong></td>
                 <td><button  routerLink="/checkout"  class="btn btn-dark btn-block" [disabled]="!productTotal">Checkout <i class="fa fa-angle-right"></i></button></td>
               </tr>
             </tfoot>

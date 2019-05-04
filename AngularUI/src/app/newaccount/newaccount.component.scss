@@ -1,0 +1,36 @@
+img {
+  -webkit-filter: grayscale(60%);
+  filter: grayscale(60%);
+  margin-top: -10rem;
+  width: 100%;
+}
+
+.caption {
+  font-size: 1em;
+  color: #f4f4f4;
+  position: absolute;
+  top: 28%;
+  left: 0;
+  width: 100%;
+}
+
+.thumbnail {
+  position: relative;
+  margin-bottom: -3rem;
+}
+
+.custom {
+  padding-left: 5%;
+  padding-right: 5%;
+  font-size: 2em;
+}
+
+.card {
+  border: none;
+  background-color: rgba(0,0,0,0.4);;
+}
+
+.btn {
+  text-transform: uppercase;
+  width: 180px
+}

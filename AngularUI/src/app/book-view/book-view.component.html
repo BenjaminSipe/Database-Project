@@ -1,41 +1,35 @@
 <div class="modal-dialog modal-lg">
-          <div class="modal-body">
-              <div class="card flex-row flex-wrap">
-                  <div class="card-header ">
-                      <img *ngFor="let b of book$ | async" class="img-fluid" [src]="b.ImageLink">
-                  </div>
-                  <div class="card-block ">
-                      <h4 class="card-title"*ngFor="let b of book$ | async" >{{ b.Title }} </h4>
-                      <div *ngFor="let a of author$ | async">
-                          <h6>By {{ a.Name }}</h6>
-                          <!-- <p>{{ a.Bio }}</p> -->
-                      </div>
-                      <div *ngFor="let f of format$ | async">
-                          <p>Format: {{f.FormatName}}</p>
-                          <p>Price: {{ f.Price | currency:'USD':true }}</p>
-                      </div>
-                      <p  *ngFor="let p of publisher$ | async">Publisher: {{ p.Name }}</p>
-                      <!-- <a href="#" class="btn btn-dark">Add To Cart</a> -->
-                  </div>
-                  <!-- <div class="w-100"></div>
-                  <div class="card-footer w-100 text-muted">
-                  </div>
-              </div> -->
+        <div class="modal-body text-right">
+              <div class="card flex-row flex-wrap justify-content-center">
+                <div class="col sm">
+                    <div class="card-header ">
+                        <img *ngFor="let b of book$ | async" class="img-fluid" [src]="b.ImageLink">
+                    </div>
+                </div>
+                <div class="col sm mr-4">
+                    <div class="card-block text-right">
+                        <blockquote class="blockquote">
+                            <h4 class="mb-0" *ngFor="let b of book$ | async" >{{ b.Title }} </h4>
+                            <div class="text-muted" *ngFor="let a of author$ | async">
+                              <small>by {{ a.Name }}</small>
+                            </div>
+                          </blockquote>
+                          <hr>
+                    <div *ngFor="let f of format$ | async">
+                        <p>{{f.FormatName}}</p>
+                        <h5>{{ f.Price | currency:'USD':true }}</h5>
+                    </div>
+                    <hr>
+                    <div *ngFor="let p of publisher$ | async">
+                        <h6>{{ p.Name }}</h6>
+                        <p *ngFor="let b of book$ | async" class="text-muted">
+                          {{ slice(b.PublishingDate) }}
+                        </p>
+                    </div>
+                  <a href="#" class="btn btn-dark mt-4">Add to Cart</a>
+                </div>
+                </div>
+              </div>
           </div>
 </div>
 
-<!-- <div class="row">
-    <div class="col">
-        <img *ngFor="let b of book$ | async" class="img-fluid" [src]="b.ImageLink">
-    </div>
-    <div class="col">
-      <div *ngFor="let a of author$ | async">
-          <h6>By {{ a.Name }}</h6>
-          <p>{{ a.Bio }}</p>
-      </div>
-        <div *ngFor="let f of format$ | async">
-        <p>Format: {{f.FormatName}}</p>
-        <p>Price: {{ f.Price | currency:'USD':true }}</p>
-        </div>
-    </div>
-  </div> -->

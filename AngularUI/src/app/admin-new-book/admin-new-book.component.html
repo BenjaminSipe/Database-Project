@@ -11,11 +11,12 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="title">ISBN-13</label>
-                  <input #isbn="ngModel" ngModel name="Isbn13" id="title" type="text" class="form-control" minlength="13" maxlength="13" required>
+                  <input #isbn="ngModel" ngModel name="Isbn13" id="title" type="text" class="form-control"
+                  minlength="13" maxlength="13" required digits>
                   <div class="text-danger" *ngIf="isbn.touched && isbn.invalid">
                       <div *ngIf="isbn?.errors?.minlength ||isbn?.errors?.maxlength">Must have 13 digits.</div>
+                      <div *ngIf="isbn?.errors?.digits">Digits only.</div>
                       <div *ngIf="isbn?.errors?.required">Required.</div>
-
                   </div>
                 </div>
               </div>

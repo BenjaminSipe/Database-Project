@@ -19,8 +19,8 @@
                    {{ c.CategoryName }}
                 </li>
                 <li class="list-group-item">
-                    <input #query
-                    (keyup)="filter(query.value)" class="form-control" type="text"  placeholder=" Search for book...">
+                    <input #query1
+                    (keyup)="filter(query1.value)" class="form-control" type="text"  placeholder=" Search for book...">
                 </li>
              </ul>
         </div>
@@ -40,7 +40,6 @@
               <div *ngFor="let b of filteredBooks | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i = index">
                 <div class="col">
                     <book-card [book]="b"></book-card>
-
               </div>
               </div>
               </div>

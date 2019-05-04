@@ -41,4 +41,8 @@ export class BookViewComponent implements OnInit {
     this.publisher$ = this.getService.getBookPublisher(this.bookId);
   }
 
+  slice(str){
+    return String(str).slice(0,10);
+  }
+
 }
