@@ -11,16 +11,19 @@ import { validateConfig } from '@angular/router/src/config';
 })
 export class UserProfileComponent implements OnInit {
   deleteUser = false;
+  userToDelete = new User();
   u:User;
   user: User;
   emptyImageUrl="http://www.stickpng.com/assets/images/585e4be1cb11b227491c3398.png";
   showEdit:boolean;
-  error = ["", ""];
+  error = ["", "", ""];
   constructor(private userservice: UserService,
               private router: Router) {
     if (!userservice.isLoggedIn()) {
       this.router.navigate(['/login']);
     } else {
+      this.userToDelete.email="";
+      this.userToDelete.password="";
       this.user = new User();
       userservice.getUser(localStorage.getItem('UserID')).then((message) => {
         this.addUserContents();
@@ -50,6 +53,7 @@ export class UserProfileComponent implements OnInit {
     this.showEdit = !this.showEdit;
   }
   validate() {
+    this.error = ["","",""];
     let b = true;
     let num1 = this.user.homePhone.replace(/[- _]/g,"");
     if (isNaN(+num1)|| !(num1.length == 7 || num1.length == 10)) {
@@ -69,7 +73,7 @@ export class UserProfileComponent implements OnInit {
     return b;
   }
   save() {
-    this.error = ["",""];
+
     if (this.validate()) {
 
       this.userservice.putUser(this.user);
@@ -78,6 +82,22 @@ export class UserProfileComponent implements OnInit {
 
   }
 
+  deleteUserButton() {
+    this.error[2] = "";
+    if (this.userservice.user.email == this.userToDelete.email) {
+      
+      this.userservice.login(this.userToDelete).then((m) => {
+        if (confirm("Are you sure you want to delete User?")) {
+          this.userservice.deleteUser();
+          this.userservice.logout();
+          this.router.navigate(["/books"]);
+        }
+      }).catch((m) =>{
+        this.error[2] = "User Name or Password incorrect.";
+      })
+      
+    }
+  }
   editPassword() {
     this.userservice.changePassword = true;
     this.router.navigate(['edituser'])

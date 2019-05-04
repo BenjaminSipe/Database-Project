@@ -73,20 +73,17 @@ export class ShoppingCartComponent implements OnInit {
     this.selectedProducts = localStorage.getItem('selectedProducts') ?
     JSON.parse(localStorage.getItem('selectedProducts')) : [];
     
-    //location.reload();
-    //Example 3
-  }
+     }
   }
 
   clearCart() {
     if(confirm("Are you sure you want to clear your cart?")){
     
     
-    //location.reload();
-    //return 
     this.selectedProducts = [];
     this.cart.ClearCart();
-    //Example 4
+    this.productTotal = 0;
+      
     }
   }
 

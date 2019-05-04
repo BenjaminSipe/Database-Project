@@ -18,7 +18,16 @@ exports.updateUserLoginInfo = function (body) {
     resolve(body);
   })
 }
-
+exports.deleteUser = function (id) {
+  return new Promise((resolve, reject) => {
+    dbInfo.pool.query(`CALL usp_DeleteUser(${id})`, function (err, rows, fields) {
+      if (err)
+        reject('{"error":"No Users Found"}');
+      else {
+        resolve("User Deleted")
+    }});
+  })
+}
 
 exports.readUsers = function () {
   return new Promise((resolve, reject) => {
