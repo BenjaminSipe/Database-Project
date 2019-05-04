@@ -1,33 +1,34 @@
 <header>
-    <div class="thumbnail text-center">
-        <img class="img-fluid d-block mx-auto" src="assets/images/shelf.jpg">
-        <div class="caption">
-            <div class="text-center">
-                <form #AddBook="ngForm" class="d-flex justify-content-center" (ngSubmit)="onClick()">
+  <div class="thumbnail text-center">
+    <img class="img-fluid d-block mx-auto" src="assets/images/shelf.jpg">
+    <div class="caption">
+      <div class="text-center">
+        <form #AddBook="ngForm" class="d-flex justify-content-center" (ngSubmit)="onClick()">
 
-                    <div class="card" style="padding: 1.3em; width: 22rem;">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Email</label>
-                      <input [value]="user.email" (input)="user.email = $event.target.value" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                      <label for="passwordInput">Password</label>
+          <div class="card" style="padding: 1.3em; width: 22rem;">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email</label>
+              <input [value]="user.email" (input)="user.email = $event.target.value" type="email" class="form-control"
+                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="passwordInput">Password</label>
 
-                      <input [value]="user.password" (input)="user.password = $event.target.value" type="password" class="form-control" id="passwordInput" placeholder="Password">
-                    </div>
-                    <div *ngIf="error!=''" class="alert alert-danger" role="alert">
-                        {{error}}
-                    </div>
-                    <div class="form-group">
-                    <button type="submit" [disabled]="bool" class="btn btn-dark">LOGIN</button>
-                  </div>
-                    <div>
-                    <a class="btn btn-outline-light" href="/newaccount">New Account?</a>
-                    </div>
-                  </div>
-                  </form>
-                </div>
-        </div>
+              <input [value]="user.password" (input)="user.password = $event.target.value" type="password"
+                class="form-control" id="passwordInput" placeholder="Password">
+            </div>
+            <div *ngIf="error!=''" class="alert alert-danger" role="alert">
+              {{error}}
+            </div>
+            <div class="form-group">
+              <button type="submit" [disabled]="bool" class="btn btn-dark">LOGIN</button>
+            </div>
+            <div>
+              <a class="btn btn-outline-light" href="/newaccount">New Account?</a>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-  </header>
-
+  </div>
+</header>

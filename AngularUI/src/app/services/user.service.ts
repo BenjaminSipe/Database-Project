@@ -33,7 +33,7 @@ export class UserService {
           reject(false);
         } else {
           this.getUser(res[0].userID).then((m) => {
-            resolve(m);
+            resolve(true);
           }).catch((m)=>reject(m));
 
 }})})}
@@ -111,6 +111,7 @@ export class UserService {
 
   }
 
+
   putUser(u:User) {
     let user = new User();
     user.email = u.email;
@@ -121,6 +122,12 @@ export class UserService {
     .subscribe((res) =>
     {
       return "Successful";
+    })
+  }
+
+  deleteUser() {
+    this.http.delete("http://localhost:3000/deleteUser/" + this.user.userID).subscribe((res) =>{
+      return "successful";
     })
   }
 }

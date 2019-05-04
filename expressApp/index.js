@@ -335,6 +335,13 @@ app.get("/ReadOrders", (req, res) => {
     res.send(message);
   })
 })
+app.delete("/deleteUser/:id", (req, res) => {
+  userCRUD.deleteUser(req.params.id).then((message) => {
+    res.send("UserDeleted");
+  }).catch((message) =>{
+    res.send("Failed to Delete User.")
+  });
+})
 
 app.get("/ReadOrdersByUser", (req, res) => {
   Admin.ReadOrdersByUser(req.body).then((message) => {
