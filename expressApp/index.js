@@ -14,6 +14,7 @@ const userCRUD = require('./userCRUD');
 const book = require('./BookCRUD');
 const cart = require('./CartCRUD');
 const purchase = require("./Purchase");
+const Admin = require("./AdminFunctions");
 const app = express();
 const port = 3000;
 
@@ -250,6 +251,86 @@ app.get('/readBooksByCategory/:category', (req, res) => {
     res.send(message)
   })  
 })
+
+app.get('/readAveragePrice', (req, res) => {
+  Admin.ReadAveragePrice().then((message) => {
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
+})
+app.get('/ReadBooksBySales', (req, res) => {
+  Admin.ReadBooksBySales().then((message) => {
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
+})
+
+app.get("/ReadRevenueByPublisherByDay", (req, res) => {
+  Admin.ReadRevenueByPublisherByDay().then((message) => {
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
+})
+
+app.get("/ReadTopBooks", (req, res) => {
+  Admin.ReadTopBooks().then((message) => {
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
+})
+
+app.get("/ReadTotalValue", (req, res) => {
+  Admin.ReadTotalValue().then((message) => {
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
+})
+
+app.get("/ReadTotalValueByCategory", (req, res) => {
+  Admin.ReadTotalValueByCategory().then((message) => {
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
+})
+
+app.get("/ReadTotalValueByPublisher", (req, res) => {
+  Admin.ReadTotalValueByPublisher().then((message) => {
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
+})
+
+app.get("/ReadTotalRevenueByTime", (req, res) => {
+  Admin.ReadTotalRevenueByTime(req.body).then((message) => {
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
+})
+
+app.get("/ReadOrders", (req, res) => {
+  Admin.ReadOrders().then((message) => {
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
+})
+
+app.get("/ReadOrdersByUser", (req, res) => {
+  Admin.ReadOrdersByUser(req.body).then((message) => {
+    res.send(message);
+  }).catch((message) => {
+    res.send(message);
+  })
+})
+
 app.get('/readBookFormats', (req, res) =>
 {
   book.readBookFormats().then( (message) => {

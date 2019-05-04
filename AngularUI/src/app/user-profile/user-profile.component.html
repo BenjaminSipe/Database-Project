@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="!deleteUser" class="row">
   <div class="col">
     <div class="card" style="width: 18rem;">
       <img *ngIf="!showEdit" class="card-img-top" src="{{emptyImageUrl}}" alt="Card image cap">
@@ -44,11 +44,17 @@
             </div>
           </form>
         </div>
-        <button *ngIf="!showEdit" (click)="editContents()" class="btn btn-dark">Edit</button>
+        <div *ngIf="!showEdit" class="d-flex justify-content-between">
+          <button (click)="editContents()" class="btn btn-dark">Edit</button>
+          <button (click)="deleteUser = !deleteUser" class="btn btn-danger">Delete</button>
+        </div>
       </div>
     </div>
   </div>
   <div class="col card">
-        <app-credit-card></app-credit-card>
+    <app-credit-card></app-credit-card>
   </div>
+</div>
+<div *ngIf="deleteUser" class="card">
+  
 </div>

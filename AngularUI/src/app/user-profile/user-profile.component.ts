@@ -10,6 +10,7 @@ import { validateConfig } from '@angular/router/src/config';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  deleteUser = false;
   u:User;
   user: User;
   emptyImageUrl="https://us.123rf.com/450wm/salamatik/salamatik1801/salamatik180100019/92979836-stock-vector-profile-anonymous-face-icon-gray-silhouette-person-male-default-avatar-photo-placeholder-isolated-on.jpg?ver=6";
