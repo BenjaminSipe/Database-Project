@@ -36,7 +36,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               private cart: ShoppingCartService, private modalService: NgbModal, private post: POSTService,
               private router: Router) {
     this.user = userservice.user;
-    console.log(this.user);
+    //console.log(this.user);
     this.convertedToString = JSON.stringify(this.user);
     console.log('string:'+this.convertedToString);
     this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];
@@ -51,7 +51,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     let str = this.user.name;
     let newStr = [];
     newStr = str.split(" ");
-    console.log()
     this.firstName = newStr[0];
     this.lastName = newStr[1];
     this.subscription = get.getCreditCardByUser(userservice.user.userID).subscribe((obj) => {
