@@ -79,17 +79,25 @@ export class CreditCardComponent implements OnInit {
       b = false;
       this.error[5] = "Must Enter Address";
     }
+
+    if ((this.address.address1.match(/[0-9]+[ ]+[A-z]+/g) == null)) {
+      b = false;
+      this.error[5] = "Invalid Address";
+    }
+    this.address.city.trim();
     if (this.address.city == "") {
       b = false;
       this.error[6] = "Must Enter City";
     }
-    
+    if (this.address.city.match(/[0-9]/) != null) {
+      b = false;
+      this.error[6] = "Invalid City Name";
+    }
     if (this.address.state.length != 2) {
       b = false;
       this.error[7] = "Must Choose State";
     }
     if (this.address.zip.length != 5) {
-      console.log(this.address.zip);
       b = false;
       this.error[8] = "Invalid ZIP code";
     }

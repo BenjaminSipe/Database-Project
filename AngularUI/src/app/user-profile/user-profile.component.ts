@@ -10,6 +10,7 @@ import { validateConfig } from '@angular/router/src/config';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  deleteUser = false;
   u:User;
   user: User;
   emptyImageUrl="http://www.stickpng.com/assets/images/585e4be1cb11b227491c3398.png";
