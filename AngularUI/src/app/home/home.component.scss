@@ -1,8 +1,16 @@
-img {
+.image {
   -webkit-filter: grayscale(70%);
   filter: grayscale(70%);
   margin-top: -7rem;
   width: 100%;
+}
+
+.img-custom {
+  width: auto;
+  height: 370px;
+  margin-top: -3.5rem;
+  -webkit-filter: grayscale(40%);
+  filter: grayscale(40%);
 }
 
 .caption {

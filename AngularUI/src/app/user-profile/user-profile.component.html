@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-4">
           <div class="card text-center">
-            
+
             <div class="card-body mb-3" *ngIf="!deleteUser">
               <img *ngIf="!showEdit" class="card-img-top profile" src="{{emptyImageUrl}}">
               <div *ngIf="!showEdit">
@@ -14,8 +14,8 @@
                 <p class="card-subtitle mb-2 text-muted"><strong>Primary:</strong> {{user.homePhone}}</p>
                 <p class="card-subtitle mb-2 text-muted"><strong>Secondary:</strong> {{user.workPhone}}</p>
                 <div class="d-flex justify-content-between">
-                  <button (click)="editContents()" class="btn btn-dark">Edit</button>
-                  <button (click)="deleteUser = !deleteUser" class="btn btn-outline-danger">Delete</button>
+                  <button (click)="editContents()" class="btn btn-dark m-1">Edit</button>
+                  <button (click)="deleteUser = !deleteUser" class="btn btn-outline-danger m-1">Delete</button>
                 </div>
               </div>
               <div *ngIf="showEdit" class="card-body mb-3">
@@ -62,7 +62,7 @@
                       </div>
                       <div class="form-group">
                         <label for="passwordInput">Password</label>
-          
+
                         <input [value]="userToDelete.password" (input)="userToDelete.password = $event.target.value" type="password"
                           class="form-control" id="passwordInput" placeholder="Password">
                       </div>
@@ -76,7 +76,7 @@
                         <button class="btn btn-outline-dark" (click)="deleteUser = !deleteUser">Cancel</button>
                       </div>
                     </div>
-                  </form>          
+                  </form>
             </div>
           </div>
         </div>
@@ -86,8 +86,4 @@
       </div>
     </div>
   </div>
-<<<<<<< HEAD
-=======
-</div>
->>>>>>> fd9033ae3ff2d0fa82860a9667711c2b7d9281af
 

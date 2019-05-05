@@ -2,13 +2,16 @@
     <div class="thumbnail text-right">
         <img class="img-fluid d-block" src="assets/images/success.jpg">
         <div class="caption">
-          THANK YOU, {{ userservice.user.firstName }}
+          <div class=" transform">
+              THANK YOU, {{ userservice.user.firstName }}
+          </div>
           <div class="row">
             <div class="col"></div>
             <div class="col"></div>
             <div class="col container">
                 <hr>
-                <p>The estimated delivery of your order is 3-5 buisness days.</p>
+                <p>Your order is placed.</p>
+                <p>The estimated delivery is 3-5 buisness days.</p>
                 <button routerLink="/books" class="btn btn-outline-dark">CONTINUE SHOPPING?</button>
             </div>
           </div>

@@ -26,12 +26,14 @@ import { EditPublisherComponent } from './edit-publisher/edit-publisher.componen
 import { EditFormatComponent } from './edit-format/edit-format.component';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { AdminInvoiceComponent } from './admin-invoice/admin-invoice.component';
+import { ContactComponent } from './contact/contact.component';
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'newaccount', component: NewaccountComponent},
   { path: 'books/:id', component: CatalogModalContainerComponent},
   { path: 'books', component: BooksComponent},
+  { path: 'contact', component: ContactComponent},
   { path: 'shopping-cart', component: ShoppingCartComponent},
   { path: 'checkout', component: CheckoutComponent},
   { path: 'categories', component: CategoriesComponent},
@@ -49,7 +51,6 @@ const routes: Routes = [
   { path: 'admin/other', component: AdminOthersComponent},
   { path: 'order-success', component: ConfirmationPageComponent},
   { path: 'admin/invoice', component: AdminInvoiceComponent},
-
 ];
 
 @NgModule({

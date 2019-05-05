@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GETService } from '../services/get.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor() { }
+  topBooks$
+  constructor(private getService: GETService) {
+    this.topBooks$ = getService.getTopBooks();
+  }
 
   ngOnInit() {
   }
