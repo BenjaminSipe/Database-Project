@@ -98,4 +98,8 @@ export class GETService {
     return  this.http.get(`http://localhost:3000/readBookInvoice/${id}`);;
   }
 
+  getTopBooks(){
+    return this.http.get(this.url + 'ReadTopBooks');
+  }
 }
+

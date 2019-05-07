@@ -1,7 +1,7 @@
 
 <header>
   <div class="thumbnail text-center">
-      <img class="img-fluid d-block mx-auto" src="https://img1.wsimg.com/isteam/stock/100618">
+      <img class="img-fluid d-block mx-auto image" src="https://img1.wsimg.com/isteam/stock/100618">
       <div class="caption">
           <!-- <p>READ</p> -->
           <button routerLink="/books" class="custom btn btn-outline-light">READ</button>
@@ -20,34 +20,21 @@
 <div style="background:#f4f4f4 !important" class="jumbotron mt-0 mb-5">
 <body class="container text-center mt-4 mb-5">
   <hr>
-  <h3><em>Our Bestsellers</em></h3><br>
-      <div class="d-flex flex-row mt-5 justify-content-between">
-          <div class="col-sm-4 p-5">
-            <p>Name</p><br>
-            <img src="assets/images/atlas.jpg">
+  <h3>Our Bestsellers</h3><br>
+      <div class="d-flex flex-row mt-5 justify-content-between" >
+          <div class="col-sm-4 p-5" *ngFor="let b of topBooks$ | async">
+            <img class="img-custom" [src]="b.ImageLink">
             <hr>
-            <p class="mt-3">Name</p>
-          </div>
-          <div class="col-sm-4 p-5">
-            <p><strong>Name</strong></p><br>
-            <img src="assets/images/atlas.jpg">
-            <hr>
-            <p class="mt-3">Name</p>
-          </div>
-          <div class="col-sm-4 p-5">
-            <p><strong>Name</strong></p><br>
-            <img src="assets/images/atlas.jpg">
-            <hr>
-            <p class="mt-3">Name</p>
+            <p class="mt-3">{{ b.Title }}</p>
           </div>
         </div>
         <br>
-        <button id="explore" routerLink="/books" class="btn btn-dark">EXPLORE</button>
+        <button id="explore" routerLink="/books" class="btn btn-dark mt-0">EXPLORE</button>
         <hr class="my-3">
 </body>
 </div>
 <div class="map text-center">
-    <img class="img-fluid d-block mx-auto mb-0 pb-0" src="assets/images/map.png">
+    <img class="img-fluid d-block mx-auto mb-0 pb-0 image" src="assets/images/map.png">
     <div class="map-caption">
         <div class="container p-5">
             <p class="text-center">CONTACT</p>

@@ -46,6 +46,7 @@ import { ConfirmationPageComponent } from './confirmation-page/confirmation-page
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { AdminInvoiceComponent } from './admin-invoice/admin-invoice.component';
 import { OrderComponent } from './order/order.component';
+import { ContactComponent } from './contact/contact.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,6 +82,7 @@ import { OrderComponent } from './order/order.component';
     AdminUsersComponent,
     AdminInvoiceComponent,
     OrderComponent,
+    ContactComponent,
 
   ],
   imports: [

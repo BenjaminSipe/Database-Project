@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class ConfirmationPageComponent{
   firstName;
   user = new User();
-  constructor(private userservice: UserService, private get: GETService,
+  constructor(public userservice: UserService, private get: GETService,
               private router: Router) {
   }
 
