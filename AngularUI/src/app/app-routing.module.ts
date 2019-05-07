@@ -11,6 +11,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { EdituserComponent } from './edituser/edituser.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminBooksComponent } from './admin-books/admin-books.component';
+import { OrderComponent } from './order/order.component';
 import { AdminCategoriesComponent } from './admin-categories/admin-categories.component';
 import { AdminNewBookComponent } from './admin-new-book/admin-new-book.component';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'admin/other', component: AdminOthersComponent},
   { path: 'order-success', component: ConfirmationPageComponent},
   { path: 'admin/invoice', component: AdminInvoiceComponent},
+  
 
 ];
 

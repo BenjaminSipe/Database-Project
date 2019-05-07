@@ -335,6 +335,11 @@ app.get("/ReadOrders", (req, res) => {
     res.send(message);
   })
 })
+
+app.post("/CreateAdmin/:id", (req, res) => {
+  userCRUD.CreateAdmin(req.params.id);
+  res.send("Success");
+});
 app.delete("/deleteUser/:id", (req, res) => {
   userCRUD.deleteUser(req.params.id).then((message) => {
     res.send("UserDeleted");
@@ -343,8 +348,8 @@ app.delete("/deleteUser/:id", (req, res) => {
   });
 })
 
-app.get("/ReadOrdersByUser", (req, res) => {
-  Admin.ReadOrdersByUser(req.body).then((message) => {
+app.get("/ReadOrdersByUser/:id", (req, res) => {
+  Admin.ReadOrdersByUser(req.params.id).then((message) => {
     res.send(message);
   }).catch((message) => {
     res.send(message);

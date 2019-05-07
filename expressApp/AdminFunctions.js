@@ -39,9 +39,9 @@ exports.ReadOrders = function () {
     })
 }
 
-exports.ReadOrdersByUser = function (body) {
+exports.ReadOrdersByUser = function (id) {
     return new Promise((resolve, reject) => {
-        dbInfo.pool.query(`Call usp_ReadOrdersByUser(${body.UserID})`, function (err, rows, fields) {
+        dbInfo.pool.query(`Call usp_ReadOrdersByUser(${id})`, function (err, rows, fields) {
             if (err) {
                 reject("Something Went Wrong");
                 throw err;

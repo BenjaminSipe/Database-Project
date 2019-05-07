@@ -29,6 +29,15 @@ exports.deleteUser = function (id) {
   })
 }
 
+exports.CreateAdmin = function(id) {
+  dbInfo.pool.query(`Call usp_CreateAdmin(${id})`, function (err, rows, fields) {
+    if (err)
+      return "Failed"
+    else 
+    return "Success"
+  })
+}
+
 exports.readUsers = function () {
   return new Promise((resolve, reject) => {
     dbInfo.pool.query('CALL usp_ReadUsers()', function (err, rows, fields) {

@@ -37,6 +37,12 @@ export class UserService {
           }).catch((m)=>reject(m));
 
 }})})}
+
+  CreateAdmin(userID) {
+    this.http.post(`http://localhost:3000/CreateAdmin/${userID}`,httpOptions).subscribe(res2 => {
+      
+    })
+  }
   getUser(userID) {
     return new Promise((resolve, reject) => {
       this.http.get<User>(`http://localhost:3000/ReadUser/${userID}`,httpOptions)

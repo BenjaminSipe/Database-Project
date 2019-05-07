@@ -26,7 +26,6 @@ export class AdminUsersComponent implements OnInit {
     this.subscription = this.getService.getUsers().subscribe((users) => {
       this.users = users;
       this.filteredUsers = users;
-      console.log(users);
     });
     }
   }
@@ -43,6 +42,12 @@ export class AdminUsersComponent implements OnInit {
       this.users.filter(b => b.Name.toLowerCase().includes(query.toLowerCase())) :
       this.users;
   }
+
+  adminUser(user) {
+    this.userservice.CreateAdmin(user.userID);
+    user.UserLevel = 2;
+  }
+
 
   ngOnInit() {
 

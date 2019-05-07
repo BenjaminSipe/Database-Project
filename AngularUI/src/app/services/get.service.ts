@@ -35,6 +35,15 @@ export class GETService {
   getUsers() {
     return this.http.get(this.url + 'ReadUsers');
   }
+
+  getOrderByInvoiceID(id) {
+    return this.http.get(this.url + 'ReadOrderByInvoiceID/' + id);
+  }
+
+
+  getOrdersByUser(id) {
+    return this.http.get(this.url + 'ReadOrdersByUser/' + id);
+  }
   getFormats(){
     return this.http.get(this.url + 'readFormats');
   }
