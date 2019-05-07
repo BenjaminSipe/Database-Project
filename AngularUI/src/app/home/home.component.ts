@@ -9,7 +9,9 @@ import { GETService } from '../services/get.service';
 export class HomeComponent implements OnInit {
   topBooks$
   constructor(private getService: GETService) {
-    this.topBooks$ = getService.getTopBooks();
+    getService.getTopBooks().subscribe((obj) => {
+      this.topBooks$ = obj;
+    });
   }
 
   ngOnInit() {
