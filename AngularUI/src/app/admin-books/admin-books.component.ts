@@ -19,9 +19,13 @@ export class AdminBooksComponent implements OnDestroy{
                 Quantity: string}[];
   filteredBooks : any[];
   subscription : Subscription;
+  page = 1;
+  pageSize = 10;
+  count: number;
 
   constructor(private getService : GETService, private postService:POSTService) {
-    this.subscription = this.getService.getBooks().subscribe(books => this.filteredBooks = this.books = Object.values(books));
+    this.subscription = this.getService.getBooks().subscribe(books => {this.filteredBooks = this.books = Object.values(books)
+                                                                       this.count = Object.keys(books).length;});
     this.subscription = this.getService.getBookFormats().subscribe(bookFormats => this.bookFormats = Object.values(bookFormats));
 
    }
@@ -33,7 +37,7 @@ export class AdminBooksComponent implements OnDestroy{
     this.filteredBooks = (query) ?
     this.books.filter(b => b.Title.toLowerCase().includes(query.toLowerCase())) :
     this.books;
-       }
+    }
 
     deleteBook(book){
       //console.log(book)

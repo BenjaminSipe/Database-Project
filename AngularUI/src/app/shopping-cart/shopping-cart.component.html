@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="text-center">Your Cart</h3>
+  <h3 class="text-center">YOUR CART</h3>
     <table id="cart" class="table table-hover table-condensed">
               <thead>
               <tr>
@@ -19,7 +19,7 @@
                 <td data-th="Product">
                       <h5>{{s.Title}}</h5>
                 </td>
-                <td data-th="Price">{{s.price | currency:'USD':true}}</td>
+                <td data-th="Price">{{s.price | currency:'USD'}}</td>
                 <td data-th="Quantity">
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-dark custom" (click)="decreaseItem(s)">-</button>
@@ -27,7 +27,7 @@
                         <button type="button" class="btn btn-dark custom" (click)="increaseItem(s)">+</button>
                       </div>
                 </td>
-                <td data-th="Subtotal" class="text-center">{{s.price * getProductCount(s) | currency:'USD':true}}</td>
+                <td data-th="Subtotal" class="text-center">{{s.price * getProductCount(s) | currency:'USD'}}</td>
                 <td class="actions" data-th="">
                   <button class="btn btn-outline-danger" (click)="removeItem(s)">Remove</button>
                 </td>
@@ -38,7 +38,7 @@
                 <td><button routerLink="/books" class="btn btn-outline-dark"><i class="fa fa-angle-left"></i>Book Catalog</button></td>
                 <td colspan="2" class="hidden-xs"></td>
                 <td colspan="1" class="hidden-xs"></td>
-                <td class="hidden-xs text-center"><strong>Cart Total: {{ productTotal | currency:'USD':true}} </strong></td>
+                <td class="hidden-xs text-center"><strong>Cart Total: {{ productTotal | currency:'USD'}} </strong></td>
                 <td><button  routerLink="/checkout"  class="btn btn-dark btn-block" [disabled]="!productTotal">Checkout <i class="fa fa-angle-right"></i></button></td>
               </tr>
             </tfoot>

@@ -102,6 +102,18 @@ exports.ReadTotalValue = function() {
         })
     })
 }
+exports.ReadTotalValueByPublisher = function() {
+    return new Promise((resolve, reject) => {
+        dbInfo.pool.query('Call usp_ReadTotalValueByPublisher()', function(err, rows) {
+            if (err) {
+                reject("Something Went Wrong")
+                throw err;
+            } else {
+                resolve(rows[0]);
+            }
+        })
+    })
+}
 
 exports.ReadTotalValueByCategory = function() {
     return new Promise((resolve, reject) => {

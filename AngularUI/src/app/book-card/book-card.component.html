@@ -12,7 +12,7 @@
       <h5 class="card-title" >{{ book.Title }}</h5>
       <div *ngFor="let f of format$ | async">
           <!-- <p>{{f.FormatName}}</p> -->
-          <p>{{ f.Price | currency:'USD':true }}</p>
+          <p>{{ f.Price | currency:'USD' }}</p>
           </div>
       <button (click)="addToCart(book)"
       class="btn btn-dark btn-block" [disabled]="this.bookToCart.quantity == 0 || outOfStock">Add to Cart</button>

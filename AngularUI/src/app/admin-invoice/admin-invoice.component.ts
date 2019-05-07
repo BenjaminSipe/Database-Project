@@ -11,25 +11,21 @@ import { Subscription } from 'rxjs';
 })
 export class AdminInvoiceComponent implements OnDestroy {
   subscription: Subscription;
-  invoice: {InvoiceID: number}[];
-  filteredInvoices: any[];
+  orders: any[];
   constructor(private getService : GETService, private userservice: UserService, private router: Router) {
     if (!this.userservice.isAdmin()) {
       this.router.navigateByUrl("/login");
     } else {
-    // this.subscription = this.getService.getBooksInvoice().subscribe((invoices) => {
-    //   this.filteredInvoices = this.invoice = Object.values(invoices);
-    //   console.log(invoices);
-    // });
+      this.subscription = this.getService.getOrdersForAdmin().subscribe(orders => this.orders = Object.values(orders));
     }
    }
 
+   slice(str){
+    return String(str).slice(0,10);
+  }
+
    ngOnDestroy(): void {
-    //this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
-  filter(query: number) {
-      // this.filteredInvoices = (query) ?
-      // this.invoice.filter(i => i.InvoiceID == query) :
-      // this.invoice;
-  }
+
 }

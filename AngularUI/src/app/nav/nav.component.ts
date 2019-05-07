@@ -18,8 +18,15 @@ export class NavComponent implements OnInit {
   myProfile() {
     this.router.navigate(["/userprofile"]);
   }
+  contact() {
+    this.router.navigate(["/contact"]);
+  }
   myOrders() {
     this.router.navigate(["/myorders"]);
+  }
+
+  adminOrders() {
+    this.router.navigate(['/admin/invoice']);
   }
 
   adminBooks() {

@@ -1,3 +1,138 @@
-<p>
-  admin-orders works!
-</p>
+<div class="container">
+  <div class="row ">
+    <label for="orderTable">
+      <h3 class="p-3">Profit</h3>
+    </label>
+  </div>
+  <div id="Total" class="row-fluid">
+      <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col-1">#</th>
+              <th scope="col-1">Total Assets</th>
+              <th scope="col">Total Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let t of total; let i = index">
+              <td>{{ i+1 }}</td>
+              <td>{{ t.TotalAssets | currency:'USD' }}</td>
+              <td>{{ t.TotalValue | currency:'USD' }}</td>
+            </tr>
+          </tbody>
+        </table>
+</div>
+  <div class="row">
+      <div class="btn-group" role="group">
+          <button type="button" class="btn btn-dark m-1" (click)="collapseBook()"
+          [attr.aria-expanded]="!bookCollapsed" aria-controls="ProfitByBook">
+            By Book
+          </button>
+          <button type="button" class="btn btn-dark m-1" (click)="collapseCategory()"
+          [attr.aria-expanded]="!categoryCollapsed" aria-controls="CategoryTotal">
+          By Category
+          </button>
+          <button type="button" class="btn btn-dark m-1" (click)="collapsePublisher()"
+          aria-controls="PublisherTotal">
+           By Publisher
+          </button>
+        <button type="button" class="btn btn-dark m-1" (click)="collapsePublisherDay()"
+        [attr.aria-expanded]="!publisherDayCollapsed" aria-controls="PublisherRevenueByDate">
+        By Publisher/Day
+      </button>
+    </div>
+    </div>
+  <div id="ProfitByBook" [ngbCollapse]="bookCollapsed" class="row-fluid">
+      <p>
+          <input #query
+          (keyup)="filter(query.value)" class="form-control" type="text"  placeholder=" Search for title...">
+        </p>
+      <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col-1">#</th>
+              <th scope="col-1"></th>
+              <th scope="col-1">Book ID</th>
+              <th scope="col">Title</th>
+              <th scope="col">ISBN-13</th>
+              <th scope="col">Income</th>
+              <th scope="col">Profit</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let b of filteredBooks; let i = index">
+              <td>{{ i+1 }}</td>
+              <td><img [src]="b.ImageLink" class="img-responsive" height="130"></td>
+              <td>{{ b.BookID }}</td>
+              <td>{{ b.Title }}</td>
+              <td>{{ b.Isbn13 }}</td>
+              <td>{{ b.Income | currency:'USD' }}</td>
+              <td>{{ b.Profit | currency:'USD' }}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  <div id="PublisherRevenueByDate" [ngbCollapse]="publisherDayCollapsed" class="row-fluid">
+      <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col-1">#</th>
+              <th scope="col-1">Publisher ID</th>
+              <th scope="col-1">Order Date</th>
+              <th scope="col">Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let r of revenueByPublisher; let i = index">
+              <td>{{ i+1 }}</td>
+              <td>{{ r.PublisherID }}</td>
+              <td>{{ slice(r.OrderDate) }}</td>
+              <td>{{ r.Revenue | currency:'USD' }}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  <div id="PublisherTotal" [ngbCollapse]="publisherCollapsed" class="row-fluid">
+      <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col-1">#</th>
+              <th scope="col-1">Publisher ID</th>
+              <th scope="col-1">Total Assets</th>
+              <th scope="col">Total Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let b of booksByPublisher; let i = index">
+              <td>{{ i+1 }}</td>
+              <td>{{ b.PublisherID }}</td>
+              <td>{{ b.TotalAssets | currency:'USD' }}</td>
+              <td>{{ b.TotalValue | currency:'USD' }}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  <div id="CategoryTotal" [ngbCollapse]="categoryCollapsed" class="row-fluid">
+      <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col-1">#</th>
+              <th scope="col-1">Category ID</th>
+              <th scope="col-1">Total Assets</th>
+              <th scope="col">Total Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let b of booksByCategory; let i = index">
+              <td>{{ i+1 }}</td>
+              <td>{{ b.CategoryID }}</td>
+              <td>{{ b.TotalAssets | currency:'USD' }}</td>
+              <td>{{ b.TotalValue | currency:'USD' }}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+</div>
+
+

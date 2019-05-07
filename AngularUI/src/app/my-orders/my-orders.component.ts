@@ -17,12 +17,12 @@ export class MyOrdersComponent implements OnInit {
   currentDialog = null;
   destroy = new Subject<any>();
   constructor(
-    private userservice :UserService, 
+    private userservice :UserService,
     private get : GETService,
     private router : Router,
     private route : ActivatedRoute,
     private modalService: NgbModal
-  ) { 
+  ) {
     get.getOrdersByUser(localStorage.getItem("UserID")).subscribe((obj:[any]) => {
       for (let i of obj) {
         i.OrderDate = i.OrderDate.substr(0, 10)

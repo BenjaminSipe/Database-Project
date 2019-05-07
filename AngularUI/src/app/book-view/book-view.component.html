@@ -17,7 +17,7 @@
                           <hr>
                     <div *ngFor="let f of format$ | async">
                         <p>{{f.FormatName}}</p>
-                        <h5>{{ f.Price | currency:'USD':true }}</h5>
+                        <h5>{{ f.Price | currency:'USD' }}</h5>
                     </div>
                     <hr>
                     <div *ngFor="let p of publisher$ | async">

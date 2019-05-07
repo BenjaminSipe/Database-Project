@@ -26,7 +26,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let b of filteredBooks; let i = index">
+            <tr *ngFor="let b of filteredBooks | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i = index">
               <td>{{ i+1 }}</td>
               <td>{{ b.BookID }}</td>
               <td> {{ b.Title }}</td>
@@ -35,6 +35,11 @@
                 <a [routerLink]="['/admin/books/', b.BookID]">Details</a>
               </td>
             </tr>
+            <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="count">
+            </ngb-pagination>
           </tbody>
         </table>
   </div>

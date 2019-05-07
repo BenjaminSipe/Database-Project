@@ -41,12 +41,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     console.log('string:'+this.convertedToString);
     this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];
     if (!userservice.isLoggedIn()) {
-      //router.navigate(["/login"]);
-      this.user.userID = 29;
-      this.user.name = "Ailen Sarmukhanova";
-      this.user.email = "ailensarmukhanova@gmail.com";
-      this.user.password = "password1234";
-      this.userservice.login(this.user);
+      router.navigate(["/login"]);
     }
     let str = this.user.name;
     let newStr = [];

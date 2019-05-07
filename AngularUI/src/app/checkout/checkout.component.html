@@ -1,6 +1,6 @@
 <div class="container">
   <div class="text-center">
-    <h2>Checkout</h2>
+    <h2>CHECKOUT</h2>
   </div>
 <br>
 
@@ -15,7 +15,7 @@
           <div >
             <h6 class="my-0">{{s.Title}}</h6>
           </div>
-          <span class="text-muted">{{s.price | currency: 'USD':true}} x {{s.productCount}}</span>
+          <span class="text-muted">{{s.price | currency: 'USD'}} x {{s.productCount}}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between bg-light" *ngIf=getDiscount()>
           <div class="text-success">
@@ -28,7 +28,7 @@
           </li>
         <li class="list-group-item d-flex justify-content-between">
           <span>Total (USD)</span>
-          <strong>{{ productTotal | currency:'USD':true}}</strong>
+          <strong>{{ productTotal | currency:'USD'}}</strong>
         </li>
       </ul>
 <!--

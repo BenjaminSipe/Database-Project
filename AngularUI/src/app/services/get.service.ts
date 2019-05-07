@@ -97,9 +97,27 @@ export class GETService {
   getBookInvoice(id){
     return  this.http.get(`http://localhost:3000/readBookInvoice/${id}`);;
   }
-
   getTopBooks(){
     return this.http.get(this.url + 'ReadTopBooks');
   }
+  getBooksBySales(){
+    return this.http.get(this.url + 'ReadBooksBySales');
+  }
+  getOrdersForAdmin(){
+    return this.http.get(this.url + 'ReadOrders');
+  }
+  getRevenueByPublisherByDay(){
+    return this.http.get(this.url + 'ReadRevenueByPublisherByDay');
+  }
+  getTotal(){
+    return this.http.get(this.url + 'ReadTotalValue');
+  }
+  getTotalValueByPublisher(){
+    return this.http.get(this.url + 'ReadTotalValueByPublisher');
+  }
+  getTotalValueByCategory(){
+    return this.http.get(this.url + 'ReadTotalValueByCategory');
+  }
+
 }
 
