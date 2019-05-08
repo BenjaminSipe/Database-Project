@@ -191,7 +191,7 @@
               <td ><img [src]="cardUrl" class="img-responsive" height="40"></td>
               <td > {{ c.NameOnCard }}</td>
               <td >{{c.CreditCardPrompt}}</td>
-              <td >{{ c.ExpirationDate }}</td>
+              <td >{{ c.ExpirationDate.substr(0,2) }}/{{ c.ExpirationDate.substr(2,2) }}</td>
             </tr>
           </tbody>
         </table>
@@ -228,7 +228,7 @@
               <h5 class="mb-3">2. Payment Method</h5>
               <p >Cardholder: {{ creditCard.NameOnCard }}</p>
               <p >Ends with: {{creditCard.CreditCardPrompt}}</p>
-              <p >Expires: {{ creditCard.ExpirationDate }}</p>
+              <p >Expires: {{ creditCard.ExpirationDate.substr(0,2) }}/{{ creditCard.ExpirationDate.substr(2,2) }}</p>
           </div>
           <div class="col-4">
               <h5 class="mb-3">3. Cart</h5>

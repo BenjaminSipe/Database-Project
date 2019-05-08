@@ -25,23 +25,28 @@
                     <label for="nameInput">Name</label>
                     <input [value]="user.name" (input)="user.name = $event.target.value" type="text"
                       class="form-control" id="nameInput" placeholder="Name">
-                  </div>
-                  <div class="form-group">
-                    <div *ngIf="error[0]!=''" class="alert alert-danger" role="alert">
-                      {{error[0]}}
+                      <div *ngIf="error[0]!=''" class="text-danger" role="alert">
+                          {{error[0]}}
+                        </div>
                     </div>
+                  <div class="form-group">
                     <label for="homePhoneInput">Primary Phone</label>
                     <input [value]="user.homePhone" (input)="user.homePhone = $event.target.value" type="tel"
                       class="form-control" id="homePhoneInput" placeholder="Primary Phone">
-                  </div>
-                  <div class="form-group">
-                    <div *ngIf="error[1]!=''" class="alert alert-danger" role="alert">
-                      {{error[1]}}
+                      <div *ngIf="error[1]!=''" class="text-danger" role="alert">
+                          {{error[1]}}
+                        </div>
+                        
                     </div>
+                  <div class="form-group">
+                    
                     <label for="exampleInputEmail1">Secondary Phone</label>
                     <input [value]="user.workPhone" (input)="user.workPhone = $event.target.value" type="text"
                       class="form-control" id="workPhoneInput" placeholder="Secondary Phone">
-                  </div>
+                      <div *ngIf="error[2]!=''" class="text-danger" role="alert">
+                          {{error[2]}}
+                        </div>
+                    </div>
                   <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-dark">Save</button>
                     <button *ngIf="showEdit" (click)="editContents()" class="btn btn-outline-dark">Cancel</button>
@@ -66,8 +71,8 @@
                         <input [value]="userToDelete.password" (input)="userToDelete.password = $event.target.value" type="password"
                           class="form-control" id="passwordInput" placeholder="Password">
                       </div>
-                      <div *ngIf="error[2]!=''" class="alert alert-danger" role="alert">
-                        {{error[2]}}
+                      <div *ngIf="error[3]!=''" class="alert alert-danger" role="alert">
+                        {{error[3]}}
                       </div>
                       <div class="form-group">
                         <button type="submit" [disabled]="bool" class="btn btn-danger">Delete</button>

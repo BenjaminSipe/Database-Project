@@ -10,6 +10,10 @@ export class POSTService {
   private urlBase = 'http://localhost:3000/';
   constructor(private http:HttpClient) { }
 
+  sendEmail(email) {
+    return this.http.post(this.urlBase + 'sendEmail', email);
+  }
+
   createBook(book){
    return this.http.post(this.urlBase + 'createBook', book);
   }

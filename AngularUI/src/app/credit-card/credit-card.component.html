@@ -20,10 +20,9 @@
           <tr *ngFor="let c of creditCards; let i = index" (click)="cardDetails(i)">
             <td class="align-middle">{{ c.BillingAddress }}</td>
             <td class="align-middle"> {{ c.NameOnCard }}</td>
-            <td class="align-middle">{{ c.ExpirationDate }}</td>
+            <td class="align-middle">{{ c.ExpirationDate.substr(0,2) }}/{{ c.ExpirationDate.substr(2,2) }}</td>
             <td class="align-middle">
               ****************{{c.CreditCardPrompt}}
-              <!-- <a [routerLink]="['/admin/books/', b.BookID]">Details</a> -->
             </td>
             <td class="align-middle">
               <button class="btn btn-outline-danger" (click)="deleteCard(c.CreditcardID, i)">Delete</button>
@@ -41,7 +40,6 @@
       <h4 class="card-title" style="padding:1em;">Billing Address: {{creditCard.BillingAddress}}</h4>
       <div style="padding:1em;">
         <h6>Card Holder's Name: {{creditCard.NameOnCard}}</h6>
-        <!-- <p>{{ a.Bio }}</p> -->
       </div>
       <div style="padding:1em;">
         <p> Expiration Date: {{creditCard.ExpirationDate}}</p>
@@ -57,72 +55,70 @@
     <form #AddCreditCard="ngForm" class="align-middle" (ngSubmit)="onClick()">
       <div class="form-group">
         <label for="NameOnCard">Card Holder's Name</label>
-        <div *ngIf="error[1]!=''" class="alert alert-danger" role="alert">
-          {{error[1]}}
-        </div>
         <input [value]="newCard.NameOnCard" (input)="newCard.NameOnCard = $event.target.value" type="text"
           class="form-control" id="NameOnCard" placeholder="Enter Card Holder's Name" aria-required="true">
+        <div *ngIf="error[1]!=''" class="text-danger" role="alert">
+          {{error[1]}}
+        </div>
+
       </div>
       <div class="form-group">
         <label for="ExpirationDate">Expiration Date (MM/YY)</label>
-        <div *ngIf="error[2]!=''" class="alert alert-danger" role="alert">
-          {{error[2]}}
-        </div>
         <input [value]="newCard.ExpirationDate" (input)="newCard.ExpirationDate = $event.target.value" type="text"
           class="form-control" id="ExpirationDate" placeholder="Expiration Date" aria-required="true">
+        <div *ngIf="error[2]!=''" class="text-danger" role="alert">
+          {{error[2]}}
+        </div>
+
       </div>
       <div class="row">
         <div class="col-9">
           <div class="form-group">
             <label for="CreditCardNumber">Credit Card Number</label>
-            <div *ngIf="error[3]!=''" class="alert alert-danger" role="alert">
-              {{error[3]}}
-            </div>
             <input type="text" [value]="newCard.CreditCardNumber"
               (input)="newCard.CreditCardNumber = $event.target.value" class="form-control" id="CreditCardNumber"
               aria-describedby="emailHelp" placeholder="Credit Card Number">
+            <div *ngIf="error[3]!=''" class="text-danger" role="alert">
+              {{error[3]}}
+            </div>
           </div>
         </div>
         <div class="col-3">
           <div class="form-group">
             <label for="CCV">CCV</label>
-            <div *ngIf="error[4]!=''" class="alert alert-danger" role="alert">
-              {{error[4]}}
-            </div>
             <input [value]="newCard.CCV" (input)="newCard.CCV = $event.target.value" type="text" class="form-control"
               placeholder="123">
+            <div *ngIf="error[4]!=''" class="text-danger" role="alert">
+              {{error[4]}}
+            </div>
           </div>
         </div>
         <div class=" col-md-5 mb-3">
           <label for="address">Billing Address</label>
-          <div *ngIf="error[5]!=''" class="alert alert-danger" role="alert">
-              {{error[5]}}
-            </div>
-          <input [value]="address.address1" (input)="address.address1 = $event.target.value" type="text" class="form-control"
-            placeholder="1234 Main St" required>
+          <input [value]="address.address1" (input)="address.address1 = $event.target.value" type="text"
+            class="form-control" placeholder="1234 Main St" required>
+          <div *ngIf="error[5]!=''" class="text-danger" role="alert">
+            {{error[5]}}
+          </div>
         </div>
 
         <div class="col-md-4 mb-3">
           <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-          <input [value]="address.address2" (input)="address.address2 = $event.target.value" type="text" class="form-control"
-          placeholder="Apartment or suite">
+          <input [value]="address.address2" (input)="address.address2 = $event.target.value" type="text"
+            class="form-control" placeholder="Apartment or suite">
         </div>
         <div class="col-md-5 mb-3">
           <label for="city">City</label>
-          <div *ngIf="error[6]!=''" class="alert alert-danger" role="alert">
-              {{error[6]}}
-            </div>
           <input [value]="address.city" (input)="address.city = $event.target.value" type="text" class="form-control"
-          placeholder="City"
-            required>
+            placeholder="City" required>
+          <div *ngIf="error[6]!=''" class="text-danger" role="alert">
+            {{error[6]}}
+          </div>
         </div>
         <div class="col-md-4 mb-3">
           <label for="state">State</label>
-          <div *ngIf="error[7]!=''" class="alert alert-danger" role="alert">
-              {{error[7]}}
-            </div>
           <select [value]="address.state" (input)="address.state = $event.target.value" type="text"
-          class="custom-select d-block w-100" id="state" required>
+            class="custom-select d-block w-100" id="state" required>
             <option value="">Choose...</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
@@ -176,14 +172,17 @@
             <option value="WI">Wisconsin</option>
             <option value="WY">Wyoming</option>
           </select>
+          <div *ngIf="error[7]!=''" class="text-danger" role="alert">
+            {{error[7]}}
+          </div>
         </div>
         <div class="col-md-3 mb-3">
           <label for="zip">Zip</label>
-          <div *ngIf="error[8]!=''" class="alert alert-danger" role="alert">
-              {{error[8]}}
-            </div>
-          <input #Zip="ngModel" ngModel name="zip" [value]="address.zip" (input)="address.zip = $event.target.value" type="string" class="form-control" id="zip" placeholder="12345"
-            required>
+          <input #Zip="ngModel" ngModel name="zip" [value]="address.zip" (input)="address.zip = $event.target.value"
+            type="string" class="form-control" id="zip" placeholder="12345" required>
+          <div *ngIf="error[8]!=''" class="text-danger" role="alert">
+            {{error[8]}}
+          </div>
         </div>
       </div>
       <div class="d-flex justify-content-between">
