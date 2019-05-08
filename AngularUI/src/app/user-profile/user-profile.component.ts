@@ -55,14 +55,22 @@ export class UserProfileComponent implements OnInit {
   validate() {
     this.error = ["","",""];
     let b = true;
+    this.user.name.trim;
+    let i = this.user.name.split(" ");
+    if (i.length < 2 || i[0] == "" || i[1] == "") {
+      this.error[0] = "Enter first and Last Name";
+      b = false;
+    }
+    
+
     let num1 = this.user.homePhone.replace(/[- _]/g,"");
     if (isNaN(+num1)|| !(num1.length == 7 || num1.length == 10)) {
-      this.error[0] = "Not a phone number";
+      this.error[1] = "Not a phone number";
       b = false;
     }
     let num2 = this.user.workPhone.replace(/[- _]/g,"");
     if (isNaN(+num2)|| !(num2.length == 7 || num2.length == 10)) {
-      this.error[1] = "Not a phone number";
+      this.error[2] = "Not a phone number";
       b = false;
     }
 
@@ -83,7 +91,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   deleteUserButton() {
-    this.error[2] = "";
+    this.error[3] = "";
     if (this.userservice.user.email == this.userToDelete.email) {
       
       this.userservice.login(this.userToDelete).then((m) => {
@@ -93,7 +101,7 @@ export class UserProfileComponent implements OnInit {
           this.router.navigate(["/books"]);
         }
       }).catch((m) =>{
-        this.error[2] = "User Name or Password incorrect.";
+        this.error[3] = "User Name or Password incorrect.";
       })
       
     }

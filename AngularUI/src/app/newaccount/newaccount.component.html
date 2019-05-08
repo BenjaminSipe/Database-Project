@@ -1,68 +1,73 @@
 <div class="thumbnail text-center">
-    <img class="img-fluid d-block mx-auto" src="assets/images/shelf.jpg">
-    <div class="caption">
-        <div class="container">
-            <form #AddUser="ngForm" class="d-flex justify-content-center" (ngSubmit)="onClick()">
+  <img class="img-fluid d-block mx-auto" src="assets/images/shelf.jpg">
+  <div class="caption">
+    <div class="container">
+      <form #AddUser="ngForm" class="d-flex justify-content-center" (ngSubmit)="onClick()">
 
-                <div class="card" style="padding: 1em;width: 25rem; ">
+        <div class="card" style="padding: 1em;width: 25rem; ">
 
-                  <div class="form-group">
-                    <label for="nameInput">Name</label>
-                    <div *ngIf="error[0]!=''" class="alert alert-danger" role="alert">
-                        {{error[0]}}
-                    </div>
-                    <input [value]="user.name" (input)="user.name = $event.target.value" type="text" class="form-control"
-                      id="nameInput" placeholder="Enter Name" aria-required="true">
-                  </div>
-                  <div class="form-group">
-                    <label for="emailInput">Email</label>
-                    <div *ngIf="error[1]!=''" class="alert alert-danger" role="alert">
-                        {{error[1]}}
-                    </div>
-                    <input [value]="user.email" (input)="user.email = $event.target.value" type="email" class="form-control"
-                      id="emailInput" placeholder="Enter email" aria-required="true">
-                  </div>
+          <div class="form-group">
+            <label for="nameInput">Name</label>
+            <input [value]="user.name" (input)="user.name = $event.target.value" type="text" class="form-control"
+              id="nameInput" placeholder="Enter Name" aria-required="true">
+            <div *ngIf="error[0]!=''" class="text-danger" role="alert">
+              {{error[0]}}
+            </div>
 
-                  <div class="form-group">
-                      <label for="passwordInput">Password</label>
+          </div>
+          <div class="form-group">
+            <label for="emailInput">Email</label>
+            <input [value]="user.email" (input)="user.email = $event.target.value" type="email" class="form-control"
+              id="emailInput" placeholder="Enter email" aria-required="true">
+            <div *ngIf="error[1]!=''" class="text-danger" role="alert">
+              {{error[1]}}
+            </div>
 
-                    <div *ngIf="error[2]!=''" class="alert alert-danger" role="alert">
-                        {{error[2]}}
-                    </div>
-                    <input [value]="user.password" (input)="user.password = $event.target.value" type="password" class="form-control"
-                      id="passwordInput" placeholder="Password" aria-required="true">
-                  </div>
+          </div>
 
-                  <div class="form-group">
-                    <label for="passwordRepeatInput">Re-enter Password</label>
-                    <div *ngIf="error[3]!=''" class="alert alert-danger" role="alert">
-                        {{error[3]}}
-                    </div>
-                    <input type="password" [value]="repeatPassword" (input)="repeatPassword = $event.target.value"
-                      class="form-control" id="passwordRepeatInput" aria-describedby="emailHelp" placeholder="Repeat Password">
-                  </div>
-                  <div class="form-group">
-                    <label for="homePhoneInput">Primary Phone</label>
-                    <div *ngIf="error[4]!=''" class="alert alert-danger" role="alert">
-                        {{error[4]}}
-                    </div>
-                    <input [value]="user.homePhone" (input)="user.homePhone = $event.target.value" type="text" class="form-control"
-                      aria-describedby="emailHelp" placeholder="Enter Primary Phone">
-                  </div>
-                  <div class="form-group">
-                    <label>Secondary Phone</label>
-                    <div *ngIf="error[5]!=''" class="alert alert-danger" role="alert">
-                        {{error[5]}}
-                    </div>
-                    <input [value]="user.workPhone" (input)="user.workPhone = $event.target.value" type="text" class="form-control"
-                      placeholder="Enter Secondary Phone">
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" [disabled]="bool" class="btn btn-dark">Create Account</button>
-                  </div>
-                </div>
-              </form>
+          <div class="form-group">
+            <label for="passwordInput">Password</label>
+
+            <input [value]="user.password" (input)="user.password = $event.target.value" type="password"
+              class="form-control" id="passwordInput" placeholder="Password" aria-required="true">
+            <div *ngIf="error[2]!=''" class="text-danger" role="alert">
+              {{error[2]}}
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label for="passwordRepeatInput">Re-enter Password</label>
+            <input type="password" [value]="repeatPassword" (input)="repeatPassword = $event.target.value"
+              class="form-control" id="passwordRepeatInput" aria-describedby="emailHelp" placeholder="Repeat Password">
+            <div *ngIf="error[3]!=''" class="text-danger" role="alert">
+              {{error[3]}}
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label for="homePhoneInput">Primary Phone</label>
+            <input [value]="user.homePhone" (input)="user.homePhone = $event.target.value" type="text"
+              class="form-control" aria-describedby="emailHelp" placeholder="Enter Primary Phone">
+            <div *ngIf="error[4]!=''" class="text-danger" role="alert">
+              {{error[4]}}
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label>Secondary Phone</label>
+            <input [value]="user.workPhone" (input)="user.workPhone = $event.target.value" type="text"
+              class="form-control" placeholder="Enter Secondary Phone">
+            <div *ngIf="error[5]!=''" class="text-danger" role="alert">
+              {{error[5]}}
+            </div>
+
+          </div>
+          <div class="form-group">
+            <button type="submit" [disabled]="bool" class="btn btn-dark">Create Account</button>
+          </div>
         </div>
+      </form>
     </div>
+  </div>
 </div>
-

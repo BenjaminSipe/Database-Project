@@ -1,5 +1,6 @@
 const dbInfo = require('./dbInfo');
 const express = require('express')
+const nodemailer = require("nodemailer");
 var cors = require('cors');
 var mysql = require('mysql')
 var fs = require('fs');
@@ -412,7 +413,9 @@ app.get('/readBookFormat/:id', (req, res) =>
     book.readFormat(message[0].FormatID).then((message2) =>{
       message[0].FormatName = message2[0].FormatName;
       res.send(message);
-    })
+    }).catch((message_ => {
+      res.send(message);
+    }))
   }).catch( (message) => {
     res.send(message)
   })
@@ -424,6 +427,8 @@ app.get('/readBookPublisher/:id', (req, res) =>
     //console.log(message[0].AuthorID);
     book.readPublisher(message[0].PublisherID).then((message2) =>{
       res.send(message2);
+    }).catch((message) => {
+      res.send(message);
     })
   }).catch( (message) => {
     res.send(message)
@@ -516,6 +521,44 @@ app.post('/CreatePurchase', (req, res) => {
     res.send("message");
    })
 })
+
+async function main(body){
+
+  // Generate test SMTP service account from ethereal.email
+  // Only needed if you don't have a real mail account for testing
+
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'rread8205@gmail.com', // generated ethereal user
+      pass: 'Adm1n12#4' // generated ethereal password
+    }
+  });
+  var mailOptions = {
+    from: body.email, // sender address
+    to: "sipe.nation3@gmail.com", // list of receivers
+    subject: `Read:${body.name}`, // Subject line
+    text: "comments for read", // plain text body
+    html: `<b>from ${body.email},\n comment: ${body.comments}</b>` // html bod
+  }
+  // send mail with defined transport object
+  await transporter.sendMail(mailOptions, function(error){
+    if (error) {
+      console.log(error);
+    }else {
+        
+        console.log('email sent.');
+      }
+  });
+}
+
+app.get("/sendMail", (req, res) => {
+  main(req.body);
+  res.send("Test");
+})
+
+
 
 
 app.listen(port, () => console.log(`Express API listening on port ${port}!`));

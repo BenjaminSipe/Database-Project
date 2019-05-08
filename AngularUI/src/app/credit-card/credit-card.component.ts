@@ -8,9 +8,15 @@ import {
 import {
   UserService
 } from '../services/user.service';
-import { GETService } from '../services/get.service';
-import { Creditcard } from '../creditcard';
-import { POSTService } from '../services/post.service';
+import {
+  GETService
+} from '../services/get.service';
+import {
+  Creditcard
+} from '../creditcard';
+import {
+  POSTService
+} from '../services/post.service';
 
 @Component({
   selector: 'app-credit-card',
@@ -18,32 +24,32 @@ import { POSTService } from '../services/post.service';
   styleUrls: ['./credit-card.component.sass']
 })
 export class CreditCardComponent implements OnInit {
-    creditCards:Creditcard[] = [];
-    creditCard:Creditcard;
-    newCard = new Creditcard();
-    address;
-    error = ["","","","","","","","",""]
-    showDetails = false;
-    newCardPage=false;
+  creditCards: Creditcard[] = [];
+  creditCard: Creditcard;
+  newCard = new Creditcard();
+  address;
+  error = ["", "", "", "", "", "", "", "", ""]
+  showDetails = false;
+  newCardPage = false;
   constructor(private userservice: UserService,
-    private router: Router, 
+    private router: Router,
     private get: GETService,
     private post: POSTService) {
-      this.address = {
-        address1:"",
-        address2:"",
-        city:"",
-        state:"",
-        zip:""
-      };
-  
-      get.getCreditCardByUser(localStorage.getItem("UserID")).subscribe((obj) => {
-        
-        for (let vl of obj) {
-          console.log(vl);
-          this.creditCards.push(vl);
-        }
-      })
+    this.address = {
+      address1: "",
+      address2: "",
+      city: "",
+      state: "",
+      zip: ""
+    };
+
+    get.getCreditCardByUser(localStorage.getItem("UserID")).subscribe((obj) => {
+
+      for (let vl of obj) {
+        console.log(vl);
+        this.creditCards.push(vl);
+      }
+    })
   }
 
   cardDetails(index: number) {
@@ -61,19 +67,19 @@ export class CreditCardComponent implements OnInit {
 
   clear() {
     this.newCard.BillingAddress = "";
-    this.newCard.NameOnCard ="";
+    this.newCard.NameOnCard = "";
     this.newCard.ExpirationDate = "";
     this.newCard.CreditCardNumber = "";
     this.newCard.CCV = "";
-    
+
   }
   newCreditCard() {
     this.clear()
-    this.newCardPage=true;
+    this.newCardPage = true;
   }
 
-  validate():boolean {
-    this.error = ["","","","","","","","",""]
+  validate(): boolean {
+    this.error = ["", "", "", "", "", "", "", "", ""]
     let b = true;
     if (this.address.address1 == "") {
       b = false;
@@ -105,7 +111,15 @@ export class CreditCardComponent implements OnInit {
       b = false;
       this.error[1] = "Must Enter Name";
     }
-    if (this.newCard.ExpirationDate == "") {
+    this.newCard.NameOnCard.trim;
+    let i = this.newCard.NameOnCard.split(" ");
+    if (i.length < 2 || i[0] == "" || i[1] == "") {
+      this.error[1] = "Enter first and Last Name";
+      b = false;
+    }
+    this.newCard.ExpirationDate.replace(" ", "")
+    let j = this.newCard.ExpirationDate;
+    if (j.match(/[0-9]{2}\/?[0-9]{2}/) == null) {
       b = false;
       this.error[2] = "Must Enter Expiration Date";
     }
@@ -121,8 +135,8 @@ export class CreditCardComponent implements OnInit {
   }
   onClick() {
     if (this.validate()) {
-      this.newCard.BillingAddress = this.address.address1 + ' ' + this.address.address2 + 
-      ' ' + this.address.city + ' ' + this.address.state + ' ' + this.address.zip;     
+      this.newCard.BillingAddress = this.address.address1 + ' ' + this.address.address2 +
+        ' ' + this.address.city + ' ' + this.address.state + ' ' + this.address.zip;
       // Save credit Card
       this.newCard.ExpirationDate = this.newCard.ExpirationDate.replace("/", "");
       this.newCard.UserID = this.userservice.user.userID;
