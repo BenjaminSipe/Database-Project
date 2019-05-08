@@ -16,7 +16,7 @@ export class UserProfileComponent implements OnInit {
   user: User;
   emptyImageUrl="http://www.stickpng.com/assets/images/585e4be1cb11b227491c3398.png";
   showEdit:boolean;
-  error = ["", "", ""];
+  error = ["", "", "", ""];
   constructor(private userservice: UserService,
               private router: Router) {
     if (!userservice.isLoggedIn()) {
@@ -53,7 +53,7 @@ export class UserProfileComponent implements OnInit {
     this.showEdit = !this.showEdit;
   }
   validate() {
-    this.error = ["","",""];
+    this.error = ["","","", ""];
     let b = true;
     this.user.name.trim;
     let i = this.user.name.split(" ");
@@ -104,6 +104,8 @@ export class UserProfileComponent implements OnInit {
         this.error[3] = "User Name or Password incorrect.";
       })
       
+    } else {
+      this.error[3] = "User Name or Password incorrect.";  
     }
   }
   editPassword() {

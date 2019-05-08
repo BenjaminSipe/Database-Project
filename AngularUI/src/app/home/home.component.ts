@@ -10,6 +10,7 @@ import { POSTService } from '../services/post.service';
 export class HomeComponent implements OnInit {
   topBooks$
   EmailSent =false;
+  commentError = "";
   email = {
     name:"",
     email:"",
@@ -27,10 +28,19 @@ export class HomeComponent implements OnInit {
 
 
   sendEmail() {
-
+    this.commentError="";
     if (this.email.name != "" && this.email.email.includes("@") && this.email.comments != "") {
       this.EmailSent=true;
-      this.post.sendEmail(this.email);
+      this.post.sendEmail(this.email).subscribe((m) => {
+      });
+    } else {
+      if (this.email.name == "") {
+        this.commentError = "Please enter a name";
+      } else if (!this.email.email.includes("@")) {
+        this.commentError = "Invalid Email Address";
+      } else if (this.email.comments == "") {
+        this.commentError = "No Comment Entered.";
+      }
     }
   }
 }

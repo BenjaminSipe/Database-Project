@@ -11,7 +11,8 @@ export class POSTService {
   constructor(private http:HttpClient) { }
 
   sendEmail(email) {
-    return this.http.post(this.urlBase + 'sendEmail', email);
+    console.log(email)
+    return this.http.post('http://localhost:3000/sendMail', email);
   }
 
   createBook(book){

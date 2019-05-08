@@ -41,7 +41,8 @@
             <p class="text-center">CONTACT</p>
             <hr class="hr">
             <p class="text-center" style="color:#f4f4f4 !important"><small>Have a question?</small></p>
-                <div class="row">
+                      
+            <div class="row">
                   <div class="col form-group">
                     <input [value]="email.name" (input)="email.name = $event.target.value" class="form-control form-control-lg" name="name" placeholder="Name" type="text" required>
                   </div>
@@ -50,8 +51,11 @@
                   </div>
                 </div>
                 <textarea [value]="email.comments" (input)="email.comments = $event.target.value" class="form-control form-control-lg" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-        </div>
+                
+              </div>
         <button type="submit" id="send" class="btn btn-outline-light">Send</button>
+        <div class="text-danger"><small>{{commentError}}</small></div>
+            
       </form>
       <div *ngIf="EmailSent" style="color:#f4f4f4 !important"><br>Thank you for your feedback!<br>We Value Your Opinion.</div>
     </div>

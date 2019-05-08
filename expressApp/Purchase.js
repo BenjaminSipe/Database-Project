@@ -48,6 +48,7 @@ exports.AddBook = function (book, InvoiceID) {
                 reject("Something Went Wrong");
             } else {
                 if (rows[0][0].info == "Insufficient Quantity") {
+                    console.log("Not Enough Books");
                     reject("Not Enough Books");
                 } else {
                     resolve(rows[0][0]);

@@ -83,7 +83,6 @@ export class EditBookComponent implements OnDestroy{
      console.log("saving..." +newBook.bookTitle);
      this.putService.putBook(newBook);
      this.router.navigate(['/admin/books/edit']);
-     location.reload();
 
    }
 
