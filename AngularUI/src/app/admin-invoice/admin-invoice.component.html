@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row ">
         <label for="orderTable">
-          <h3 class="p-3">Orders</h3>
+          <h3>Invoice List:</h3>
         </label>
       </div>
       <div class="row">
@@ -14,9 +14,10 @@
               <thead>
                 <tr>
                   <th scope="col-1">#</th>
-                  <th scope="col-1">Invoice ID</th>
-                  <th scope="col">User</th>
-                  <th scope="col">Card ID</th>
+                  <th scope="col-1">Inv.ID</th>
+                  <th scope="col">Us.ID</th>
+                  <th scope="col">Us.Name</th>
+                  <th scope="col">CardID</th>
                   <th scope="col">Card Prompt</th>
                   <th scope="col">Total Price</th>
                   <th scope="col">Order Date</th>
@@ -28,6 +29,7 @@
                   <td>{{ i+1 }}</td>
                   <td>{{ o.InvoiceID }}</td>
                   <td>{{ o.UserID }}</td>
+                  <td>{{ getUser(o.UserID) }}</td>
                   <td>{{ o.CreditCardID }}</td>
                   <td>{{ o.CreditCardPrompt }}</td>
                   <td>{{ o.TotalPrice | currency:'USD'}}</td>

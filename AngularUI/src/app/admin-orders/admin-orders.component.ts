@@ -18,6 +18,8 @@ export class AdminOrdersComponent implements OnDestroy {
   subscription: Subscription;
   total;
   orders: any[];
+  categories: any[];
+  publishers: any[];
   books: any[];
   filteredBooks : any[];
   booksByCategory: any[];
@@ -27,6 +29,8 @@ export class AdminOrdersComponent implements OnDestroy {
               private getService : GETService) {
    if (userservice.isAdmin()) {
     this.subscription = this.getService.getOrdersForAdmin().subscribe(orders => this.orders = Object.values(orders));
+    this.subscription = this.getService.getCategories().subscribe(categories => this.categories = Object.values(categories));
+    this.subscription = this.getService.getPublishers().subscribe(publishers => this.publishers = Object.values(publishers));
     this.subscription = this.getService.getBooksBySales().subscribe(books => this.books = this.filteredBooks = Object.values(books));
     this.subscription = this.getService.getTotal().subscribe(total => this.total = Object.values(total));
     this.subscription = this.getService.getTotalValueByCategory()
@@ -43,6 +47,25 @@ export class AdminOrdersComponent implements OnDestroy {
    ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
+  getPublisher(id) {
+    let name;
+    this.publishers.forEach(p => {
+      if(p.PublisherID === id) {
+        name = p.Name;
+      }
+    });
+    return name;
+  }
+  getCategory(id) {
+    let name;
+    this.categories.forEach(c => {
+      if(c.CategoryID === id) {
+        name = c.CategoryName;
+      }
+    });
+    return name;
+  }
   filter(query : string){
 
     this.filteredBooks = (query) ?
@@ -53,6 +76,7 @@ export class AdminOrdersComponent implements OnDestroy {
   slice(str){
     return String(str).slice(0,10);
   }
+
   collapseBook() {
     this.categoryCollapsed = true;
     this.publisherCollapsed = true;
