@@ -34,6 +34,13 @@ export class EditPublisherComponent implements OnDestroy {
     //location.reload();
   }
 
+
+  adminOther() {
+    if(confirm('Are you sure you want to cancel? \nAll unsaved information will be lost.')){
+      this.router.navigate(['/admin/other']);
+    }
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

@@ -36,10 +36,11 @@ export class EditBookComponent implements OnDestroy{
   publisher: string;
   id: string;
   date: string;
+  submit:boolean = false;
 
   constructor(private getService : GETService, private putService: PUTService,
               private modalService: NgbModal, private router: Router, private route: ActivatedRoute,
-              private userservice:UserService) {
+              private userservice:UserService, private postService:POSTService) {
                 if (userservice.isAdmin()) {
     this.categories$ = getService.getCategories();
     this.formats$ = getService.getFormats();
@@ -82,23 +83,73 @@ export class EditBookComponent implements OnDestroy{
    editBook(newBook){
      console.log("saving..." +newBook.bookTitle);
      this.putService.putBook(newBook);
-     this.router.navigate(['/admin/books/edit']);
+     this.router.navigate(['/admin/books/edit/' + this.id]);
 
    }
 
   //ADD NEW (PUBLISHER/CATEGORY ETC)
   addNew(content) {
     this.modalService.open(content, { centered: true });
-    this.router.navigate(['/admin/books/new']);
+    this.router.navigate(['/admin/books/edit/' + this.id]);
   }
 
   adminNewBooks() {
-    this.router.navigate(['/admin/books/new']);
+    this.router.navigate(['/admin/books/edit/' + this.id]);
+  }
+  saveCategory(newCategory){
+    this.postService.createCategory(newCategory).subscribe((response)=>{
+     console.log('response from post data is ', response);
+     this.categories$ = this.getService.getCategories();
+     this.submit = true;
+     }, (error)=> {
+     console.log('error during post is ', error)
+     this.submit = false;
+   });
+
+  }
+  savePublisher(newPublisher){
+    this.postService.createPublisher(newPublisher).subscribe((response)=>{
+     console.log('response from post data is ', response);
+     this.publishers$ = this.getService.getPublishers();
+     this.submit = true;
+   },(error)=>{
+     console.log('error during post is ', error)
+     this.submit = false;
+   });
+  }
+  saveFormat(newFormat){
+    this.postService.createFormat(newFormat).subscribe((response)=>{
+      this.formats$ = this.getService.getFormats();
+     console.log('response from post data is ', response);
+     this.submit = true;
+   },(error)=>{
+     console.log('error during post is ', error);
+     this.submit = false;
+   });
+  }
+
+  saveAuthor(newAuthor){
+    console.log(newAuthor.newAuthorBio);
+    newAuthor.newAuthorBio = newAuthor.newAuthorBio.replace(/'/g,"\\'");
+    newAuthor.newAuthorBio = newAuthor.newAuthorBio.replace(/"/g,'\\"');
+    console.log(newAuthor.newAuthorBio);
+    this.postService.createAuthor(newAuthor).subscribe((response)=>{
+     console.log('response from post data is ', response);
+     this.authors$ = this.getService.getAuthors();
+     this.submit = true;
+   },(error)=>{
+     console.log('error during post is ', error);
+     this.submit = false;
+   });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
+  adminBooks() {
+    if(confirm('Are you sure you want to return to book list? \nAll unsaved information will be lost.')){
+      this.router.navigate(['/admin/books']);
+    }
+  }
 }
 

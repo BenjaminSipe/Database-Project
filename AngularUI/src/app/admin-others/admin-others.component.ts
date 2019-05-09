@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './admin-others.component.html',
   styleUrls: ['./admin-others.component.sass']
 })
-export class AdminOthersComponent implements OnInit, OnDestroy {
+export class AdminOthersComponent implements OnDestroy {
   bookFormats: {FormatID: string,
                 FormatName: string,
                 }[];
@@ -99,8 +99,34 @@ export class AdminOthersComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit() {
+  collapseCategory() {
+    this.formatCollapsed = true;
+    this.publisherCollapsed = true;
+    this.authorCollapsed = true;
+    return this.categoryCollapsed = !this.categoryCollapsed;
   }
+
+  collapsePublisher() {
+    this.categoryCollapsed = true;
+    this.formatCollapsed = true;
+    this.authorCollapsed = true;
+    return this.publisherCollapsed = !this.publisherCollapsed;
+  }
+
+  collapseAuthor() {
+    this.categoryCollapsed = true;
+    this.formatCollapsed = true;
+    this.publisherCollapsed = true;
+    return this.authorCollapsed = !this.authorCollapsed;
+  }
+
+  collapseFormat() {
+    this.categoryCollapsed = true;
+    this.authorCollapsed = true;
+    this.publisherCollapsed = true;
+    return this.formatCollapsed = !this.formatCollapsed;
+  }
+
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
