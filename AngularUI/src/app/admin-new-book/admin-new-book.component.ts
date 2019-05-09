@@ -48,13 +48,16 @@ export class AdminNewBookComponent{
     }
   }
 
+  adminBooks() {
+    if(confirm('Are you sure you want to return to book list? \nAll unsaved information will be lost.')){
+      this.router.navigate(['/admin/books']);
+    }
+  }
+
    //SAVE
    saveBook(newBook){
-     console.log("saving keys..." +Object.keys(newBook));
-     console.log("saving values..." +Object.values(newBook));
      this.postService.createBook(newBook).subscribe((response)=>{
       console.log('response from post data is ', response);
-      console.log(response[0].BookID);
       this.ab.BookID = response[0].BookID;
       this.bc.BookID = response[0].BookID;
       this.fb.BookID = response[0].BookID;

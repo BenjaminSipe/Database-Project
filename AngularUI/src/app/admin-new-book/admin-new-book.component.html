@@ -133,10 +133,10 @@
                       </div>
                   </div>
               </div>
-              <!-- <div class="alert" *ngIf="AddBook.valid">
-
-              </div> -->
-              <button type="submit" class="btn btn-dark" [disabled]="!AddBook.valid">Save</button>
+              <button type="button" (click)="adminBooks()" class="btn btn-outline-dark btn-custom">
+                <i class="fa fa-angle-left"></i> Back to Book List
+              </button>
+              <button type="submit" class="btn btn-dark btn-custom" [disabled]="!AddBook.valid">Save</button>
             </form>
           </div>
           <div class="col-4 text-center">
@@ -169,15 +169,15 @@
                 <label for="newCategory">New Category:</label>
                   <div class="form-group">
                       <div class="input-group mb-3">
-                        <input  ngModel name="newCategoryName" id="newCategory" type="text" class="form-control">
-
+                        <input #newCategoryName=ngModel ngModel name="newCategoryName" id="newCategory" type="text" class="form-control" required>
                       </div>
+                      <div class="text-danger mt-0 mb-0" *ngIf="newCategoryName.touched && newCategoryName.invalid">Category name is required.</div>
                     </div>
               </div>
             </div>
             <div class="modal-footer">
               <p class="alert alert-success" *ngIf="submit">Category saved!</p>
-              <button class="btn btn-dark" type="submit">Save</button>
+              <button class="btn btn-dark" type="submit" [disabled]="!NewCategory.valid">Save</button>
               </div>
           </form>
 </ng-template>
@@ -195,14 +195,15 @@
                 <label for="newFormat">New Format:</label>
                   <div class="form-group">
                       <div class="input-group mb-3">
-                        <input  ngModel name="newFormatName" id="newFormat" type="text" class="form-control">
+                        <input #newFormatName=ngModel ngModel name="newFormatName" id="newFormat" type="text" class="form-control" required>
                       </div>
+                      <div class="text-danger mt-0 mb-0" *ngIf="newFormatName.touched && newFormatName.invalid">Format name is required.</div>
                     </div>
               </div>
             </div>
             <div class="modal-footer">
               <p class="alert alert-success" *ngIf="submit">Format saved!</p>
-              <button class="btn btn-dark" type="submit">Save</button>
+              <button class="btn btn-dark" type="submit" [disabled]="!NewFormat.valid">Save</button>
               </div>
           </form>
 </ng-template>
@@ -220,32 +221,41 @@
                   <label for="publisher">Publisher Name:</label>
                     <div class="form-group">
                         <div class="input-group mb-3">
-                          <input  ngModel name="newPublisherName" id="newPublisher" type="text" class="form-control">
+                          <input #newPublisherName=ngModel ngModel name="newPublisherName" id="newPublisher" type="text" class="form-control" required>
                         </div>
+                        <div class="text-danger mt-0 mb-0" *ngIf="newPublisherName.touched && newPublisherName.invalid">Name is required.</div>
                       </div>
                       <label for="publisher">Publisher Contact Name:</label>
                       <div class="form-group">
                           <div class="input-group mb-3">
-                            <input  ngModel name="newPublisherContactName" id="newPublisherContactName" type="text" class="form-control">
+                            <input #newPublisherContactName=ngModel ngModel name="newPublisherContactName" id="newPublisherContactName" type="text" class="form-control" required>
                           </div>
+                          <div class="text-danger mt-0 mb-0" *ngIf="newPublisherContactName.touched && newPublisherContactName.invalid">Contact name is required.</div>
                         </div>
                         <label for="publisher">Publisher Address:</label>
                         <div class="form-group">
                             <div class="input-group mb-3">
-                              <input  ngModel name="newPublisherAddress" id="newPublisherAddress" type="text" class="form-control">
+                              <input #newPublisherAdrdess=ngModel ngModel name="newPublisherAddress" id="newPublisherAddress" type="text" class="form-control" required>
                             </div>
+                            <div class="text-danger mt-0 mb-0" *ngIf="newPublisherAdrdess.touched && newPublisherAdrdess.invalid">Address is required.</div>
                           </div>
                           <label for="publisher">Publisher Phone:</label>
                           <div class="form-group">
                               <div class="input-group mb-3">
-                                <input  ngModel name="newPublisherPhone" id="newPublisherPhone" type="number" class="form-control">
+                                <input #newPubisherPhone=ngModel ngModel name="newPublisherPhone" id="newPublisherPhone"
+                                type="text" class="form-control" minlength="10" maxlength="15" required digits>
+                              </div>
+                              <div class="text-danger" *ngIf="newPubisherPhone.touched && newPubisherPhone.invalid">
+                                  <div *ngIf="newPubisherPhone?.errors?.minlength ||newPubisherPhone?.errors?.maxlength">Error.</div>
+                                  <div *ngIf="newPubisherPhone?.errors?.digits">Digits only.</div>
+                                  <div *ngIf="newPubisherPhone?.errors?.required">Phone is required.</div>
                               </div>
                             </div>
                 </div>
               </div>
                 <div class="modal-footer">
                     <p class="alert alert-success" *ngIf="submit">Publisher saved!</p>
-                    <button class="btn btn-dark">Save</button>
+                    <button class="btn btn-dark" [disabled]="!NewPublisher.valid">Save</button>
                     </div>
             </form>
 </ng-template>
@@ -263,27 +273,33 @@
                 <label for="Author">Author Name:</label>
                   <div class="form-group">
                       <div class="input-group mb-3">
-                        <input  ngModel name="newAuthorName" id="newAuthor" type="text" class="form-control">
+                        <input  #newAuthorName=ngModel ngModel name="newAuthorName" id="newAuthor" type="text" class="form-control" required>
                       </div>
+                      <div class="text-danger mt-0 mb-0" *ngIf="newAuthorName.touched && newAuthorName.invalid">Name is required.</div>
                     </div>
                     <label for="Author">Author Biography:</label>
                     <div class="form-group">
                         <div class="input-group mb-3">
-                          <textarea ngModel name="newAuthorBio" class="form-control" id="newAuthorBio" rows="3"></textarea>
-
+                          <textarea #newAuthorBio=ngModel ngModel name="newAuthorBio" class="form-control" id="newAuthorBio" rows="3" required></textarea>
                         </div>
+                        <div class="text-danger mt-0 mb-0" *ngIf="newAuthorBio.touched && newAuthorBio.invalid">Bio is required.</div>
                       </div>
                       <label for="author">Author Image Link:</label>
                       <div class="form-group">
                           <div class="input-group mb-3">
-                            <input  ngModel name="newAuthorImageLink" id="newAuthorImageLink" type="text" class="form-control">
+                            <input #newAuthorImageLink=ngModel ngModel name="newAuthorImageLink"
+                            id="newAuthorImageLink" type="text" class="form-control" url required>
+                          </div>
+                          <div class="text-danger" *ngIf="newAuthorImageLink.touched && newAuthorImageLink.invalid">
+                              <div *ngIf="newAuthorImageLink?.errors?.url">Invalid URL.</div>
+                              <div *ngIf="newAuthorImageLink?.errors?.required">URL required.</div>
                           </div>
                         </div>
               </div>
             </div>
               <div class="modal-footer">
                   <p class="alert alert-success" *ngIf="submit">Author saved!</p>
-                  <button class="btn btn-dark">Save</button>
+                  <button class="btn btn-dark" [disabled]="!NewAuthor.valid">Save</button>
                   </div>
           </form>
 </ng-template>

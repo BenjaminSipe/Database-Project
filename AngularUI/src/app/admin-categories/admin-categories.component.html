@@ -11,8 +11,8 @@
             <p  *ngFor="let c of category$ | async">Category: {{ c.CategoryName }}</p>
             <div *ngFor="let f of format$ | async">
             <p>Format: {{f.FormatName}}</p>
-            <p>Price: {{ f.Price | currency:'USD':true }}</p>
-            <p>Cost: {{ f.Cost | currency:'USD':true }}</p>
+            <p>Price: {{ f.Price | currency:'USD'}}</p>
+            <p>Cost: {{ f.Cost | currency:'USD' }}</p>
             <p>Quantity: {{ f.Quantity }}</p>
             </div>
             <p  *ngFor="let p of publisher$ | async">Publisher: {{ p.Name }}</p>

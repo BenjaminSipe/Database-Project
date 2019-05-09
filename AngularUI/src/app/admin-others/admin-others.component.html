@@ -7,19 +7,19 @@
         </div>
           <div class="row">
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-dark m-1" (click)="categoryCollapsed = !categoryCollapsed"
+                <button type="button" class="btn btn-dark m-1" (click)="collapseCategory()"
                 [attr.aria-expanded]="!categoryCollapsed" aria-controls="collapseCategory">
                   Categories
                 </button>
-                <button type="button" class="btn btn-dark m-1" (click)="formatCollapsed = !formatCollapsed"
+                <button type="button" class="btn btn-dark m-1" (click)="collapseFormat()"
                 [attr.aria-expanded]="!formatCollapsed" aria-controls="collapseFormat">
                 Formats
                 </button>
-                <button type="button" class="btn btn-dark m-1" (click)="authorCollapsed = !authorCollapsed"
+                <button type="button" class="btn btn-dark m-1" (click)="collapseAuthor()"
                 [attr.aria-expanded]="!authorCollapsed" aria-controls="collapseAuthor">
                  Authors
                 </button>
-              <button type="button" class="btn btn-dark m-1" (click)="publisherCollapsed = !publisherCollapsed"
+              <button type="button" class="btn btn-dark m-1" (click)="collapsePublisher()"
               [attr.aria-expanded]="!publisherCollapsed" aria-controls="collapsePublisher">
               Publishers
             </button>
@@ -47,7 +47,7 @@
                                     <form #EditCategory="ngForm" aria-required="true">
                                       <div class="form-group">
                                         <input #CategoryName="ngModel" [(ngModel)]="c.CategoryName" name="categoryName" id="categoryName" type="text" class="form-control" required>
-                                        <div class="alert alert-danger" *ngIf="CategoryName.touched && CategoryName.invalid">Name is required.</div>
+                                        <div class="text-danger" *ngIf="CategoryName.touched && CategoryName.invalid">Category name is required.</div>
                                       </div>
                                     </form>
                                     </td>
@@ -124,7 +124,7 @@
                                     <form #EditFormat="ngForm" aria-required="true">
                                         <div class="form-group">
                                           <input #FormatName="ngModel" [(ngModel)]="f.FormatName" name="FormatName" id="FormatName" type="text" class="form-control" required>
-                                          <div class="alert alert-danger" *ngIf="FormatName.touched && FormatName.invalid">Name is required.</div>
+                                          <div class="text-danger" *ngIf="FormatName.touched && FormatName.invalid">Format name is required.</div>
                                         </div>
                                       </form>
                                 </td>

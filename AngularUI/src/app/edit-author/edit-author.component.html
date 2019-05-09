@@ -16,15 +16,15 @@
                 <div class="form-group col-md">
                   <label for="name">Author Name</label>
                   <input #authorName="ngModel" [(ngModel)]="author.Name" name="authorName" id="authorName" type="text" class="form-control" required>
-                  <div class="alert alert-danger" *ngIf="authorName.touched && authorName.invalid">Name is required.</div>
+                  <div class="text-danger" *ngIf="authorName.touched && authorName.invalid">Name is required.</div>
                 </div>
               </div>
               <div class="form-group">
                   <label for="ImageUrl">Image URL</label>
                   <input #ImageUrl="ngModel" [(ngModel)]="author.ImageLink" name="imageUrl" id="imageUrl" type="text" class="form-control" url required>
-                  <div class="alert alert-danger" *ngIf="ImageUrl.touched && ImageUrl.invalid">
+                  <div class="text-danger" *ngIf="ImageUrl.touched && ImageUrl.invalid">
                       <div *ngIf="ImageUrl?.errors?.url">Invalid URL.</div>
-                      <div *ngIf="ImageUrl?.errors?.required">Required.</div>
+                      <div *ngIf="ImageUrl?.errors?.required">URL is required.</div>
                   </div>
               </div>
               <div class="form-group">
@@ -32,10 +32,13 @@
                 #Bio="ngModel" [(ngModel)]="author.Bio" name="authorBio"
                 id="imageBio" type="text" class="form-control" required>
               </textarea>
-              <div class="alert alert-danger" *ngIf="Bio.touched && Bio.invalid">
-                <div *ngIf="Bio?.errors?.required">Required.</div>
+              <div class="text-danger" *ngIf="Bio.touched && Bio.invalid">
+                <div *ngIf="Bio?.errors?.required">Bio is required.</div>
             </div>
               </div>
-          <button type="submit" class="btn btn-dark" [disabled]="!EditAuthor.valid">Update</button>
+          <button type="button" (click)="adminOther()" class="btn btn-outline-dark btn-custom">
+            <i class="fa fa-angle-left"></i> Cancel
+          </button>
+          <button type="submit" class="btn btn-dark btn-custom" [disabled]="!EditAuthor.valid">Update</button>
         </form>
 </div>

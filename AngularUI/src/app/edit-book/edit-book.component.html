@@ -137,7 +137,10 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-dark" [disabled]="!AddBook.valid">Update</button>
+            <button type="button" (click)="adminBooks()" class="btn btn-outline-dark btn-custom">
+                <i class="fa fa-angle-left"></i> Back to Book List
+              </button>
+            <button type="submit" class="btn btn-dark  btn-custom" [disabled]="!AddBook.valid">Update</button>
           </form>
           </div>
           <div class="col-4 text-center">
@@ -155,132 +158,151 @@
     </div>
   </div>
 
-  <!-- NG_TEMPLATES -->
-  <ng-template #newCategory let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title">Add New Category</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-          <form #NewCategory="ngForm" (ngSubmit)="saveCategory(NewCategory.value)">
-            <div class="modal-body">
-            <div class="form-group">
-                  <label for="newCategory">New Category:</label>
-                    <div class="form-group">
-                        <div class="input-group mb-3">
-                          <input  ngModel name="newCategoryName" id="newCategory" type="text" class="form-control">
-
-                        </div>
+ <!-- NG_TEMPLATES -->
+<ng-template #newCategory let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add New Category</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+        <form #NewCategory="ngForm" (ngSubmit)="saveCategory(NewCategory.value)">
+          <div class="modal-body">
+          <div class="form-group">
+                <label for="newCategory">New Category:</label>
+                  <div class="form-group">
+                      <div class="input-group mb-3">
+                        <input #newCategoryName=ngModel ngModel name="newCategoryName" id="newCategory" type="text" class="form-control" required>
                       </div>
-                </div>
+                      <div class="text-danger mt-0 mb-0" *ngIf="newCategoryName.touched && newCategoryName.invalid">Category name is required.</div>
+                    </div>
               </div>
-              <div class="modal-footer">
-                <button class="btn btn-dark" type="submit">Update</button>
-                </div>
-            </form>
-  </ng-template>
-
-  <ng-template #newFormat let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title">Add New Format</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-          <form #NewFormat="ngForm" (ngSubmit)="saveFormat(NewFormat.value)">
-            <div class="modal-body">
-            <div class="form-group">
-                  <label for="newFormat">New Format:</label>
-                    <div class="form-group">
-                        <div class="input-group mb-3">
-                          <input  ngModel name="newFormatName" id="newFormat" type="text" class="form-control">
-                        </div>
-                      </div>
-                </div>
+            </div>
+            <div class="modal-footer">
+              <p class="alert alert-success" *ngIf="submit">Category saved!</p>
+              <button class="btn btn-dark" type="submit" [disabled]="!NewCategory.valid">Save</button>
               </div>
-              <div class="modal-footer">
-                <button class="btn btn-dark" type="submit">Save</button>
-                </div>
-            </form>
-  </ng-template>
+          </form>
+</ng-template>
 
-  <ng-template #newPublisher let-modal>
-        <div class="modal-header">
-          <h4 class="modal-title">Add New Publisher</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-            <form #NewPublisher="ngForm" (ngSubmit)="savePublisher(NewPublisher.value)">
-             <div class="modal-body">
-              <div class="form-group">
-                    <label for="publisher">Publisher Name:</label>
-                      <div class="form-group">
-                          <div class="input-group mb-3">
-                            <input  ngModel name="newPublisherName" id="newPublisher" type="text" class="form-control">
-                          </div>
-                        </div>
-                        <label for="publisher">Publisher Contact Name:</label>
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                              <input  ngModel name="newPublisherContactName" id="newPublisherContactName" type="text" class="form-control">
-                            </div>
-                          </div>
-                          <label for="publisher">Publisher Address:</label>
-                          <div class="form-group">
-                              <div class="input-group mb-3">
-                                <input  ngModel name="newPublisherAddress" id="newPublisherAddress" type="text" class="form-control">
-                              </div>
-                            </div>
-                            <label for="publisher">Publisher Phone:</label>
-                            <div class="form-group">
-                                <div class="input-group mb-3">
-                                  <input  ngModel name="newPublisherPhone" id="newPublisherPhone" type="number" class="form-control">
-                                </div>
-                              </div>
-                  </div>
-                </div>
-                  <div class="modal-footer">
-                      <button class="btn btn-dark">Save</button>
+<ng-template #newFormat let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add New Format</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+        <form #NewFormat="ngForm" (ngSubmit)="saveFormat(NewFormat.value)">
+          <div class="modal-body">
+          <div class="form-group">
+                <label for="newFormat">New Format:</label>
+                  <div class="form-group">
+                      <div class="input-group mb-3">
+                        <input #newFormatName=ngModel ngModel name="newFormatName" id="newFormat" type="text" class="form-control" required>
                       </div>
-              </form>
-  </ng-template>
+                      <div class="text-danger mt-0 mb-0" *ngIf="newFormatName.touched && newFormatName.invalid">Format name is required.</div>
+                    </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <p class="alert alert-success" *ngIf="submit">Format saved!</p>
+              <button class="btn btn-dark" type="submit" [disabled]="!NewFormat.valid">Save</button>
+              </div>
+          </form>
+</ng-template>
 
-  <ng-template #newAuthor let-modal>
+<ng-template #newPublisher let-modal>
       <div class="modal-header">
-        <h4 class="modal-title">Add New Author</h4>
+        <h4 class="modal-title">Add New Publisher</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-          <form #NewAuthor="ngForm" (ngSubmit)="saveAuthor(NewAuthor.value)">
+          <form #NewPublisher="ngForm" (ngSubmit)="savePublisher(NewPublisher.value)">
            <div class="modal-body">
             <div class="form-group">
-                  <label for="Author">Author Name:</label>
+                  <label for="publisher">Publisher Name:</label>
                     <div class="form-group">
                         <div class="input-group mb-3">
-                          <input  ngModel name="newAuthorName" id="newAuthor" type="text" class="form-control">
+                          <input #newPublisherName=ngModel ngModel name="newPublisherName" id="newPublisher" type="text" class="form-control" required>
                         </div>
+                        <div class="text-danger mt-0 mb-0" *ngIf="newPublisherName.touched && newPublisherName.invalid">Name is required.</div>
                       </div>
-                      <label for="Author">Author Biography:</label>
+                      <label for="publisher">Publisher Contact Name:</label>
                       <div class="form-group">
                           <div class="input-group mb-3">
-                            <textarea ngModel name="newAuthorBio" class="form-control" id="newAuthorBio" rows="3"></textarea>
-
+                            <input #newPublisherContactName=ngModel ngModel name="newPublisherContactName" id="newPublisherContactName" type="text" class="form-control" required>
                           </div>
+                          <div class="text-danger mt-0 mb-0" *ngIf="newPublisherContactName.touched && newPublisherContactName.invalid">Contact name is required.</div>
                         </div>
-                        <label for="author">Author Image Link:</label>
+                        <label for="publisher">Publisher Address:</label>
                         <div class="form-group">
                             <div class="input-group mb-3">
-                              <input  ngModel name="newAuthorImageLink" id="newAuthorImageLink" type="text" class="form-control">
+                              <input #newPublisherAdrdess=ngModel ngModel name="newPublisherAddress" id="newPublisherAddress" type="text" class="form-control" required>
                             </div>
+                            <div class="text-danger mt-0 mb-0" *ngIf="newPublisherAdrdess.touched && newPublisherAdrdess.invalid">Address is required.</div>
                           </div>
+                          <label for="publisher">Publisher Phone:</label>
+                          <div class="form-group">
+                              <div class="input-group mb-3">
+                                <input #newPubisherPhone=ngModel ngModel name="newPublisherPhone" id="newPublisherPhone"
+                                type="text" class="form-control" minlength="10" maxlength="15" required digits>
+                              </div>
+                              <div class="text-danger" *ngIf="newPubisherPhone.touched && newPubisherPhone.invalid">
+                                  <div *ngIf="newPubisherPhone?.errors?.minlength ||newPubisherPhone?.errors?.maxlength">Error.</div>
+                                  <div *ngIf="newPubisherPhone?.errors?.digits">Digits only.</div>
+                                  <div *ngIf="newPubisherPhone?.errors?.required">Phone is required.</div>
+                              </div>
+                            </div>
                 </div>
               </div>
                 <div class="modal-footer">
-                    <button class="btn btn-dark">Save</button>
+                    <p class="alert alert-success" *ngIf="submit">Publisher saved!</p>
+                    <button class="btn btn-dark" [disabled]="!NewPublisher.valid">Save</button>
                     </div>
             </form>
-  </ng-template>
+</ng-template>
 
+<ng-template #newAuthor let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add New Author</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+        <form #NewAuthor="ngForm" (ngSubmit)="saveAuthor(NewAuthor.value)">
+         <div class="modal-body">
+          <div class="form-group">
+                <label for="Author">Author Name:</label>
+                  <div class="form-group">
+                      <div class="input-group mb-3">
+                        <input  #newAuthorName=ngModel ngModel name="newAuthorName" id="newAuthor" type="text" class="form-control" required>
+                      </div>
+                      <div class="text-danger mt-0 mb-0" *ngIf="newAuthorName.touched && newAuthorName.invalid">Name is required.</div>
+                    </div>
+                    <label for="Author">Author Biography:</label>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                          <textarea #newAuthorBio=ngModel ngModel name="newAuthorBio" class="form-control" id="newAuthorBio" rows="3" required></textarea>
+                        </div>
+                        <div class="text-danger mt-0 mb-0" *ngIf="newAuthorBio.touched && newAuthorBio.invalid">Bio is required.</div>
+                      </div>
+                      <label for="author">Author Image Link:</label>
+                      <div class="form-group">
+                          <div class="input-group mb-3">
+                            <input #newAuthorImageLink=ngModel ngModel name="newAuthorImageLink"
+                            id="newAuthorImageLink" type="text" class="form-control" url required>
+                          </div>
+                          <div class="text-danger" *ngIf="newAuthorImageLink.touched && newAuthorImageLink.invalid">
+                              <div *ngIf="newAuthorImageLink?.errors?.url">Invalid URL.</div>
+                              <div *ngIf="newAuthorImageLink?.errors?.required">URL required.</div>
+                          </div>
+                        </div>
+              </div>
+            </div>
+              <div class="modal-footer">
+                  <p class="alert alert-success" *ngIf="submit">Author saved!</p>
+                  <button class="btn btn-dark" [disabled]="!NewAuthor.valid">Save</button>
+                  </div>
+          </form>
+</ng-template>

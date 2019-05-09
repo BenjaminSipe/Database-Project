@@ -33,7 +33,7 @@ export class AdminEditBookComponent implements OnDestroy{
     this.filteredBooks = (query) ?
     this.books.filter(b => b.Title.toLowerCase().includes(query.toLowerCase())) :
     this.books;
-       }
+   }
 
     deleteBook(book){
       //console.log(book)
@@ -49,6 +49,5 @@ export class AdminEditBookComponent implements OnDestroy{
          });
         }
     }
-
 
 }
