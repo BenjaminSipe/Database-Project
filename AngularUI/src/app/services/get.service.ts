@@ -100,6 +100,9 @@ export class GETService {
   getTopBooks(){
     return this.http.get(this.url + 'ReadTopBooks');
   }
+  getAveragePrice(){
+    return this.http.get(this.url + 'readAveragePrice');
+  }
   getBooksBySales(){
     return this.http.get(this.url + 'ReadBooksBySales');
   }

@@ -17,6 +17,7 @@ export class AdminOrdersComponent implements OnDestroy {
   publisherDayCollapsed = true;
   subscription: Subscription;
   total;
+  average;
   orders: any[];
   categories: any[];
   publishers: any[];
@@ -33,6 +34,7 @@ export class AdminOrdersComponent implements OnDestroy {
     this.subscription = this.getService.getPublishers().subscribe(publishers => this.publishers = Object.values(publishers));
     this.subscription = this.getService.getBooksBySales().subscribe(books => this.books = this.filteredBooks = Object.values(books));
     this.subscription = this.getService.getTotal().subscribe(total => this.total = Object.values(total));
+    this.subscription = this.getService.getAveragePrice().subscribe(average => this.average = average[0].AveragePrice);
     this.subscription = this.getService.getTotalValueByCategory()
     .subscribe(booksByCategory => this.booksByCategory = Object.values(booksByCategory));
     this.subscription = this.getService.getTotalValueByPublisher()
