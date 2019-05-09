@@ -65,8 +65,16 @@ export class POSTService {
   }
 
   createInvoice(invoice){
-    return this.http.post(this.urlBase + 'CreatePurchase', invoice).subscribe((obj) => {
-      
+    return new Promise((resolve, reject) => {
+
+    
+    this.http.post(this.urlBase + 'CreatePurchase', invoice).subscribe((obj:any) => {
+      if (! obj.Result) {
+        reject(obj);
+      } else {
+        resolve([]);
+      }
     });
-  }
+  } )
+}
 }

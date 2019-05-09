@@ -77,11 +77,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.invoice.shippingAddress = this.convertAddress(order);;
     this.invoice.Books = this.getItems();
     //console.log(this.invoice);
-    this.post.createInvoice(this.invoice);
+    this.post.createInvoice(this.invoice).then((m) => {
     this.modalService.dismissAll();
     this.cart.ClearCart();
     this.router.navigate(['/order-success']);
-    }
+  }).catch((m) => {
+    this.userservice.errorList = m;
+    this.modalService.dismissAll();
+    this.cart.ClearCart();
+    this.router.navigate(['/order-error'])
+    //This is where I will tell the user what went wrong.
+  });  
+  }
   }
 
   cardDetails(index:number) {

@@ -32,7 +32,6 @@ exports.CreateInvoice = function (body) {
 
     })
 }
-
 exports.AddBook = function (book, InvoiceID) {
     return new Promise((resolve, reject) => {
         dbInfo.pool.query("Call usp_CreateBookInvoice( ?, ? ,? ,? )", [
@@ -49,7 +48,7 @@ exports.AddBook = function (book, InvoiceID) {
             } else {
                 if (rows[0][0].info == "Insufficient Quantity") {
                     console.log("Not Enough Books");
-                    reject("Not Enough Books");
+                    reject(rows[0][0]);
                 } else {
                     resolve(rows[0][0]);
                 }

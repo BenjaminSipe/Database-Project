@@ -491,6 +491,7 @@ Body :
 }
 */
 app.post('/CreatePurchase', (req, res) => {
+  console.log(req.body);
   console.log("Create Purchase reached")
   purchase.CreateInvoice(req.body).then((message) => {
     req.body.InvoiceID = message;
@@ -498,33 +499,36 @@ app.post('/CreatePurchase', (req, res) => {
     //This is where I add all of the books
     let list = [];
     let book;
-    for (let i = 1; i < 3; i++) {
-      if (i == 1) {
-        for (book of req.body.Books) {
-          //console.log(book);
+      for (book of req.body.Books) {
+        //console.log(book);
           purchase.AddBook(book, message).then((message2) => {
             console.log("no Issues")
+            if (book == req.body.Books[req.body.Books.length - 1]) {
+              if (list.length > 0) {
+                res.send(list);
+              } else {
+                res.send('{"Result":"Order Placed"}')
+              }
+            }
+
           }).catch((message2) => {
+            message2.quantity = book.productCount;
             list.push(message2);
+            if (book == req.body.Books[req.body.Books.length - 1]) {
+              if (list.length > 0) {
+                res.send(list);
+              } else {
+                res.send('{"Result":"Order Placed"}')
+              }
+            }
           })
         }
-      } else {
-        if (list.length > 0) {
-          console.log(list);
-          res.send(list);
-        } else {
-          console.log("No Quantity Errors")
-          res.send('{"Result":"Order Placed"}')
-        }
-      }
-    }
   }).catch((message) => {
     console.log(message);
 
     res.send("message");
   })
 })
-
 async function main(body) {
 
   console.log(body);

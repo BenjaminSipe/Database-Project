@@ -10,12 +10,13 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
   user = new User("", "");
   userName = "Guest";
   loginText = "Login";
   changePassword = false;
-
+  errorList = [];
   isLoggedIn() {
     return !(localStorage.getItem("UserID") == "0" || localStorage.getItem("UserID") == undefined);
   }

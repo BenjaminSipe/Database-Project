@@ -29,6 +29,7 @@ import { ConfirmationPageComponent } from './confirmation-page/confirmation-page
 import { AdminInvoiceComponent } from './admin-invoice/admin-invoice.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
+import { OrderErrorComponent } from './order-error/order-error.component';
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent},
@@ -54,6 +55,7 @@ const routes: Routes = [
   { path: 'order-success', component: ConfirmationPageComponent},
   { path: 'admin/orders', component: AdminOrdersComponent},
   { path: 'admin/invoice', component: AdminInvoiceComponent},
+  { path: 'order-error', component: OrderErrorComponent }
   
 
 ];

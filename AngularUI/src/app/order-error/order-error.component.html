@@ -1,0 +1,25 @@
+<div class="container">
+  <h4>Apologies, there has been an error in your order.</h4>
+  <p>The following books could not be purchased at this time due to limited stock:</p>
+  <div class="row-fluid">
+    <table class="table-hover table-sm">
+      <thead>
+        <tr>
+          <th style="width:11%" scope="col-1">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Isbn13</th>
+          <th style="width:11%" scope="col">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of Books; let i = index">
+          <td>{{ i+1 }}</td>
+          <td class="w-50">{{ c.Title }}</td>
+          <td>{{ c.Isbn13 }}</td>
+          <td>{{ c.Quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button routerLink="/" class="btn btn-outline-dark">Return To Home Page</button>
+  </div>
+</div>

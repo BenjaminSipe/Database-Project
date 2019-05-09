@@ -19,7 +19,7 @@
           <td>{{ c.Isbn13 }}</td>
 
           <td>{{ c.Quantity }}</td>
-          <td>{{ c.Price | currency:'USD':"symbol" }}</td>
+          <td>{{ c.Price * c.Quantity | currency:'USD':"symbol" }}</td>
         </tr>
           <tr>
           <td>Total</td>
