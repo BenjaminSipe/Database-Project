@@ -46,7 +46,6 @@ export class CreditCardComponent implements OnInit {
     get.getCreditCardByUser(localStorage.getItem("UserID")).subscribe((obj) => {
 
       for (let vl of obj) {
-        console.log(vl);
         this.creditCards.push(vl);
       }
     })
@@ -127,9 +126,10 @@ export class CreditCardComponent implements OnInit {
       b = false;
       this.error[3] = "Invalid Card Number";
     }
-    if (this.newCard.CCV == "") {
+    if ((this.newCard.CCV.length != 3 && this.newCard.CCV.length != 4) || this.newCard.CCV.match(/[^0-9]/) != null) {
       b = false;
-      this.error[4] = "Invalid";
+      console.log(this.newCard.CCV.match(/^[0-9]/))
+      this.error[4] = "Invalid CCV";
     }
     return b;
   }
@@ -141,7 +141,10 @@ export class CreditCardComponent implements OnInit {
       this.newCard.ExpirationDate = this.newCard.ExpirationDate.replace("/", "");
       this.newCard.UserID = this.userservice.user.userID;
       this.post.createCreditCard(this.newCard);
+      this.creditCards.push(this.newCard);
+      this.newCard = new Creditcard();
       this.clear();
+
       this.newCardPage = false;
     }
   }

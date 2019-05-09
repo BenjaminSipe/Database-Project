@@ -336,7 +336,7 @@ app.get("/ReadOrders", (req, res) => {
 
 app.post("/CreateAdmin/:id", (req, res) => {
   userCRUD.CreateAdmin(req.params.id);
-  res.send("Success");
+  res.send('{"Success":"Success"}');
 });
 app.delete("/deleteUser/:id", (req, res) => {
   userCRUD.deleteUser(req.params.id).then((message) => {

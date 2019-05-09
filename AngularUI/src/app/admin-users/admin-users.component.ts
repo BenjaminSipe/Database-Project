@@ -44,7 +44,8 @@ export class AdminUsersComponent implements OnInit {
   }
 
   adminUser(user) {
-    this.userservice.CreateAdmin(user.userID);
+
+    this.userservice.CreateAdmin(user.UserID);
     user.UserLevel = 2;
   }
 

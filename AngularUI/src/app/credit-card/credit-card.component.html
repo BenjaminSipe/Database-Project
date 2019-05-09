@@ -62,17 +62,8 @@
         </div>
 
       </div>
-      <div class="form-group">
-        <label for="ExpirationDate">Expiration Date (MM/YY)</label>
-        <input [value]="newCard.ExpirationDate" (input)="newCard.ExpirationDate = $event.target.value" type="text"
-          class="form-control" id="ExpirationDate" placeholder="Expiration Date" aria-required="true">
-        <div *ngIf="error[2]!=''" class="text-danger" role="alert">
-          {{error[2]}}
-        </div>
-
-      </div>
       <div class="row">
-        <div class="col-9">
+        <div class="col-5">
           <div class="form-group">
             <label for="CreditCardNumber">Credit Card Number</label>
             <input type="text" [value]="newCard.CreditCardNumber"
@@ -82,6 +73,16 @@
               {{error[3]}}
             </div>
           </div>
+        </div>
+        <div class="col-4">
+        <div class="form-group">
+          <label for="ExpirationDate">Expiration Date</label>
+          <input [value]="newCard.ExpirationDate" (input)="newCard.ExpirationDate = $event.target.value" type="text"
+            class="form-control" id="ExpirationDate" placeholder="MM/YY" aria-required="true">
+          <div *ngIf="error[2]!=''" class="text-danger" role="alert">
+            {{error[2]}}
+          </div>
+        </div>
         </div>
         <div class="col-3">
           <div class="form-group">
@@ -93,6 +94,7 @@
             </div>
           </div>
         </div>
+        
         <div class=" col-md-5 mb-3">
           <label for="address">Billing Address</label>
           <input [value]="address.address1" (input)="address.address1 = $event.target.value" type="text"
