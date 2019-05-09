@@ -20,7 +20,7 @@ export class NewaccountComponent implements OnInit {
     this.user.name.trim;
     let i = this.user.name.split(" ");
     if (i.length < 2 || i[0] == "" || i[1] == "") {
-      this.error[0] = "Enter first and Last Name";
+      this.error[0] = "Enter first and last name";
       b = false;
     }
     if (!this.user.email.includes("@")) {
@@ -28,11 +28,11 @@ export class NewaccountComponent implements OnInit {
       b = false;
     }
     if (this.user.password.length < 8) {
-      this.error[2] = "Password must be at least 8 Characters Long."
+      this.error[2] = "Password must be at least 8 characters long."
       b = false;
     }
     if (this.user.password != this.repeatPassword) {
-      this.error[3] = "Passwords do Not Match";
+      this.error[3] = "Passwords do not match";
       b = false;
     }
     let num1 = this.user.homePhone.replace(/[- _]/g,"");

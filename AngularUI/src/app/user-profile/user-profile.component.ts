@@ -58,7 +58,7 @@ export class UserProfileComponent implements OnInit {
     this.user.name.trim;
     let i = this.user.name.split(" ");
     if (i.length < 2 || i[0] == "" || i[1] == "") {
-      this.error[0] = "Enter first and Last Name";
+      this.error[0] = "Enter first and last name";
       b = false;
     }
     
@@ -101,11 +101,11 @@ export class UserProfileComponent implements OnInit {
           this.router.navigate(["/books"]);
         }
       }).catch((m) =>{
-        this.error[3] = "User Name or Password incorrect.";
+        this.error[3] = "Incorrect email or password.";
       })
       
     } else {
-      this.error[3] = "User Name or Password incorrect.";  
+      this.error[3] = "Incorrect email or password.";  
     }
   }
   editPassword() {

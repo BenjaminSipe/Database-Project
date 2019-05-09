@@ -114,7 +114,7 @@ export class CreditCardComponent implements OnInit {
     this.newCard.NameOnCard.trim;
     let i = this.newCard.NameOnCard.split(" ");
     if (i.length < 2 || i[0] == "" || i[1] == "") {
-      this.error[1] = "Enter first and Last Name";
+      this.error[1] = "Enter first and last Name";
       b = false;
     }
     this.newCard.ExpirationDate.replace(" ", "")
