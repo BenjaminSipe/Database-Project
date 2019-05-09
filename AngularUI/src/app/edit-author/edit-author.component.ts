@@ -30,7 +30,7 @@ export class EditAuthorComponent implements OnDestroy {
     console.log("saving..." +author.authorName);
     this.putService.putAuthor(author);
     this.router.navigate(['/admin/other']);
-    location.reload();
+    //location.reload();
   }
 
   adminOther() {
