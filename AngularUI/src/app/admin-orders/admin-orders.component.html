@@ -75,8 +75,8 @@
                     <td>{{ b.BookID }}</td>
                     <td>{{ b.Title }}</td>
                     <td>{{ b.Isbn13 }}</td>
-                    <td>{{ b.Income | currency:'USD' }}</td>
-                    <td>{{ b.Profit | currency:'USD' }}</td>
+                    <td>{{ (b.Income ? b.Income : 0) | currency:'USD' }}</td>
+                    <td>{{ (b.Profit ? b.Profit : 0 )| currency:'USD' }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -98,7 +98,7 @@
                     <td>{{ r.PublisherID }}</td>
                     <td>{{ getPublisher(r.PublisherID) }}</td>
                     <td>{{ slice(r.OrderDate) }}</td>
-                    <td>{{ r.Revenue | currency:'USD' }}</td>
+                    <td>{{ (r.Revenue ? r.Revenue : 0) | currency:'USD' }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -119,8 +119,8 @@
                     <td>{{ i+1 }}</td>
                     <td>{{ b.PublisherID }}</td>
                     <td>{{ getPublisher(b.PublisherID) }}</td>
-                    <td>{{ b.TotalAssets | currency:'USD' }}</td>
-                    <td>{{ b.TotalValue | currency:'USD' }}</td>
+                    <td>{{ (b.TotalAssets ? b.TotalAssets : 0) | currency:'USD' }}</td>
+                    <td>{{ (b.TotalValue ? b.TotalValue : 0 ) | currency:'USD' }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -141,8 +141,8 @@
                     <td>{{ i+1 }}</td>
                     <td>{{ b.CategoryID }}</td>
                     <td>{{ getCategory(b.CategoryID) }}</td>
-                    <td>{{ b.TotalAssets | currency:'USD' }}</td>
-                    <td>{{ b.TotalValue | currency:'USD' }}</td>
+                    <td>{{ (b.TotalAssets ? b.TotalAssets : 0) | currency:'USD'}}</td>
+                    <td>{{ (b.TotalValue ? b.TotalValue : 0 ) | currency:'USD' }}</td>
                   </tr>
                 </tbody>
               </table>

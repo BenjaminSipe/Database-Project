@@ -31,7 +31,7 @@ export class EditPublisherComponent implements OnDestroy {
     console.log("saving..." +publisher.Name);
     this.putService.putPublisher(publisher);
     this.router.navigate(['/admin/other']);
-    location.reload();
+    //location.reload();
   }
 
   ngOnDestroy() {
