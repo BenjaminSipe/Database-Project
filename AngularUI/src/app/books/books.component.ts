@@ -30,11 +30,9 @@ export class BooksComponent implements OnDestroy{
                          this.count = Object.keys(books).length;});
     route.queryParamMap.subscribe(params => {
       this.category = params.get('category');
-      console.log(this.category);
       if(this.category){
         this.subscription = this.getService.getBooksByCategory(this.category)
-        .subscribe(books => {console.log(Object.values(books));
-                             this.filteredBooks = Object.values(books);
+        .subscribe(books => {this.filteredBooks = Object.values(books);
                              this.count = Object.keys(books).length;});
 
       } else if (this.category === null) {

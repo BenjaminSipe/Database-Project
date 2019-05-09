@@ -81,10 +81,10 @@ export class EditBookComponent implements OnDestroy{
 
    //SAVE
    editBook(newBook){
-     console.log("saving..." +newBook.bookTitle);
-     this.putService.putBook(newBook);
-     this.router.navigate(['/admin/books/edit/' + this.id]);
-
+    if(confirm('Are you sure you want to edit this book?')){
+      this.putService.putBook(newBook);
+      this.router.navigate(['/admin/books/edit/']);
+    }
    }
 
   //ADD NEW (PUBLISHER/CATEGORY ETC)
