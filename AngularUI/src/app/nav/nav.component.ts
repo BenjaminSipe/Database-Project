@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,7 @@ export class NavComponent implements OnInit {
   appTitle = 'myapp';
   cartTotal;
 
-  constructor(public userservice : UserService, private router: Router) {
+  constructor(public userservice : UserService, private router: Router, private cart: ShoppingCartService) {
   }
 
 
@@ -47,6 +48,7 @@ export class NavComponent implements OnInit {
     if (this.userservice.user.userID == undefined) {
       this.router.navigate(["/login"]);
     } else {
+      this.cart.ClearCart();
       this.userservice.logout();
       this.router.navigate(["/"]);
     }
