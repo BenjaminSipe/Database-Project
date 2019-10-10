@@ -30,7 +30,9 @@ import { AdminInvoiceComponent } from './admin-invoice/admin-invoice.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { OrderErrorComponent } from './order-error/order-error.component';
+import { TestComponent } from './test/test.component';
 const routes: Routes = [
+  { path: 'test', component: TestComponent },
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'newaccount', component: NewaccountComponent},

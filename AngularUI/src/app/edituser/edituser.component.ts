@@ -48,7 +48,7 @@ export class EdituserComponent implements OnInit {
   }
 
   editEmail() {
-    console.log("This is running")
+    //console.log("This is running")
     this.onClick().then((m) => {
       this.whatsBeingEdited = "email";
     }).catch(() => {

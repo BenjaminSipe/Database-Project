@@ -15,7 +15,7 @@ export class PUTService {
   constructor(private http : HttpClient) {}
 
   putBook(book) {
-    console.log("Putting book...");
+    //console.log("Putting book...");
     this.http.put("http://localhost:3000/update/Book", book, httpOptions)
     .subscribe((res) =>
     {
@@ -25,7 +25,7 @@ export class PUTService {
   }
 
   putCategory(category) {
-    console.log("Putting category...");
+    //console.log("Putting category...");
     this.http.put("http://localhost:3000/update/Category", category, httpOptions)
     .subscribe((res) =>
     {
@@ -34,7 +34,7 @@ export class PUTService {
 
   }
   putFormat(format) {
-    console.log("Putting format...");
+    //console.log("Putting format...");
     this.http.put("http://localhost:3000/update/Format", format, httpOptions)
     .subscribe((res) =>
     {
@@ -42,7 +42,7 @@ export class PUTService {
     });
   }
   putPublisher(publisher) {
-    console.log("Putting Publisher...");
+    //console.log("Putting Publisher...");
     this.http.put("http://localhost:3000/update/Publisher", publisher, httpOptions)
     .subscribe((res) =>
     {
@@ -50,7 +50,7 @@ export class PUTService {
     });
   }
   putAuthor(author) {
-    console.log("Putting author...");
+    //console.log("Putting author...");
     this.http.put("http://localhost:3000/update/Author", author, httpOptions)
     .subscribe((res) =>
     {

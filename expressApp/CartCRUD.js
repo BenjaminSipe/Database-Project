@@ -12,10 +12,10 @@ exports.createCart = function(newCart) {
 
   exports.readCart = function(id) {
     return new Promise( (resolve, reject) => {
-      console.log(id);
+      //console.log(id);
     dbInfo.pool.query(`CALL usp_ReadShoppingCart( ${id} )`, function (err, rows, fields) {
         if (err) {
-          console.log(err);
+          //console.log(err);
           reject('{"error":"No Carts Found"}');}
         else
           resolve(rows[0])

@@ -36,9 +36,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               private cart: ShoppingCartService, private modalService: NgbModal, private post: POSTService,
               private router: Router) {
     this.user = userservice.user;
-    //console.log(this.user);
+    ////console.log(this.user);
     this.convertedToString = JSON.stringify(this.user);
-    console.log('string:'+this.convertedToString);
+    //console.log('string:'+this.convertedToString);
     this.selectedProducts = localStorage.getItem('selectedProducts') ? JSON.parse(localStorage.getItem('selectedProducts')) : [];
     if (!userservice.isLoggedIn()) {
       router.navigate(["/login"]);
@@ -50,7 +50,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.lastName = newStr[1];
     this.subscription = get.getCreditCardByUser(userservice.user.userID).subscribe((obj) => {
       for (let vl of obj) {
-        console.log(vl);
+        //console.log(vl);
         this.creditCards.push(vl);
       }
     });
@@ -76,7 +76,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.invoice.discount = this.discount ? 10 : 0;
     this.invoice.shippingAddress = this.convertAddress(order);;
     this.invoice.Books = this.getItems();
-    //console.log(this.invoice);
+    ////console.log(this.invoice);
     this.post.createInvoice(this.invoice).then((m) => {
     this.modalService.dismissAll();
     this.cart.ClearCart();
@@ -92,13 +92,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   cardDetails(index:number) {
-    console.log(index);
+    //console.log(index);
     this.creditCard = this.creditCards[index];
     this.showDetails = true;
   }
 
   getDiscount(){
-    //console.log(this.discount);
+    ////console.log(this.discount);
     return this.discount;
   }
   getProductTotal() {

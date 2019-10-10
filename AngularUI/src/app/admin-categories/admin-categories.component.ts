@@ -18,10 +18,11 @@ export class AdminCategoriesComponent implements OnInit {
   formatName$: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private getService : GETService) {
-    console.log(this.bookId);
+    
    }
 
    getFormat(id){
+
      //console.log("in get format " + id);
      this.formatName$ = this.getService.getBookFormat(this.bookId);
    }

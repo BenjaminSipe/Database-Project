@@ -27,7 +27,7 @@ export class UserService {
 
   login(user:User) {
     return new Promise((resolve, reject) => {
-      this.http.post("http://localhost:3000/authUser", user, httpOptions)
+      this.http.post("/api/authUser", user, httpOptions)
       .subscribe(res => {
 
         if (res[0].UserID == 0) {
@@ -40,13 +40,13 @@ export class UserService {
 }})})}
 
   CreateAdmin(userID) {
-    this.http.post(`http://localhost:3000/CreateAdmin/${userID}`,httpOptions).subscribe(res2 => {
+    this.http.post(`/api/CreateAdmin/${userID}`,httpOptions).subscribe(res2 => {
       
     })
   }
   getUser(userID) {
     return new Promise((resolve, reject) => {
-      this.http.get<User>(`http://localhost:3000/ReadUser/${userID}`,httpOptions)
+      this.http.get<User>(`/api/ReadUser/${userID}`,httpOptions)
       .subscribe(res2 =>
         {
           this.user = res2[0];
@@ -73,7 +73,7 @@ export class UserService {
 
     
     let aaa = [ this.user.userID, inputs[0], update];
-    this.http.put("http://localhost:3000/updateUserLoginInfo", aaa, httpOptions)
+    this.http.put("/api/updateUserLoginInfo", aaa, httpOptions)
     .subscribe((obj) => {
       if (update == "email") {
         this.user.email = inputs[0];
@@ -94,7 +94,7 @@ export class UserService {
   postUser( user: User) {
     return new Promise((resolve, reject) => {
 
-    this.http.post<User>("http://localhost:3000/createUser", user, httpOptions)
+    this.http.post<User>("/api/createUser", user, httpOptions)
     .subscribe(obj => {
       user.userID = obj[0].UserID;
       this.user = user;
@@ -104,7 +104,7 @@ export class UserService {
     });})}
 
   getUsers():Observable<User[]> {
-    return this.http.get<User[]>("http://localhost:3000/readUsers");
+    return this.http.get<User[]>("/api/readUsers");
   }
 
   constructor(private http: HttpClient) {
@@ -125,7 +125,7 @@ export class UserService {
     user.homePhone = u.homePhone;
     user.workPhone = u.workPhone;
     user.name = u.name;
-    this.http.put<User>("http://localhost:3000/update/User", user, httpOptions)
+    this.http.put<User>("/api/update/User", user, httpOptions)
     .subscribe((res) =>
     {
       return "Successful";
@@ -133,7 +133,7 @@ export class UserService {
   }
 
   deleteUser() {
-    this.http.delete("http://localhost:3000/deleteUser/" + this.user.userID).subscribe((res) =>{
+    this.http.delete("/api/deleteUser/" + this.user.userID).subscribe((res) =>{
       return "successful";
     })
   }

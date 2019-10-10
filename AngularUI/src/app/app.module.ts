@@ -48,6 +48,7 @@ import { AdminInvoiceComponent } from './admin-invoice/admin-invoice.component';
 import { OrderComponent } from './order/order.component';
 import { ContactComponent } from './contact/contact.component';
 import { OrderErrorComponent } from './order-error/order-error.component';
+import { TestComponent } from './test/test.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,6 +86,7 @@ import { OrderErrorComponent } from './order-error/order-error.component';
     OrderComponent,
     ContactComponent,
     OrderErrorComponent,
+    TestComponent,
 
   ],
   imports: [

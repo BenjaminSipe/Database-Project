@@ -48,7 +48,7 @@ exports.updateObject = function(body, object) {
         args = [];
         for (let y of objectParam[object]) {
             args.push(body[y]);
-            console.log(args);
+            //console.log(args);
             if (x === "") {
                 x = " ? "
             } else {

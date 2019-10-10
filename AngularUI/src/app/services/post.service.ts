@@ -7,12 +7,12 @@ import { Creditcard } from '../creditcard';
   providedIn: 'root'
 })
 export class POSTService {
-  private urlBase = 'http://localhost:3000/';
+  private urlBase = '/api/';
   constructor(private http:HttpClient) { }
 
   sendEmail(email) {
-    console.log(email)
-    return this.http.post('http://localhost:3000/sendMail', email);
+    //console.log(email)
+    return this.http.post(this.urlBase + 'sendMail', email);
   }
 
   createBook(book){
@@ -49,7 +49,7 @@ export class POSTService {
     return this.http.post(this.urlBase + 'createAuthor', author);
    }
   //  createCart(datetime){
-  //    console.log("From service " + Object.values(datetime));
+  //    //console.log("From service " + Object.values(datetime));
   //    return this.http.post(this.urlBase + 'createCart', datetime);
   //  }
    createCreditCard(creditCard: Creditcard){
@@ -60,7 +60,7 @@ export class POSTService {
 
   deleteCreditCard(creditCard: Creditcard){
     return this.http.delete(this.urlBase + 'deleteCreditCard/'+ creditCard.CreditCardID).subscribe((obj) => {
-      console.log(obj);
+      //console.log(obj);
     });
   }
 

@@ -23,11 +23,11 @@ export class EditAuthorComponent implements OnDestroy {
       this.id = this.route.snapshot.paramMap.get('id');
       this.subscription = this.getService.getAuthor(this.id)
       .subscribe(author => {this.author = author[0]});
-      console.log(Object.values(this.author));
+      //console.log(Object.values(this.author));
   }
 
   editAuthor(author) {
-    console.log("saving..." +author.authorName);
+    //console.log("saving..." +author.authorName);
     this.putService.putAuthor(author);
     this.router.navigate(['/admin/other']);
     //location.reload();

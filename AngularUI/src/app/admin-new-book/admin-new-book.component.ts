@@ -57,7 +57,7 @@ export class AdminNewBookComponent{
    //SAVE
    saveBook(newBook){
      this.postService.createBook(newBook).subscribe((response)=>{
-      console.log('response from post data is ', response);
+      //console.log('response from post data is ', response);
       this.ab.BookID = response[0].BookID;
       this.bc.BookID = response[0].BookID;
       this.fb.BookID = response[0].BookID;
@@ -71,7 +71,7 @@ export class AdminNewBookComponent{
       this.saveBookAuthor(this.ab);
       this.saveBookFormat(this.fb);
     }, (error)=>{
-      console.log('error during post is ', error)
+      //console.log('error during post is ', error)
     }
     );
      this.router.navigate(['/admin/books']);
@@ -80,68 +80,68 @@ export class AdminNewBookComponent{
    saveBookCategory(nbc){
     this.postService.createBookCategory(nbc).subscribe((response)=>{
 
-     console.log('response from bc post data is ', response);
+     //console.log('response from bc post data is ', response);
    }, (error)=>{
-     console.log('error during post is ', error)
+     //console.log('error during post is ', error)
    });
   }
   saveBookAuthor(nab){
     this.postService.createBookAuthor(nab).subscribe((response)=>{
-     console.log('response from ab post data is ', response);
+     //console.log('response from ab post data is ', response);
    },(error)=>{
-     console.log('error during post is ', error)
+     //console.log('error during post is ', error)
    });
   }
   saveBookFormat(nfb){
     this.postService.createBookFormat(nfb).subscribe((response)=>{
-     console.log('response from fb post data is ', response);
+     //console.log('response from fb post data is ', response);
    },(error) => {
-     console.log('error during post is ', error)
+     //console.log('error during post is ', error)
    });
   }
   saveCategory(newCategory){
     this.postService.createCategory(newCategory).subscribe((response)=>{
-     console.log('response from post data is ', response);
+     //console.log('response from post data is ', response);
      this.categories$ = this.getService.getCategories();
      this.submit = true;
      }, (error)=> {
-     console.log('error during post is ', error)
+     //console.log('error during post is ', error)
      this.submit = false;
    });
 
   }
   savePublisher(newPublisher){
     this.postService.createPublisher(newPublisher).subscribe((response)=>{
-     console.log('response from post data is ', response);
+     //console.log('response from post data is ', response);
      this.publishers$ = this.getService.getPublishers();
      this.submit = true;
    },(error)=>{
-     console.log('error during post is ', error)
+     //console.log('error during post is ', error)
      this.submit = false;
    });
   }
   saveFormat(newFormat){
     this.postService.createFormat(newFormat).subscribe((response)=>{
       this.formats$ = this.getService.getFormats();
-     console.log('response from post data is ', response);
+     //console.log('response from post data is ', response);
      this.submit = true;
    },(error)=>{
-     console.log('error during post is ', error);
+     //console.log('error during post is ', error);
      this.submit = false;
    });
   }
 
   saveAuthor(newAuthor){
-    console.log(newAuthor.newAuthorBio);
+    //console.log(newAuthor.newAuthorBio);
     newAuthor.newAuthorBio = newAuthor.newAuthorBio.replace(/'/g,"\\'");
     newAuthor.newAuthorBio = newAuthor.newAuthorBio.replace(/"/g,'\\"');
-    console.log(newAuthor.newAuthorBio);
+    //console.log(newAuthor.newAuthorBio);
     this.postService.createAuthor(newAuthor).subscribe((response)=>{
-     console.log('response from post data is ', response);
+     //console.log('response from post data is ', response);
      this.authors$ = this.getService.getAuthors();
      this.submit = true;
    },(error)=>{
-     console.log('error during post is ', error);
+     //console.log('error during post is ', error);
      this.submit = false;
    });
   }

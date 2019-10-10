@@ -21,7 +21,7 @@ export class BookViewComponent implements OnInit {
    }
 
    getFormat(id){
-     console.log("in get format " + id);
+     //console.log("in get format " + id);
     this.formatName$ = this.getService.getBookFormat(this.bookId);
    }
 

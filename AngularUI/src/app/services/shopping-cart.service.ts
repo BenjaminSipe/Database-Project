@@ -20,8 +20,8 @@ export class ShoppingCartService {
 
   //  private getCart(cartId){
   //   this.getService.getCart(cartId).subscribe(cart => {this.cart = cart[0].CartId;
-  //   console.log(cart[0].CartId)});
-  //   console.log("From cart[0]"+this.cart);
+  //   //console.log(cart[0].CartId)});
+  //   //console.log("From cart[0]"+this.cart);
   //   return this.cart;
   //  }
   //  public getOrCreateCart(){
@@ -33,17 +33,17 @@ export class ShoppingCartService {
   //   + this.currentdate.getSeconds();
   //   this.date.Datetime = datetime;
   //   let cartId = localStorage.getItem('cartId');
-  //   console.log(cartId);
+  //   //console.log(cartId);
   //   if(!cartId){
-  //     console.log("in if..");
+  //     //console.log("in if..");
   //     this.postService.createCart(this.date).subscribe((response)=>{
   //     localStorage.setItem('cartId', response[0].CartId);
   //     cartId = response[0].CartId;
   //     return cartId;
   //   });
   // }
-  //     console.log("almost there...");
-  //     console.log(this.getLocalStorageData());
+  //     //console.log("almost there...");
+  //     //console.log(this.getLocalStorageData());
 
   //     return cartId;
   // }
@@ -56,10 +56,10 @@ export class ShoppingCartService {
     let exists = false;
     this.getLocalStorageData();
     this.selectedProducts = this.selectedProducts.map(items => {
-        //console.log("item.BookID = " + item.BookID);
+        ////console.log("item.BookID = " + item.BookID);
         if (items.BookID === item.BookID) {
             exists = true;
-            //console.log("items.productCount = " + items.productCount);
+            ////console.log("items.productCount = " + items.productCount);
             if (item.productCount) {
                 items.productCount += item.productCount;
                 this.cartTotal += item.productCount;
@@ -71,29 +71,29 @@ export class ShoppingCartService {
         return items;
     });
     if (!exists) {
-        //console.log('should be here adding...' + item);;
+        ////console.log('should be here adding...' + item);;
         this.selectedProducts.push(item);
-        //console.log("should be here...");
+        ////console.log("should be here...");
         if (!item.productCount) {
             item.productCount = 1;
         }
         this.cartTotal += item.productCount;
-        //console.log("this.cartTotal should be 1 = "+ this.cartTotal);
+        ////console.log("this.cartTotal should be 1 = "+ this.cartTotal);
     }
     this.productTotal = 0;
     this.selectedProducts.forEach(_price => {
         const tempPrice = Number(_price.price * _price.productCount);
         this.productTotal += tempPrice;
-        //console.log('total price = ' + this.productTotal);
+        ////console.log('total price = ' + this.productTotal);
     });
     const cartParams: any = {};
     cartParams.products = this.selectedProducts;
     cartParams.productTotal = this.cartTotal;
     cartParams.totalPrice = this.productTotal;
     this.HandleCart(cartParams);
-    console.log('Book '  + item.Title + ' is added to cart.');
+    //console.log('Book '  + item.Title + ' is added to cart.');
     this.getLocalStorageData();
-    //console.log('Working? ' + localStorage.getItem('selectedProducts'));
+    ////console.log('Working? ' + localStorage.getItem('selectedProducts'));
 
 }
 removeItemFromCart(item) {
@@ -127,7 +127,7 @@ ChangeCount(item, operation) {
               items.productCount += 1;
               this.cartTotal += 1;
           }
-          console.log("in service items: " + items.productCount);
+          //console.log("in service items: " + items.productCount);
           //itemCount = items.productCount
           return items;
       });
@@ -142,10 +142,10 @@ ChangeCount(item, operation) {
               return items;
           });
       } else if (item.productCount === 1) {
-          console.log("should be here if 1.." + item.productCount);
+          //console.log("should be here if 1.." + item.productCount);
           this.cartTotal -= 1;
           this.selectedProducts = this.selectedProducts.filter(items => {
-              console.log("items.count: " + items.productCount);
+              //console.log("items.count: " + items.productCount);
               if (items.BookID === item.BookID) {
                   return false;
               } else {
@@ -170,7 +170,7 @@ ChangeCount(item, operation) {
 }
 
 HandleCart(params){
-  //console.log("in Handle Cart...");
+  ////console.log("in Handle Cart...");
   localStorage.setItem('productTotal', JSON.stringify(params.totalPrice));
   localStorage.setItem('selectedProducts', JSON.stringify(params.products));
   localStorage.setItem('selectedProductsCount', JSON.stringify(params.productTotal));
@@ -206,7 +206,7 @@ public getLocalStorageData() {
     const cartTotal: number = localStorage.getItem('selectedProducts')
     ? parseFloat(localStorage.getItem('selectedProductsCount')) : 0;
     this.cartTotal = cartTotal;
-    //console.log('Cart total in service = ' + this.cartTotal);
+    ////console.log('Cart total in service = ' + this.cartTotal);
     const productTotal: number = localStorage.getItem('productTotal') ? parseFloat(localStorage.getItem('productTotal')) : 0;
     this.productTotal = productTotal;
 }

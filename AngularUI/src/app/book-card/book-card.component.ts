@@ -64,7 +64,7 @@ export class BookCardComponent implements OnInit{
     if (items.BookID === this.bookToCart.BookID) {
        itemProductCount = items.productCount;
        itemProductCount +=1;
-       console.log('Product count test: ' + itemProductCount);
+       //console.log('Product count test: ' + itemProductCount);
     }
   });
   if(itemProductCount > this.bookToCart.quantity){

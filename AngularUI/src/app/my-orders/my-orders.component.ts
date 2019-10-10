@@ -17,7 +17,7 @@ export class MyOrdersComponent implements OnInit {
   currentDialog = null;
   destroy = new Subject<any>();
   constructor(
-    private userservice :UserService,
+    public userservice :UserService,
     private get : GETService,
     private router : Router,
     private route : ActivatedRoute,

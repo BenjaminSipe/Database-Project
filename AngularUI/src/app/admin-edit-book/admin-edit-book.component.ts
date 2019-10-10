@@ -36,16 +36,16 @@ export class AdminEditBookComponent implements OnDestroy{
    }
 
     deleteBook(book){
-      //console.log(book)
+      ////console.log(book)
       this.bookToDelete.BookID = book;
       if(confirm("Are you sure to delete this book?")) {
-        console.log("Implement delete functionality here");
+        //console.log("Implement delete functionality here");
 
           this.postService.deleteBook(this.bookToDelete).subscribe((response)=>{
-           console.log('response from delete book is ', response);
+           //console.log('response from delete book is ', response);
            location.reload();
          },(error)=>{
-           console.log('error during post is ', error)
+           //console.log('error during post is ', error)
          });
         }
     }

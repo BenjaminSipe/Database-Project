@@ -29,7 +29,7 @@ exports.readCategoryBook = function(index) {
     });
 })}
 exports.createCategory = function(newCategory) {
-  console.log(newCategory);
+  //console.log(newCategory);
   return new Promise((resolve, reject) => {
     dbInfo.pool.query('CALL usp_CreateCategory("'+newCategory.newCategoryName+'")', function (err, rows, fields) {
       if (err) reject(err);

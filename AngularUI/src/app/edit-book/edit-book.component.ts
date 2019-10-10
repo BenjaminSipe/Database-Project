@@ -48,7 +48,7 @@ export class EditBookComponent implements OnDestroy{
     this.authors$ = getService.getAuthors();
 
     this.id = this.route.snapshot.paramMap.get('id');
-    //console.log("id?"+this.id);
+    ////console.log("id?"+this.id);
     // this.book$ = this.getService.getBook(id);
     this.subscription = this.getService.getBook(this.id)
       .subscribe(book => {this.imageUrl = book[0].ImageLink;
@@ -98,47 +98,47 @@ export class EditBookComponent implements OnDestroy{
   }
   saveCategory(newCategory){
     this.postService.createCategory(newCategory).subscribe((response)=>{
-     console.log('response from post data is ', response);
+     //console.log('response from post data is ', response);
      this.categories$ = this.getService.getCategories();
      this.submit = true;
      }, (error)=> {
-     console.log('error during post is ', error)
+     //console.log('error during post is ', error)
      this.submit = false;
    });
 
   }
   savePublisher(newPublisher){
     this.postService.createPublisher(newPublisher).subscribe((response)=>{
-     console.log('response from post data is ', response);
+     //console.log('response from post data is ', response);
      this.publishers$ = this.getService.getPublishers();
      this.submit = true;
    },(error)=>{
-     console.log('error during post is ', error)
+     //console.log('error during post is ', error)
      this.submit = false;
    });
   }
   saveFormat(newFormat){
     this.postService.createFormat(newFormat).subscribe((response)=>{
       this.formats$ = this.getService.getFormats();
-     console.log('response from post data is ', response);
+     //console.log('response from post data is ', response);
      this.submit = true;
    },(error)=>{
-     console.log('error during post is ', error);
+     //console.log('error during post is ', error);
      this.submit = false;
    });
   }
 
   saveAuthor(newAuthor){
-    console.log(newAuthor.newAuthorBio);
+    //console.log(newAuthor.newAuthorBio);
     newAuthor.newAuthorBio = newAuthor.newAuthorBio.replace(/'/g,"\\'");
     newAuthor.newAuthorBio = newAuthor.newAuthorBio.replace(/"/g,'\\"');
-    console.log(newAuthor.newAuthorBio);
+    //console.log(newAuthor.newAuthorBio);
     this.postService.createAuthor(newAuthor).subscribe((response)=>{
-     console.log('response from post data is ', response);
+     //console.log('response from post data is ', response);
      this.authors$ = this.getService.getAuthors();
      this.submit = true;
    },(error)=>{
-     console.log('error during post is ', error);
+     //console.log('error during post is ', error);
      this.submit = false;
    });
   }

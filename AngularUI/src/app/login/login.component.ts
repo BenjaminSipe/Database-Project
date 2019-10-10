@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
   user = new User("", "", "", "", "");
   boolean = false;
 
+   onClickMe() {
+    this.router.navigate(['/newaccount']);
+   }
+
   onClick() {
     this.error = "";
     this.bool = true;

@@ -12,7 +12,7 @@ export class CategoriesComponent{
   public categories = [];
   constructor(private categoryService : CategoryService) {
     categoryService.getCategories().subscribe((response : any[]) => {
-      console.log(response);
+      //console.log(response);
       this.categories = response});
   }
 }

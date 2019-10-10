@@ -10,7 +10,7 @@ exports.readPublishers = function() {
     });
 })}
 exports.createPublisher = function(newPublisher) {
-    console.log(newPublisher);
+    //console.log(newPublisher);
       dbInfo.pool.query('CALL usp_CreatePublisher("'+newPublisher.newPublisherName+'", "'+newPublisher.newPublisherContactName+'", "'+newPublisher.newPublisherAddress+'", "'+newPublisher.newPublisherPhone+'")', function (err, rows, fields) {
         if (err)
           throw(err);

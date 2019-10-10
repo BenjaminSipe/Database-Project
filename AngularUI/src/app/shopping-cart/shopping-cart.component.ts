@@ -17,19 +17,19 @@ export class ShoppingCartComponent implements OnInit {
     this.selectedProducts = localStorage.getItem('selectedProducts') ?
     JSON.parse(localStorage.getItem('selectedProducts')) : [];
 
-    //console.log(this.selectedProducts);
+    ////console.log(this.selectedProducts);
    }
 
   ngOnInit() {
     const productTotal: number = localStorage.getItem('productTotal') ? parseFloat(localStorage.getItem('productTotal')) : 0;
     this.productTotal = productTotal;
-    //console.log('product total:'+ this.productTotal);
+    ////console.log('product total:'+ this.productTotal);
   }
 
   removeItem(item){
     
     this.cart.removeItemFromCart(item);
-    console.log('removed...');
+    //console.log('removed...');
     
     this.selectedProducts = localStorage.getItem('selectedProducts') ?
     JSON.parse(localStorage.getItem('selectedProducts')) : [];
@@ -50,18 +50,18 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   increaseItem(item){
-    console.log(item.BookID);
+    //console.log(item.BookID);
     //let answer;
     let itemProductCount = 0;
-    //console.log('quantity1: ' + this.item.quantity);
+    ////console.log('quantity1: ' + this.item.quantity);
     let selectedProducts = localStorage.getItem('selectedProducts') ?
     JSON.parse(localStorage.getItem('selectedProducts')) : [];
     selectedProducts.map(items => {
-    console.log("items.BookID = " + items.BookID);
+    //console.log("items.BookID = " + items.BookID);
     if (items.BookID === item.BookID) {
        itemProductCount = items.productCount;
        itemProductCount +=1;
-       console.log('Product count test: ' + itemProductCount);
+       //console.log('Product count test: ' + itemProductCount);
     }
     });
     if(itemProductCount > item.quantity){

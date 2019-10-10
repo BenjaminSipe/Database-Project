@@ -63,9 +63,9 @@ export class NewaccountComponent implements OnInit {
         this.userService.login(this.user).then((message) => {
           this.router.navigate(['/userprofile']);
         }).catch((message) => {
-          console.log(message);
+          //console.log(message);
         })}).catch((message)=>{
-          console.log(message)
+          //console.log(message)
         })
     } else {
       this.bool = false;

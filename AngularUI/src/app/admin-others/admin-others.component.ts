@@ -75,12 +75,12 @@ export class AdminOthersComponent implements OnDestroy {
     let updateCategory = { categoryID: '',
                            categoryName: ''
                           }
-    console.log('editing..');
+    //console.log('editing..');
     updateCategory.categoryID = categoryID;
     updateCategory.categoryName = category.categoryName;
-    // console.log('name..' + category.categoryName);
-    // console.log('id..' + categoryID);
-    console.log('uc..' + Object.values(updateCategory));
+    // //console.log('name..' + category.categoryName);
+    // //console.log('id..' + categoryID);
+    //console.log('uc..' + Object.values(updateCategory));
     this.putService.putCategory(updateCategory);
     }
 
@@ -91,10 +91,10 @@ export class AdminOthersComponent implements OnDestroy {
     let updateFormat = { formatID: '',
                            formatName: ''
                           }
-    console.log('editing..');
+    //console.log('editing..');
     updateFormat.formatID = formatID;
     updateFormat.formatName = format.FormatName;
-    console.log('uc..' + Object.values(updateFormat));
+    //console.log('uc..' + Object.values(updateFormat));
     this.putService.putFormat(updateFormat);
     }
   }

@@ -26,7 +26,7 @@ export class CatalogModalContainerComponent implements OnDestroy {
         // When router navigates on this component is takes the params and opens up the photo detail modal
         this.currentDialog = this.modalService.open(BookViewComponent, {centered: true, size: "lg"});
         this.currentDialog.componentInstance.bookId = this.route.snapshot.paramMap.get('id');
-        console.log("This is id from catalog modal container: " + this.route.snapshot.paramMap.get('id'));
+        //console.log("This is id from catalog modal container: " + this.route.snapshot.paramMap.get('id'));
         // Go back to home page after the modal is closed
         this.currentDialog.result.then(result => {
             router.navigateByUrl('/books');

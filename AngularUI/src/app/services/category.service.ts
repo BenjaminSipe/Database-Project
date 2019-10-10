@@ -7,6 +7,6 @@ import { HttpClient } from '@angular/common/http';
 export class CategoryService {
   constructor(private http : HttpClient) { }
     getCategories(){
-    return this.http.get('http://localhost:3000/readCategories');
+    return this.http.get('/api/readCategories');
   }
 }

@@ -52,14 +52,14 @@ export class CreditCardComponent implements OnInit {
   }
 
   cardDetails(index: number) {
-    console.log(index);
+    //console.log(index);
     this.creditCard = this.creditCards[index];
     this.showDetails = true;
   }
 
   deleteCard(card: Creditcard, index: number) {
     let cc = this.creditCards.splice(index, 1);
-    console.log(cc);
+    //console.log(cc);
     this.post.deleteCreditCard(cc[0]);
   }
 
@@ -128,7 +128,7 @@ export class CreditCardComponent implements OnInit {
     }
     if ((this.newCard.CCV.length != 3 && this.newCard.CCV.length != 4) || this.newCard.CCV.match(/[^0-9]/) != null) {
       b = false;
-      console.log(this.newCard.CCV.match(/^[0-9]/))
+      //console.log(this.newCard.CCV.match(/^[0-9]/))
       this.error[4] = "Invalid CCV";
     }
     return b;
